@@ -4,16 +4,76 @@
    Author's custom styles
    ========================================================================== */
 
+.head-img {
+	margin-bottom: 10px;
+}
+
+.icons {
+	margin-right: 16%;
+}
+
+.head-icon {
+	float:right; 
+	width:5%; 
+	margin: 4px;
+}
+
+.row-centered {
+	text-align: center;
+}
+
+.col-centered {
+	display: inline-block;
+}
 
 
+.socle-sys {
+	/*height: 250px;*/
+	background: #c0a949;
+	border-radius: 10px;
+	margin-top: 10px;
+}
 
+.name-block {
+	font-family: 'Droid Sans', sans-serif;
+	color: #ffffff;
+	font-size: 22px;
+	padding-top: 10px;
+    display: block;
+    font-weight: 700;
+}
 
+.marker {
+	margin-top: 15px;
+}
 
+.name-descr {
+	display: inline-block;
+	padding-top: 15px;
+	padding-bottom: 15px; 
+	padding-left: 5px;
+	float: left;
+	width: 87%
+}
 
+.name-descr span {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	color: #ffffff;
+	font-size: 11px;
+}
 
+.detail {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 600;
+	color: #000000;
+	font-size: 11px;
+	margin-bottom: 15px;
+}
 
-
-
+ @media screen and (max-width: 992px) {
+     .socle-sys { width: 230px; }
+   }
 
 
 
