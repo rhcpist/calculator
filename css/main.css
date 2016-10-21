@@ -4,6 +4,16 @@
    Author's custom styles
    ========================================================================== */
 
+span {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	color: #000000;
+	font-size: 11px;
+}
+
+
+   /********************Header box********************/
+
 .head-img {
 	margin-bottom: 10px;
 }
@@ -29,7 +39,7 @@
 
 .socle-sys {
 	/*height: 250px;*/
-	background: #c0a949;
+	background: #bca549;
 	border-radius: 10px;
 	margin-top: 10px;
 }
@@ -71,8 +81,107 @@
 	margin-bottom: 15px;
 }
 
+/********************Toggled box********************/
+
+.soc-col1 {
+	border-radius: 10px 10px 0 0;
+	background: #c4af48;
+}
+
+.soc-col2 {
+	background: #d8c461;
+}
+
+.soc-col3 {
+	background: #c0a949;
+}
+
+.soc-col4 {
+	background: #d0ba62;
+}
+
+.soc-col5 {
+	background: #b0934c;
+}
+
+.soc-col6 {
+	background: #c8af63;
+}
+
+.soc-col7 {
+	background: #9b794f;
+}
+
+.soc-col1, .soc-col2, .soc-col3, .soc-col4, .soc-col5, .soc-col6, .soc-col7 {
+	text-align: left;
+	padding-top: 5px;
+}
+
+.mylabel {
+	padding-left: 10px;
+	display: block;
+}
+
+.soc-digit-input {
+	padding: 6px 1px!important;
+	width: 55px!important;
+    height: 25px;
+    margin: 8px 1px 8px 8px;
+    display: inline-block!important;
+}
+
+.soc-digit-input1 {
+	/*padding: 6px 4px!important;*/
+	width: 65px!important;
+    height: 25px;
+    margin: 8px 1px 8px 15px;
+    display: inline-block!important;
+}
+
+.soc-digit-input2 {
+	padding: 6px 1px!important;
+	width: 65px!important;
+    height: 25px;
+    margin: 8px 0px 8px 6px;
+    display: inline-block!important;
+}
+
+.calc {
+	font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 11px;
+    background: #735641;
+    border-radius: 8px;
+    margin-left: 15px;
+}
+
+.myselect {
+	width: 177px!important;
+	display: block!important;
+    height: 30px;
+    margin: 10px auto 5px auto;
+    font-size: 12px;
+    font-style: italic;
+}
+
+
+ @media screen and (max-width: 1200px) {
+     .soc-digit-input { width: 40px!important; }
+	 .soc-digit-input2 { width: 40px!important; margin: 8px 0px 8px 2px; } 
+     .soc-digit-input1 { width: 50px!important; }
+     .myselect { width: 145px!important; display: block!important;}
+     .calc { margin-left: 0px; }
+   }
+
  @media screen and (max-width: 992px) {
      .socle-sys { width: 230px; }
+     .soc-digit-input { width: 55px!important; }
+     .soc-digit-input2 { width: 55px!important; margin-left: 50px; }
+     .soc-digit-input1 { width: 65px!important; margin-left: 50px;}
+     .myselect { width: 212px!important; display: block!important; }
+     .calc { margin-left: 50px; }
+     .form-group { margin-bottom: 0px!important;}
    }
 
 
