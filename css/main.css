@@ -12,6 +12,7 @@ span {
 }
 
 
+/*********************Socle System********************/
    /********************Header box********************/
 
 .head-img {
@@ -83,6 +84,7 @@ span {
 
 /********************Toggled box********************/
 
+
 .soc-col1 {
 	border-radius: 10px 10px 0 0;
 	background: #c4af48;
@@ -112,7 +114,16 @@ span {
 	background: #9b794f;
 }
 
-.soc-col1, .soc-col2, .soc-col3, .soc-col4, .soc-col5, .soc-col6, .soc-col7 {
+.soc-col8 {
+	background: #c2a765;
+}
+
+.soc-collapse-block {
+	background: #735641;
+	border-radius: 0 0 10px 10px;
+}
+
+.soc-col1, .soc-col2, .soc-col3, .soc-col4, .soc-col5, .soc-col6, .soc-col7, .soc-col8 {
 	text-align: left;
 	padding-top: 5px;
 }
@@ -120,6 +131,14 @@ span {
 .mylabel {
 	padding-left: 10px;
 	display: block;
+}
+
+.mylabel-last {
+	padding-left: 10px;
+	display: block;
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: 600;
 }
 
 .soc-digit-input {
@@ -146,14 +165,38 @@ span {
     display: inline-block!important;
 }
 
+.soc-digit-input3 {
+	width: 75px!important;
+    display: inline-block!important;
+    height: 30px;
+    margin: 3px 1px 3px 97px;
+    border-radius: 0px;
+}
+
+.soc-buttom-line {
+	margin-left: 20px;
+    width: 87%;
+    height: 270px;
+    border-left: 1px solid #a38569;
+    border-bottom: 1px solid #a38569;
+    position: absolute;
+}
+
 .calc {
 	font-family: 'Roboto', sans-serif;
     font-weight: 400;
     color: #ffffff;
     font-size: 11px;
-    background: #735641;
     border-radius: 8px;
     margin-left: 15px;
+}
+
+#soc-btn {
+	background: #735641;
+}
+
+#soc-btn:hover {
+	background: #eee;
 }
 
 .myselect {
@@ -165,20 +208,87 @@ span {
     font-style: italic;
 }
 
+/*********************Socle System End****************/
+
+/******************Power System Start****************/
+
+.pow-sys {
+	background: #ce504a;
+	border-radius: 10px;
+	margin-top: 10px;
+}
+
+.pow-col1 {
+	border-radius: 10px 10px 0 0;
+	background: #dc5444;
+}
+
+.pow-col2 {
+	background: #f08254;
+}
+
+.pow-col3 {
+	background: #d45247;
+}
+
+.pow-col4 {
+	background: #e98157;
+}
+
+.pow-col5 {
+	background: #c34d4f;
+}
+
+.pow-col6 {
+	background: #e37f5a;
+}
+
+.pow-col7 {
+	background: #b04858;
+}
+
+.pow-col8 {
+	background: #cc6a5c;
+}
+
+.pow-collapse-block {
+	background: #83374a;
+	border-radius: 0 0 10px 10px;
+}
+
+.pow-col1, .pow-col2, .pow-col3, .pow-col4, .pow-col5, .pow-col6, .pow-col7, .pow-col8 {
+	text-align: left;
+	padding-top: 5px;
+}
+
+#pow-btn {
+	background: #83374a;
+}
+
+#pow-btn:hover {
+	background: #eee;
+}
+
 
  @media screen and (max-width: 1200px) {
      .soc-digit-input { width: 40px!important; }
 	 .soc-digit-input2 { width: 40px!important; margin: 8px 0px 8px 2px; } 
      .soc-digit-input1 { width: 50px!important; }
+     .soc-digit-input3 { margin: 3px 1px 3px 65px; }
+     .soc-buttom-line { height: 240px; }
      .myselect { width: 145px!important; display: block!important;}
-     .calc { margin-left: 0px; }
+     .calc{ margin-left: 0px; }
    }
 
  @media screen and (max-width: 992px) {
      .socle-sys { width: 230px; }
+     .pow-sys { width: 230px; }
+     .soc-buttom-line { display: inline-block; }
      .soc-digit-input { width: 55px!important; }
      .soc-digit-input2 { width: 55px!important; margin-left: 50px; }
      .soc-digit-input1 { width: 65px!important; margin-left: 50px;}
+     .soc-digit-input3 { margin-left: 130px; }
+     .soc-buttom-line { height: 280px; width: 200px; }
      .myselect { width: 212px!important; display: block!important; }
      .calc { margin-left: 50px; }
      .form-group { margin-bottom: 0px!important;}

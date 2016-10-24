@@ -46,31 +46,164 @@
 	    	<div class="col-md-2">
 	    		wefwef
 	    	</div>
-	    	<div class="col-md-2">
-	    		wefwef
+	    	<div class="col-md-2" style="margin: 5px;">
+	    		<div class="row row-centered">
+	    			<img class="img-responsive center-block" src="img/PowerSystem/building.png" alt="PowerSystem" style="margin-top: 19%;">
+	    			<div class="pow-sys center-block">
+	    				<span class="name-block">PowerSystem</span>
+	    				<img class="img-responsive col-centered" src="img/PowerSystem/text-layer.png" alt="Надміцна">
+	    				<div style="float: left; display: inline-block;">
+	    					<img class="img-responsive marker" src="img/str.png">
+	    				</div>
+    					<div class="name-descr">
+    						<span>Надвисока ударна міцність. Для надійного захисту та довговічності</span>
+    					</div>
+    					<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#powerDetail" aria-expanded="false" aria-controls="powerDetail">Детальніше</button>
+	    			</div>
+
+					<div class="collapse" id="powerDetail">
+					  <div class="pow-sys center-block">
+					    <div class="pow-col1">
+					    	<span class="mylabel">Площа утеплення:</span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control soc-digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
+								<button type="submit" class="btn btn-default calc" id="pow-btn">Розрахувати</button>
+							  </div>
+							</form>
+					    </div>
+					    <div class="pow-col2">
+					    	<span class="mylabel">Клейова шпаклювальна суміш <strong>Baumit StarContact White</strong></span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control soc-digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+							    <input type="text" class="form-control soc-digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="pow-col3">
+					    	<span class="mylabel">Вид утеплювача:</span>
+					    	<form class="form-inline">
+						    	<select class="form-control myselect">
+								  <option>Оберіть утеплювач</option>
+								  <option>Мінераловатна плита 50 мм</option>
+								  <option>Мінераловатна плита 80 мм</option>
+								  <option>Мінераловатна плита 100 мм</option>
+								  <option>Мінераловатна плита 120 мм</option>
+								  <option>Плита ПСБС-25 50 мм</option>
+								  <option>Плита ПСБС-25 80 мм</option>
+								  <option>Плита ПСБС-25 100 мм</option>
+								  <option>Плита ПСБС-25 120 мм</option>
+								</select>
+								<div class="form-group">
+							    	<input type="number" class="form-control soc-digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+							    	<input type="text" class="form-control soc-digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="pow-col4">
+					    	<form class="form-inline">
+					    		<div class="form-group">
+					    			<span class="mylabel" style="display: inline;">Дюбелі фасадні:</span>
+					    			<input type="number" class="form-control soc-digit-input2"><span style="padding-left: 0px!important;">шт.</span>
+					    			<input type="number" class="form-control soc-digit-input"><span style="padding-left: 0px!important;">мм&nbsp;&nbsp;</span>
+							    	<input type="text" class="form-control soc-digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+					    		</div>
+					    	</form>
+					    </div>
+					    <div class="pow-col5">
+					    	<span class="mylabel">Лугостійка склосітка <strong>Baumit StarTex</strong></span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control soc-digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+							    <input type="text" class="form-control soc-digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="pow-col6">
+					    	<span class="mylabel">Грунтувальна суміш <strong>Baumit PowerFlex</strong></span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control soc-digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+							    <input type="text" class="form-control soc-digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="pow-col7">
+					    	<span class="mylabel">Фінішний декоративний шар:</span>
+					    	<form class="form-inline">
+						    	<select class="form-control myselect">
+								  <option>Оберіть штукатурку</option>
+								  <option>Без оздоблення</option>
+								  <option>NanoporTop 2 мм «баранець»</option>
+								  <option>SilikonTop 2 мм «баранець»</option>
+								  <option>SilikonTop 2 мм «короїд»</option>
+								  <option>StellaporTop 2 мм «баранець»</option>
+								  <option>StellaporTop 2 мм «короїд»</option>
+								  <option>SilikatTop 2 мм «баранець»</option>
+								  <option>SilikatTop 2 мм «короїд»</option>
+								  <option>CreativTop «Max» 4 мм</option>
+								  <option>CreativTop «Trend» 3 мм</option>
+								  <option>CreativTop «Vario» 1,5 мм</option>
+								  <option>CreativTop «Fine» 1 мм</option>
+								  <option>CreativTop «Perl» 0,5 мм</option>
+								  <option>GranoporTop 2 мм «баранець»</option>
+								  <option>GranoporTop 2 мм «короїд»</option>
+								</select>
+								<div class="form-group">
+							    	<input type="number" class="form-control soc-digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+							    	<input type="text" class="form-control soc-digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="pow-col8" style="padding-bottom: 5px;">
+					    	<form class="form-inline">
+					    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
+					    		<div class="form-group">
+					    			<input type="text" class="form-control soc-digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+					    		</div>
+					    		<span class="mylabel-last">Загальна вартісь:</span>
+					    		<div class="form-group">
+					    			<input type="text" class="form-control soc-digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+					    		</div>
+					    	</form>
+					    </div>
+					    <div class="pow-collapse-block">
+					    	<a data-toggle="collapse" href="#powerDetail" aria-expanded="false" aria-controls="powerDetail">
+					    		<img src="img/collapse.png" alt="Свернуть">
+					    	</a>
+					    </div>
+					  </div>
+					  <div class="center-block" style="height: 300px;">
+					  	<div class="soc-buttom-line"></div>
+					  	<img class="img-responsive col-centered" src="img/PowerSystem/pow-prod.png" style="position: relative;top: 100px;">
+					  </div>
+					</div>
+
+	    		</div>	
 	    	</div>
-	    	<div class="col-md-2 col-sx-2">
+	    	<div class="col-md-2 col-sx-2" style="margin: 5px;">
 	    		<div class="row row-centered">
 	    			<img class="img-responsive center-block" src="img/SocleSystem/building.png" alt="SocleSystem">
 	    			<div class="socle-sys center-block">
 	    				<span class="name-block">SocleSystem</span>
 	    				<img class="img-responsive col-centered" src="img/SocleSystem/text-layer.png" alt="Для цоколю">
 	    				<div style="float: left; display: inline-block;">
-	    					<img class="img-responsive marker" src="img/SocleSystem/str.png">
+	    					<img class="img-responsive marker" src="img/str.png">
 	    				</div>
     					<div class="name-descr">
     						<span>Термо- та гідроізоляція цокольної частини. Широкий спектр декоративного оздоблення</span>
     					</div>
-    					<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#collapseDetail" aria-expanded="false" aria-controls="collapseDetail">Детальніше</button>
+    					<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#socleDetail" aria-expanded="false" aria-controls="socleDetail">Детальніше</button>
 	    			</div>
-	    			<div class="collapse" id="collapseDetail">
+	    			<div class="collapse" id="socleDetail">
 					  <div class="socle-sys center-block">
 					    <div class="soc-col1">
 					    	<span class="mylabel">Площа утеплення:</span>
 					    	<form class="form-inline">
 							  <div class="form-group">
 							    <input type="number" class="form-control soc-digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
-								<button type="submit" class="btn btn-default calc">Розрахувати</button>
+								<button type="submit" class="btn btn-default calc" id="soc-btn">Розрахувати</button>
 							  </div>
 							</form>
 					    </div>
@@ -132,6 +265,7 @@
 					    	<form class="form-inline">
 						    	<select class="form-control myselect">
 								  <option>Оберіть штукатурку</option>
+								  <option>Без оздоблення</option>
 								  <option>Мозаїчна штукатурка Baumit MosaikTop (зерно 2 мм) /36 кольорів</option>
 								</select>
 								<div class="form-group">
@@ -140,6 +274,27 @@
 							  </div>
 							</form>
 					    </div>
+					    <div class="soc-col8" style="padding-bottom: 5px;">
+					    	<form class="form-inline">
+					    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
+					    		<div class="form-group">
+					    			<input type="text" class="form-control soc-digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+					    		</div>
+					    		<span class="mylabel-last">Загальна вартісь:</span>
+					    		<div class="form-group">
+					    			<input type="text" class="form-control soc-digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+					    		</div>
+					    	</form>
+					    </div>
+					    <div class="soc-collapse-block">
+					    	<a data-toggle="collapse" href="#socleDetail" aria-expanded="false" aria-controls="socleDetail">
+					    		<img src="img/collapse.png" alt="Свернуть">
+					    	</a>
+					    </div>
+					  </div>
+					  <div class="center-block" style="height: 300px;">
+					  	<div class="soc-buttom-line"></div>
+					  	<img class="img-responsive col-centered" src="img/SocleSystem/soc-prod.png" style="position: relative;top: 100px;">
 					  </div>
 					</div>
 
