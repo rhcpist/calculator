@@ -11,8 +11,6 @@ span {
 	font-size: 11px;
 }
 
-
-/*********************Socle System********************/
    /********************Header box********************/
 
 .head-img {
@@ -38,13 +36,6 @@ span {
 }
 
 
-.socle-sys {
-	/*height: 250px;*/
-	background: #bca549;
-	border-radius: 10px;
-	margin-top: 10px;
-}
-
 .name-block {
 	font-family: 'Droid Sans', sans-serif;
 	color: #ffffff;
@@ -54,24 +45,8 @@ span {
     font-weight: 700;
 }
 
-.marker {
-	margin-top: 15px;
-}
-
-.name-descr {
-	display: inline-block;
-	padding-top: 15px;
-	padding-bottom: 15px; 
-	padding-left: 5px;
-	float: left;
-	width: 87%
-}
-
-.name-descr span {
-	font-family: 'Roboto', sans-serif;
-	font-weight: 500;
-	color: #ffffff;
-	font-size: 11px;
+.descr {
+	padding-bottom: 15px;
 }
 
 .detail {
@@ -82,8 +57,88 @@ span {
 	margin-bottom: 15px;
 }
 
-/********************Toggled box********************/
+/******************Labels, Inputs, Buttons*****************/
 
+.mylabel {
+	padding-left: 10px;
+	display: block;
+}
+
+.mylabel-last {
+	padding-left: 10px;
+	display: block;
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.digit-input {
+	padding: 6px 1px!important;
+	width: 55px!important;
+    height: 25px;
+    margin: 8px 1px 8px 8px;
+    display: inline-block!important;
+}
+
+.digit-input1 {
+	/*padding: 6px 4px!important;*/
+	width: 65px!important;
+    height: 25px;
+    margin: 8px 1px 8px 15px;
+    display: inline-block!important;
+}
+
+.digit-input2 {
+	padding: 6px 1px!important;
+	width: 65px!important;
+    height: 25px;
+    margin: 8px 0px 8px 6px;
+    display: inline-block!important;
+}
+
+.digit-input3 {
+	width: 75px!important;
+    display: inline-block!important;
+    height: 30px;
+    margin: 3px 1px 3px 97px;
+    border-radius: 0px;
+}
+
+.calc {
+	font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 11px;
+    border-radius: 8px;
+    margin-left: 15px;
+}
+
+.myselect {
+	width: 177px!important;
+	display: block!important;
+    height: 30px;
+    margin: 10px auto 5px auto;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.buttom-line {
+	margin-left: 20px;
+    width: 87%;
+    height: 270px;
+    /*border-left: 1px solid #a38569;
+    border-bottom: 1px solid #a38569;*/
+    position: absolute;
+}
+
+
+/*********************Socle System********************/
+
+.socle-sys {
+	background: #bca549;
+	border-radius: 10px;
+	margin-top: 10px;
+}
 
 .soc-col1 {
 	border-radius: 10px 10px 0 0;
@@ -128,69 +183,6 @@ span {
 	padding-top: 5px;
 }
 
-.mylabel {
-	padding-left: 10px;
-	display: block;
-}
-
-.mylabel-last {
-	padding-left: 10px;
-	display: block;
-	color: #ffffff;
-	font-size: 15px;
-	font-weight: 600;
-}
-
-.soc-digit-input {
-	padding: 6px 1px!important;
-	width: 55px!important;
-    height: 25px;
-    margin: 8px 1px 8px 8px;
-    display: inline-block!important;
-}
-
-.soc-digit-input1 {
-	/*padding: 6px 4px!important;*/
-	width: 65px!important;
-    height: 25px;
-    margin: 8px 1px 8px 15px;
-    display: inline-block!important;
-}
-
-.soc-digit-input2 {
-	padding: 6px 1px!important;
-	width: 65px!important;
-    height: 25px;
-    margin: 8px 0px 8px 6px;
-    display: inline-block!important;
-}
-
-.soc-digit-input3 {
-	width: 75px!important;
-    display: inline-block!important;
-    height: 30px;
-    margin: 3px 1px 3px 97px;
-    border-radius: 0px;
-}
-
-.soc-buttom-line {
-	margin-left: 20px;
-    width: 87%;
-    height: 270px;
-    border-left: 1px solid #a38569;
-    border-bottom: 1px solid #a38569;
-    position: absolute;
-}
-
-.calc {
-	font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    color: #ffffff;
-    font-size: 11px;
-    border-radius: 8px;
-    margin-left: 15px;
-}
-
 #soc-btn {
 	background: #735641;
 }
@@ -199,13 +191,9 @@ span {
 	background: #eee;
 }
 
-.myselect {
-	width: 177px!important;
-	display: block!important;
-    height: 30px;
-    margin: 10px auto 5px auto;
-    font-size: 12px;
-    font-style: italic;
+#soc-line {
+	border-left: 1px solid #a38569;
+    border-bottom: 1px solid #a38569;
 }
 
 /*********************Socle System End****************/
@@ -269,13 +257,22 @@ span {
 	background: #eee;
 }
 
+#pow-line {
+	border-left: 1px solid #b15f74;
+    border-bottom: 1px solid #b15f74;
+}
+
+
+/*********************Power System End****************/
+
+/*****************************All media Querys***************************/
 
  @media screen and (max-width: 1200px) {
-     .soc-digit-input { width: 40px!important; }
-	 .soc-digit-input2 { width: 40px!important; margin: 8px 0px 8px 2px; } 
-     .soc-digit-input1 { width: 50px!important; }
-     .soc-digit-input3 { margin: 3px 1px 3px 65px; }
-     .soc-buttom-line { height: 240px; }
+     .digit-input { width: 40px!important; }
+	 .digit-input2 { width: 40px!important; margin: 8px 0px 8px 2px; } 
+     .digit-input1 { width: 50px!important; }
+     .digit-input3 { margin: 3px 1px 3px 65px; }
+     .buttom-line { height: 240px; }
      .myselect { width: 145px!important; display: block!important;}
      .calc{ margin-left: 0px; }
    }
@@ -283,12 +280,12 @@ span {
  @media screen and (max-width: 992px) {
      .socle-sys { width: 230px; }
      .pow-sys { width: 230px; }
-     .soc-buttom-line { display: inline-block; }
-     .soc-digit-input { width: 55px!important; }
-     .soc-digit-input2 { width: 55px!important; margin-left: 50px; }
-     .soc-digit-input1 { width: 65px!important; margin-left: 50px;}
-     .soc-digit-input3 { margin-left: 130px; }
-     .soc-buttom-line { height: 280px; width: 200px; }
+     .buttom-line { display: inline-block; }
+     .digit-input { width: 55px!important; }
+     .digit-input2 { width: 55px!important; margin-left: 50px; }
+     .digit-input1 { width: 65px!important; margin-left: 50px;}
+     .digit-input3 { margin-left: 130px; }
+     .buttom-line { height: 280px; width: 200px; }
      .myselect { width: 212px!important; display: block!important; }
      .calc { margin-left: 50px; }
      .form-group { margin-bottom: 0px!important;}
