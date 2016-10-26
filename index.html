@@ -37,14 +37,392 @@
 		    </div>
 	    </div>
 	    <div class="row">
-	    	<div class="col-md-2 col-md-offset-1">
-	    		fewfw
+	    	<div class="col-md-2 col-md-offset-1" style="margin: 1% 5px;">
+	    		<div class="row row-centered">
+					<img class="img-responsive center-block" src="img/BauSystem/building.png" alt="BauSystem" style="margin-top: 19%;">
+					<div class="bau-sys center-block">
+						<span class="name-block">BauSystem</span>
+						<div class="descr">
+							<img class="img-responsive col-centered" src="img/BauSystem/bau-text.png" alt="Добре">
+						</div>
+						<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#bauDetail" aria-expanded="false" aria-controls="bauDetail">Детальніше</button>
+					</div>
+
+					<div class="collapse" id="bauDetail">
+					  <div class="bau-sys center-block">
+					    <div class="bau-col1">
+					    	<span class="mylabel">Площа утеплення:</span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
+								<button type="submit" class="btn btn-default calc" id="bau-btn">Розрахувати</button>
+							  </div>
+							</form>
+					    </div>
+					    <div class="bau-col2">
+					    	<span class="mylabel">Клейова шпаклювальна суміш <strong>Baumit StarContact White</strong></span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+							    <input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="bau-col3">
+					    	<span class="mylabel">Вид утеплювача:</span>
+					    	<form class="form-inline">
+						    	<select class="form-control myselect">
+								  <option>Оберіть утеплювач</option>
+								  <option>Плита ПСБС-25 50 мм</option>
+								  <option>Плита ПСБС-25 80 мм</option>
+								  <option>Плита ПСБС-25 100 мм</option>
+								  <option>Плита ПСБС-25 120 мм</option>
+								</select>
+								<div class="form-group">
+							    	<input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+							    	<input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="bau-col4">
+					    	<form class="form-inline">
+					    		<div class="form-group">
+					    			<span class="mylabel" style="display: inline;">Дюбелі фасадні:</span>
+					    			<input type="number" class="form-control digit-input2"><span style="padding-left: 0px!important;">шт.</span>
+					    			<input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">мм&nbsp;&nbsp;</span>
+							    	<input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+					    		</div>
+					    	</form>
+					    </div>
+					    <div class="bau-col5">
+					    	<span class="mylabel">Лугостійка склосітка <strong>Baumit DuoTex</strong></span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+							    <input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="bau-col6">
+					    	<span class="mylabel">Шпаклювальна суміш <strong>Baumit BauContact</strong></span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+							    <input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="bau-col7">
+					    	<span class="mylabel">Грунтувальна суміш <strong>Baumit UniPrimer</strong></span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+							    <input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="bau-col8">
+					    	<span class="mylabel">Фінішний декоративний шар:</span>
+					    	<form class="form-inline">
+						    	<select class="form-control myselect">
+								  <option>Оберіть штукатурку</option>
+								  <option>Без оздоблення</option>
+								  <option>SilikatTop 2 мм «баранець»</option>
+								  <option>SilikatTop 2 мм «короїд»</option>
+								  <option>GranoporTop 2 мм «баранець»</option>
+								  <option>GranoporTop 2 мм «короїд»</option>
+								  <option>Edelputz Spezial White 2 мм «баранець»</option>
+								  <option>Edelputz Spezial White 2 мм «короїд»</option>
+								</select>
+								<div class="form-group">
+							    	<input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+							    	<input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="bau-col9" style="padding-bottom: 5px;">
+					    	<form class="form-inline">
+					    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
+					    		<div class="form-group">
+					    			<input type="text" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+					    		</div>
+					    		<span class="mylabel-last">Загальна вартісь:</span>
+					    		<div class="form-group">
+					    			<input type="text" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+					    		</div>
+					    	</form>
+					    </div>
+					    <div class="bau-collapse-block">
+					    	<a data-toggle="collapse" href="#bauDetail" aria-expanded="false" aria-controls="bauDetail">
+					    		<img src="img/collapse.png" alt="Свернуть">
+					    	</a>
+					    </div>
+					  </div>
+					</div>
+					<div class="center-block" style="height: 300px;">
+					  	<div class="buttom-line" id="bau-line"></div>
+					  	<img class="img-responsive col-centered" src="img/BauSystem/bau-prod.png" style="position: relative;top:100px;">
+					</div>
+				</div>	
 	    	</div>
-	    	<div class="col-md-2">
-	    		wefwef
+	    	<div class="col-md-2" style="margin:-3% 5px">
+	    		<div class="row row-centered">
+					<img class="img-responsive center-block" src="img/ProSystem/building.png" alt="ProSystem">
+					<div class="pro-sys center-block">
+						<span class="name-block">ProSystem</span>
+						<div class="descr">
+							<img class="img-responsive col-centered" src="img/ProSystem/pro-text.png" alt="Краще">
+						</div>
+						<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#proDetail" aria-expanded="false" aria-controls="proDetail">Детальніше</button>
+					</div>
+
+					<div class="collapse" id="proDetail">
+					  <div class="pro-sys center-block">
+					    <div class="pro-col1">
+					    	<span class="mylabel">Площа утеплення:</span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
+								<button type="submit" class="btn btn-default calc" id="pro-btn">Розрахувати</button>
+							  </div>
+							</form>
+					    </div>
+					    <div class="pro-col2">
+					    	<span class="mylabel">Клейова шпаклювальна суміш <strong>Baumit ProContact</strong></span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+							    <input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="pro-col3">
+					    	<span class="mylabel">Вид утеплювача:</span>
+					    	<form class="form-inline">
+						    	<select class="form-control myselect">
+								  <option>Оберіть утеплювач</option>
+								  <option>Мінераловатна плита 50 мм</option>
+								  <option>Мінераловатна плита 80 мм</option>
+								  <option>Мінераловатна плита 100 мм</option>
+								  <option>Мінераловатна плита 120 мм</option>
+								  <option>Плита ПСБС-25 50 мм</option>
+								  <option>Плита ПСБС-25 80 мм</option>
+								  <option>Плита ПСБС-25 100 мм</option>
+								  <option>Плита ПСБС-25 120 мм</option>
+								</select>
+								<div class="form-group">
+							    	<input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+							    	<input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="pro-col4">
+					    	<form class="form-inline">
+					    		<div class="form-group">
+					    			<span class="mylabel" style="display: inline;">Дюбелі фасадні:</span>
+					    			<input type="number" class="form-control digit-input2"><span style="padding-left: 0px!important;">шт.</span>
+					    			<input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">мм&nbsp;&nbsp;</span>
+							    	<input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+					    		</div>
+					    	</form>
+					    </div>
+					    <div class="pro-col5">
+					    	<span class="mylabel">Лугостійка склосітка <strong>Baumit StarTex</strong></span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+							    <input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="pro-col6">
+					    	<span class="mylabel">Грунтувальна суміш <strong>Baumit UniPrimer</strong></span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+							    <input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="pro-col7">
+					    	<span class="mylabel">Фінішний декоративний шар:</span>
+					    	<form class="form-inline">
+						    	<select class="form-control myselect">
+								  <option>Оберіть штукатурку</option>
+								  <option>Без оздоблення</option>
+								  <option>NanoporTop 2 мм «баранець»</option>
+								  <option>SilikonTop 2 мм «баранець»</option>
+								  <option>SilikonTop 2 мм «короїд»</option>
+								  <option>StellaporTop 2 мм «баранець»</option>
+								  <option>StellaporTop 2 мм «короїд»</option>
+								  <option>SilikatTop 2 мм «баранець»</option>
+								  <option>SilikatTop 2 мм «короїд»</option>
+								  <option>CreativTop «Max» 4 мм</option>
+								  <option>CreativTop «Trend» 3 мм</option>
+								  <option>CreativTop «Vario» 1,5 мм</option>
+								  <option>CreativTop «Fine» 1 мм</option>
+								  <option>CreativTop «Perl» 0,5 мм</option>
+								  <option>GranoporTop 2 мм «баранець»</option>
+								  <option>GranoporTop 2 мм «короїд»</option>
+								  <option>Edelputz Spezial White 2 мм «баранець»</option>
+								  <option>Edelputz Spezial White 2 мм «короїд»</option>
+								</select>
+								<div class="form-group">
+							    	<input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+							    	<input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="pro-col8" style="padding-bottom: 5px;">
+					    	<form class="form-inline">
+					    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
+					    		<div class="form-group">
+					    			<input type="text" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+					    		</div>
+					    		<span class="mylabel-last">Загальна вартісь:</span>
+					    		<div class="form-group">
+					    			<input type="text" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+					    		</div>
+					    	</form>
+					    </div>
+					    <div class="pro-collapse-block">
+					    	<a data-toggle="collapse" href="#proDetail" aria-expanded="false" aria-controls="proDetail">
+					    		<img src="img/collapse.png" alt="Свернуть">
+					    	</a>
+					    </div>
+					  </div>
+					</div>
+					<div class="center-block" style="height: 300px;">
+					  	<div class="buttom-line" id="pro-line"></div>
+					  	<img class="img-responsive col-centered" src="img/ProSystem/pro-prod.png" style="position: relative;top:100px;">
+					</div>
+				</div>	
 	    	</div>
-	    	<div class="col-md-2">
-	    		wefwef
+	    	<div class="col-md-2" style="margin: 2px 5px;">
+	    		<div class="row row-centered">
+					<img class="img-responsive center-block" src="img/StarSystem/building.png" alt="StarSystem" style="margin-top: 19%;">
+					<div class="star-sys center-block">
+						<span class="name-block">StarSystem</span>
+						<div class="descr">
+							<img class="img-responsive col-centered" src="img/StarSystem/star-text.png" alt="Найкраще">
+						</div>
+						<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#starDetail" aria-expanded="false" aria-controls="starDetail">Детальніше</button>
+					</div>
+
+					<div class="collapse" id="starDetail">
+					  <div class="star-sys center-block">
+					    <div class="star-col1">
+					    	<span class="mylabel">Площа утеплення:</span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
+								<button type="submit" class="btn btn-default calc" id="star-btn">Розрахувати</button>
+							  </div>
+							</form>
+					    </div>
+					    <div class="star-col2">
+					    	<span class="mylabel">Клейова шпаклювальна суміш <strong>Baumit StarContact White</strong></span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+							    <input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="star-col3">
+					    	<span class="mylabel">Вид утеплювача:</span>
+					    	<form class="form-inline">
+						    	<select class="form-control myselect">
+								  <option>Оберіть утеплювач</option>
+								  <option>Мінераловатна плита 50 мм</option>
+								  <option>Мінераловатна плита 80 мм</option>
+								  <option>Мінераловатна плита 100 мм</option>
+								  <option>Мінераловатна плита 120 мм</option>
+								  <option>Плита ПСБС-25 50 мм</option>
+								  <option>Плита ПСБС-25 80 мм</option>
+								  <option>Плита ПСБС-25 100 мм</option>
+								  <option>Плита ПСБС-25 120 мм</option>
+								</select>
+								<div class="form-group">
+							    	<input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+							    	<input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="star-col4">
+					    	<form class="form-inline">
+					    		<div class="form-group">
+					    			<span class="mylabel" style="display: inline;">Дюбелі фасадні:</span>
+					    			<input type="number" class="form-control digit-input2"><span style="padding-left: 0px!important;">шт.</span>
+					    			<input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">мм&nbsp;&nbsp;</span>
+							    	<input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+					    		</div>
+					    	</form>
+					    </div>
+					    <div class="star-col5">
+					    	<span class="mylabel">Лугостійка склосітка <strong>Baumit StarTex</strong></span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+							    <input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <!--<div class="star-col6">
+					    	<span class="mylabel">Грунтувальна суміш <strong>Baumit PowerFlex</strong></span>
+					    	<form class="form-inline">
+							  <div class="form-group">
+							    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+							    <input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>-->
+					    <div class="star-col7">
+					    	<span class="mylabel">Фінішний декоративний шар:</span>
+					    	<form class="form-inline">
+						    	<select class="form-control myselect">
+								  <option>Оберіть штукатурку</option>
+								  <option>Без оздоблення</option>
+								  <option>NanoporTop 2 мм «баранець»</option>
+								  <option>SilikonTop 2 мм «баранець»</option>
+								  <option>SilikonTop 2 мм «короїд»</option>
+								  <option>CreativTop «Max» 4 мм</option>
+								  <option>CreativTop «Trend» 3 мм</option>
+								  <option>CreativTop «Vario» 1,5 мм</option>
+								  <option>CreativTop «Fine» 1 мм</option>
+								  <option>CreativTop «Perl» 0,5 мм</option>
+								  <option>CreativTop «Silk» 0,2 мм</option>
+								</select>
+								<div class="form-group">
+							    	<input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+							    	<input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							  </div>
+							</form>
+					    </div>
+					    <div class="star-col8" style="padding-bottom: 5px;">
+					    	<form class="form-inline">
+					    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
+					    		<div class="form-group">
+					    			<input type="text" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+					    		</div>
+					    		<span class="mylabel-last">Загальна вартісь:</span>
+					    		<div class="form-group">
+					    			<input type="text" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+					    		</div>
+					    	</form>
+					    </div>
+					    <div class="star-collapse-block">
+					    	<a data-toggle="collapse" href="#starDetail" aria-expanded="false" aria-controls="starDetail">
+					    		<img src="img/collapse.png" alt="Свернуть">
+					    	</a>
+					    </div>
+					  </div>
+					</div>
+					<div class="center-block" style="height: 300px;">
+					  	<div class="buttom-line" id="star-line"></div>
+					  	<img class="img-responsive col-centered" src="img/StarSystem/star-prod.png" style="position: relative;top:100px;">
+					</div>
+				</div>	
 	    	</div>
 	    	<div class="col-md-2" style="margin: 5px;">
 	    		<div class="row row-centered">
@@ -177,7 +555,7 @@
 					</div>
 	    		</div>	
 	    	</div>
-	    	<div class="col-md-2 col-sx-2" style="margin: 5px;">
+	    	<div class="col-md-2 col-md-offset-1" style="margin: 5px;">
 	    		<div class="row row-centered">
 	    			<img class="img-responsive center-block" src="img/SocleSystem/building.png" alt="SocleSystem">
 	    			<div class="socle-sys center-block">
@@ -291,7 +669,6 @@
 
 	    		</div>
 	    	</div>
-	    	<div class="col-md-offset-1"></div>
 	    </div>
 		<hr>
       <footer>

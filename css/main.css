@@ -265,6 +265,207 @@ span {
 
 /*********************Power System End****************/
 
+/******************Star System Start****************/
+
+.star-sys {
+	background: #9875b4;
+	border-radius: 10px;
+	margin-top: 10px;
+}
+
+.star-col1 {
+	border-radius: 10px 10px 0 0;
+	background: #b89ac9;
+}
+
+.star-col2 {
+	background: #bc92d3;
+}
+
+.star-col3 {
+	background: #a988bf;
+}
+
+.star-col4 {
+	background: #b186cd;
+}
+
+.star-col5 {
+	background: #9470b1;
+}
+
+/*.star-col6 {
+	background: #;
+}*/
+
+.star-col7 {
+	background: #a97cc7;
+}
+
+.star-col8 {
+	background: #7b509b;
+}
+
+.star-collapse-block {
+	background: #5b3573;
+	border-radius: 0 0 10px 10px;
+}
+
+.star-col1, .star-col2, .star-col3, .star-col4, .star-col5, .star-col6, .star-col7, .star-col8 {
+	text-align: left;
+	padding-top: 5px;
+}
+
+#star-btn {
+	background: #5a3372;
+}
+
+#star-btn:hover {
+	background: #eee;
+}
+
+#star-line {
+	border-left: 1px solid #885fa1;
+    border-bottom: 1px solid #885fa1;
+}
+
+
+/*********************Star System End****************/
+
+/******************Pro System Start****************/
+
+.pro-sys {
+	background: #229bd7;
+	border-radius: 10px;
+	margin-top: 10px;
+}
+
+.pro-col1 {
+	border-radius: 10px 10px 0 0;
+	background: #75b2e2;
+}
+
+.pro-col2 {
+	background: #63bbec;
+}
+
+.pro-col3 {
+	background: #59aade;
+}
+
+.pro-col4 {
+	background: #4bb4e9;
+}
+
+.pro-col5 {
+	background: #259bd7;
+}
+
+.pro-col6 {
+	background: #37afe6;
+}
+
+.pro-col7 {
+	background: #008bce;
+}
+
+.pro-col8 {
+	background: #2fa8ea;
+}
+
+.pro-collapse-block {
+	background: #00669d;
+	border-radius: 0 0 10px 10px;
+}
+
+.pro-col1, .pro-col2, .pro-col3, .pro-col4, .pro-col5, .pro-col6, .pro-col7, .pro-col8 {
+	text-align: left;
+	padding-top: 5px;
+}
+
+#pro-btn {
+	background: #00669d;
+}
+
+#pro-btn:hover {
+	background: #eee;
+}
+
+#pro-line {
+	border-left: 1px solid #2491cc;
+    border-bottom: 1px solid #2491cc;
+}
+
+
+/*********************Pro System End****************/
+
+/******************Bau System Start****************/
+
+.bau-sys {
+	background: #2ea247;
+	border-radius: 10px;
+	margin-top: 10px;
+}
+
+.bau-col1 {
+	border-radius: 10px 10px 0 0;
+	background: #76c143;
+}
+
+.bau-col2 {
+	background: #9bca55;
+}
+
+.bau-col3 {
+	background: #64bd45;
+}
+
+.bau-col4 {
+	background: #86c557;
+}
+
+.bau-col5 {
+	background: #45b449;
+}
+
+.bau-col6 {
+	background: #72ba57;
+}
+
+.bau-col7 {
+	background: #59a655;
+}
+
+.bau-col8 {
+	background: #118b44;
+}
+
+.bau-collapse-block {
+	background: #0e6f36;
+	border-radius: 0 0 10px 10px;
+}
+
+.bau-col1, .bau-col2, .bau-col3, .bau-col4, .bau-col5, .bau-col6, .bau-col7, .bau-col8 {
+	text-align: left;
+	padding-top: 5px;
+}
+
+#bau-btn {
+	background: #0e6f36;
+}
+
+#bau-btn:hover {
+	background: #eee;
+}
+
+#bau-line {
+	border-left: 1px solid #339b5e;
+    border-bottom: 1px solid #339b5e;
+}
+
+
+/*********************Bau System End****************/
+
 /*****************************All media Querys***************************/
 
  @media screen and (max-width: 1200px) {
@@ -278,6 +479,9 @@ span {
    }
 
  @media screen and (max-width: 992px) {
+ 	 .bau-sys { width: 230px; }
+ 	 .pro-sys { width: 230px; }
+ 	 .star-sys { width: 230px; }
      .socle-sys { width: 230px; }
      .pow-sys { width: 230px; }
      .buttom-line { display: inline-block; }
