@@ -17,13 +17,9 @@ app.controller('bauCtrl', function($scope) {
         $scope.Bau.summ = caclDate[0].summ.toFixed(2);  
     };
 
-    if ($scope.Bau.weight == null) {
-    	$scope.Bau.weight = 4*1;
-    	$scope.Bau.summ = 9.15*1;	
-	}
-	else {
-		$scope.Bau.weight = 4*$scope.Bau.count;
-    	$scope.Bau.summ = 9.15*$scope.Bau.count;
-    	console.log("efw");
-	}
+    $scope.Edit = function(weight) {
+		$scope.Bau.summ = 9.15*weight;
+		console.log("efw");
+    }
+
 });
