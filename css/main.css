@@ -13,6 +13,7 @@ span {
 
    /********************Header box********************/
 
+
 .head-img {
 	margin-bottom: 10px;
 }
@@ -81,7 +82,7 @@ span {
 }
 
 .digit-input1 {
-	/*padding: 6px 4px!important;*/
+	padding: 6px 1px!important;
 	width: 65px!important;
     height: 25px;
     margin: 8px 1px 8px 15px;
