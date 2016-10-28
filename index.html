@@ -57,7 +57,7 @@
 					    	<form class="form-inline">
 							  <div class="form-group">
 							    <input type="text" value="{{ Bau.radiusCount }}" name="radiusCount" ng-model="Bau.radiusCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
-								<button type="submit" class="btn btn-default calc" id="bau-btn" ng-click="Calc(Bau.radiusCount)">Розрахувати</button>
+								<button type="submit" class="btn btn-default calc" id="bau-btn" ng-click="calcGlue(Bau.radiusCount)">Розрахувати</button>
 							  </div>
 							</form>
 					    </div>
@@ -73,16 +73,15 @@
 					    <div class="bau-col3">
 					    	<span class="mylabel">Вид утеплювача:</span>
 					    	<form class="form-inline">
-						    	<select class="form-control myselect">
-								  <option>Оберіть утеплювач</option>
-								  <option>Плита ПСБС-25 50 мм</option>
+						    	<select class="form-control myselect" name="heaterSelect" ng-model="Bau.selectedHeater" ng-options="option.name for option in Bau.typeHeater track by option.price" ng-change="update()">
+								  <!--<option>Плита ПСБС-25 50 мм</option>
 								  <option>Плита ПСБС-25 80 мм</option>
 								  <option>Плита ПСБС-25 100 мм</option>
-								  <option>Плита ПСБС-25 120 мм</option>
+								  <option>Плита ПСБС-25 120 мм</option>-->
 								</select>
 								<div class="form-group">
-							    	<input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
-							    	<input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+							    	<input type="text" name="countHeater" ng-model="Bau.countHeater" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+							    	<input type="text" name="priceHeater" ng-model="Bau.priceHeater" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
 							  </div>
 							</form>
 					    </div>
