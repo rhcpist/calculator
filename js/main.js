@@ -23,9 +23,9 @@ app.controller('bauCtrl', function($scope) {
     	}   
     };
 
-    $scope.Edit = function(weight) {
+    $scope.editGlue = function(weight) {
     	if(!weight) {
-    		$scope.Bau.summ = 0;
+    		$scope.Bau.summ = '';
     		console.log("edit");
     	}
     	else
