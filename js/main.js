@@ -49,14 +49,13 @@ app.controller('bauCtrl', function($scope) {
     	}
     }
 
-    $scope.editHeater = function(type) {
-    	if(!type) {
+    $scope.editHeater = function(meters) {
+    	if(!meters) {
     		$scope.Bau.countHeater = '';
     	}
     	else {
-    		console.log(type);
-    		$scope.Bau.countHeater = $scope.Bau.typeHeater[3].count*type;
-    		$scope.Bau.priceHeater = ($scope.Bau.typeHeater[3].count*$scope.Bau.typeHeater[3].price)*type;
+    		console.log(meters);
+   			//$scope.Bau.priceHeater = ($scope.Bau.typeHeater[$scope.Bau.selectedHeater.id].count*$scope.Bau.typeHeater[$scope.Bau.selectedHeater.id].price)*meters;
     	}
 
     }
