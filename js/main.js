@@ -777,3 +777,26 @@ app.controller('socleCtrl', function($scope) {
         }
     }
 });
+
+var savePdf = function () {
+	
+	html2canvas(document.body, {  
+  		onrendered: function(canvas)  
+  	{
+    var img = canvas.toDataURL()
+    $.post("save_screenshot.php", {data: img}, function (file) {
+		window.location.href =  "save_screenshot.php?file="+ file
+    });
+  }
+ });
+}
+
+var print_doc = function() {
+	$('body').print(
+		{
+			globalStyles: true,
+            iframe: true
+		}
+	);
+}
+

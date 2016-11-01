@@ -32,8 +32,8 @@
     <div class="container">
 	    <div class="row" style="padding-bottom: 20px;">
 		    <div class="icons">
-		    	<img class="head-icon img-responsive" src="img/print.png" alt="Print">
-	    		<img class="head-icon img-responsive" src="img/save.png" alt="Save">
+		    	<a href="#" onclick="print_doc();"><img class="head-icon img-responsive" src="img/print.png" alt="Print"></a>
+	    		<a href="#" onclick="savePdf();" ><img class="head-icon img-responsive" src="img/save.png" alt="Save"></a>
 		    </div>
 	    </div>
 	    <div class="row">
@@ -680,9 +680,10 @@
     </div> <!-- /container -->        
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+        <script src="js/vendor/html2canvas.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
-        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>-->
+        <script src="js/vendor/print.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>
