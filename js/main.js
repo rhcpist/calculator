@@ -778,25 +778,28 @@ app.controller('socleCtrl', function($scope) {
     }
 });
 
-var savePdf = function () {
-	
-	html2canvas(document.body, {  
-  		onrendered: function(canvas)  
-  	{
-    var img = canvas.toDataURL()
-    $.post("save_screenshot.php", {data: img}, function (file) {
-		window.location.href =  "save_screenshot.php?file="+ file
+
+var printDoc = function() {
+	html2canvas($("body"), {
+        onrendered: function (canvas) {
+            var myImage = canvas.toDataURL("image/png");
+            var tWindow = window.open(""); 
+            $(tWindow.document.body).html("<img id='Image' src=" + myImage + " style='width:100%;'></img>").ready(function () {
+                tWindow.focus();
+                tWindow.print();
+            });
+        }
     });
-  }
- });
 }
 
-var print_doc = function() {
-	$('body').print(
-		{
-			globalStyles: true,
-            iframe: true
-		}
-	);
+var genPDF = function () {
+    html2canvas(document.body, {
+        onrendered: function (canvas) {
+            var img = canvas.toDataURL("image/png", 1.0);
+            var doc = new jsPDF("l", "mm", "a4");
+            doc.addImage(img, 'JPEG', 2, 2, 270, 225);
+            doc.save('test.pdf');
+        }
+    });
 }
 
