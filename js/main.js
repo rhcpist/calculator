@@ -1,32 +1,44 @@
 var app = angular.module('App', []);
 
 app.controller('bauCtrl', function($scope, $http) {
+    
+// Simple GET request example:
 
-    // Simple GET request example:
+    var successCallback = function (response) {
+        $scope.res = response.data;
+    };
+
+    var errorCallback = function (response) {
+        $scope.error = response.data;
+    }
 
     $http({
-            method: 'GET',
-            url: 'prices.xlsx',
-            headers: {
-               'Content-type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-            },
-            responseType: 'arraybuffer'
+        method: 'GET',
+        url: 'prices.xlsx',
+        headers: {
+           'Content-type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        },
+        responseType: 'arraybuffer'
 
-    }).then(function successCallback(response) {
-            console.log('Seccess Callback');
-            var arraybuffer = response.data;
-            var data = new Uint8Array(arraybuffer);
-            var arr = new Array();
-            for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-            var bstr = arr.join("");
-            //console.log(arr);
-            var workbook = XLSX.read(bstr, {type:"binary"});
-            var my_sheet = workbook.SheetNames[0];
-            console.log(my_sheet);
+    }).then(successCallback, errorCallback);
+       
+     $scope.$watch('res', function() {
+        if ($scope.res !== undefined) {
+            console.log('hey, myVar has changed!');
+            console.log($scope.res);
+        }     
+    });
 
-      }, function errorCallback(response) {
-            console.log('Error Callback');
-      });
+     console.log($scope.res);
+    /*var arraybuffer = response.data;
+    var data = new Uint8Array(arraybuffer);
+    var arr = new Array();
+    for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+    var bstr = arr.join("");
+    //console.log(arr);
+    var workbook = XLSX.read(bstr, {type:"binary"});
+    var my_sheet = workbook.SheetNames[0];
+    console.log(my_sheet);*/
 
 /******************************************************* BAU System *********************************************************/
     var glueWeight1Bau = 4,
