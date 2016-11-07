@@ -1,12 +1,9 @@
+var url = 'prices.xlsx';
+
 var app = angular.module('App', []);
 
-app.controller('bauCtrl', function($scope, $http, $q) {
-    
-// Simple GET request example:
-
-    var url = 'prices.xlsx';
-    
-    var getData = function(url) {
+app.service('LoadData', function($http, $q) {
+    this.getData = function(url) {
         var data = "";
         var deferred = $q.defer();
 
@@ -29,9 +26,181 @@ app.controller('bauCtrl', function($scope, $http, $q) {
         });
         return deferred.promise;
     }
+});
 
-    console.log(getData(url));
-    console.log('Helli');
+app.controller('bauCtrl', function($scope, LoadData) {
+
+/******************************************************* BAU System *********************************************************/
+
+    LoadData.getData(url).then( 
+        function (result) {
+            var workNames = result.SheetNames[0],
+                workSheet = result.Sheets[workNames];
+
+            var glueWeight1Bau = workSheet['D4'].v,
+            glueSumm1Bau = (workSheet['F4'].v).toFixed(2),
+            fiberglassCountBau = workSheet['D12'].v,
+            fiberglassPriceBau = workSheet['F12'].v*fiberglassCountBau,
+            glueWeight2Bau = workSheet['D7'].v,
+            glueSumm2Bau = (workSheet['F7'].v).toFixed(2),
+            primerWeightBau = workSheet['D14'].v,
+            primerPriceBau = (workSheet['F14'].v).toFixed(2);
+
+            $scope.Bau = {
+                typeHeater : [
+                    { id: 0, name: 'Оберіть утеплювач', count: '', price: 0.00, dowelSize: 0, dowelCount: 0, dowelPrice: 0.00, selectable: false },
+                    { id: 1, name: 'Плита ПСБС-25 50 мм', count: workSheet['D40'].v, price: workSheet['F40'].v,  dowelSize: 120, dowelCount: workSheet['D49'].v, dowelPrice: workSheet['F49'].v, selectable: true },
+                    { id: 2, name: 'Плита ПСБС-25 80 мм', count: workSheet['D41'].v, price: workSheet['F41'].v, dowelSize: 140, dowelCount: workSheet['D50'].v, dowelPrice: workSheet['F50'].v, selectable: true },
+                    { id: 3, name: 'Плита ПСБС-25 100 мм', count: workSheet['D42'].v, price: workSheet['F42'].v, dowelSize: 160, dowelCount: workSheet['D51'].v, dowelPrice: workSheet['F51'].v, selectable: true },
+                    { id: 4, name: 'Плита ПСБС-25 120 мм', count: workSheet['D43'].v, price: workSheet['F43'].v, dowelSize: 200, dowelCount: workSheet['D53'].v, dowelPrice: workSheet['F53'].v, selectable: true }
+                ],
+                selectedHeater : { name: 'Оберіть утеплювач', count: 0, price: 0, dowelSize: 0, dowelCount: 0, dowelPrice: 0.00, selectable: false },
+
+                typeFinishLayer: [
+                    { id: 0, name: 'Оберіть штукатурку', count: '', price: 0.00, selectable: false },
+                    { id: 1, name: 'Без оздоблення', count: '', price: 0.00, selectable: true },
+                    { id: 2, name: 'SilikatTop 2 мм «баранець»', count: workSheet['D29'].v, price: (workSheet['F29'].v).toFixed(2), selectable: true },
+                    { id: 3, name: 'SilikatTop 2 мм «короїд»', count: workSheet['D30'].v, price: (workSheet['F30'].v).toFixed(2), selectable: true },
+                    { id: 4, name: 'GranoporTop 2 мм «баранець»', count: workSheet['D31'].v, price: (workSheet['F31'].v).toFixed(2), selectable: true },
+                    { id: 5, name: 'GranoporTop 2 мм «короїд»', count: workSheet['D32'].v, price: (workSheet['F32'].v).toFixed(2), selectable: true },
+                    { id: 6, name: 'Edelputz Spezial White 2 мм «баранець»', count: workSheet['D16'].v, price: (workSheet['F16'].v).toFixed(2), selectable: true },
+                    { id: 7, name: 'Edelputz Spezial White 2 мм «короїд»', count: workSheet['D17'].v, price: (workSheet['F17'].v).toFixed(2), selectable: true },
+
+                ],
+                selectedFinishLayer : { id: 0, name: 'Оберіть штукатурку', count: '', price: 0.00, selectable: false }
+            };
+
+            $scope.Bau.update = function() {
+                var id = $scope.Bau.selectedHeater.id;
+                $scope.Bau.countHeater = $scope.Bau.typeHeater[$scope.Bau.selectedHeater.id].count*$scope.Bau.radiusCount;
+                $scope.Bau.priceHeater = ($scope.Bau.typeHeater[id].count*$scope.Bau.typeHeater[id].price*$scope.Bau.radiusCount).toFixed(2);
+            }
+
+             $scope.Bau.updateLayer = function() {
+                var id = $scope.Bau.selectedFinishLayer.id;
+                $scope.Bau.countFinishLayer = $scope.Bau.typeFinishLayer[$scope.Bau.selectedFinishLayer.id].count*$scope.Bau.radiusCount;
+                $scope.Bau.priceFinishLayer = ($scope.Bau.typeFinishLayer[id].count*$scope.Bau.typeFinishLayer[id].price*$scope.Bau.radiusCount).toFixed(2);
+            }
+
+            $scope.Bau.calculate = function(count) {
+
+                var glueMix =   {   
+                    glueWeight: glueWeight1Bau,
+                    glueSumm: glueSumm1Bau
+                };
+
+                var fiberglass = {
+                    fiberglassCount: fiberglassCountBau,
+                    fiberglassPrice: fiberglassPriceBau
+                };
+
+                var glueMix2 = {
+                    glueWeight2: glueWeight2Bau,
+                    glueSumm2: glueSumm2Bau
+                };
+
+                var primer = {
+                    primerWeight: primerWeightBau,
+                    primerPrice: primerPriceBau
+                };
+
+                $scope.Bau.radiusCount = count;
+
+                /*************** Калькуляция клеевой смеси ***************/
+                if (!glueMix.glueWeight) {
+                    $scope.Bau.glueSumm = 0;
+                }
+                else {
+                    $scope.Bau.glueWeight = glueMix.glueWeight*count;
+                    $scope.Bau.glueSumm = (glueMix.glueSumm*count).toFixed(2);
+                }
+
+                /*************** Калькуляция клеевой смеси #2***************/
+                if (!glueMix2.glueWeight2) {
+                    $scope.Bau.glueSumm2 = 0;
+                }
+                else {
+                    $scope.Bau.glueWeight2 = glueMix2.glueWeight2*count;
+                    $scope.Bau.glueSumm2 = (glueMix2.glueWeight2*glueMix2.glueSumm2*count).toFixed(2);
+                }
+
+                /*************** Калькуляция утеплителя ***************/
+                $scope.Bau.countHeater = $scope.Bau.typeHeater[3].count*count;
+                $scope.Bau.selectedHeater = $scope.Bau.typeHeater[3];
+                $scope.Bau.priceHeater = ($scope.Bau.typeHeater[3].count*$scope.Bau.typeHeater[3].price*count).toFixed(2);
+
+                /*************** Калькуляция дюбелей ***************/
+                $scope.Bau.countDowel = $scope.Bau.typeHeater[3].dowelCount*count;
+                $scope.Bau.sizeDowel = $scope.Bau.typeHeater[3].dowelSize;
+                $scope.Bau.priceDowel = ($scope.Bau.typeHeater[3].dowelPrice*$scope.Bau.typeHeater[3].dowelCount*count).toFixed(2);
+
+                /*************** Калькуляция стеклосетки ***************/
+                $scope.Bau.fiberglassCount = (fiberglass.fiberglassCount*count).toFixed(2);
+                $scope.Bau.fiberglassPrice = (fiberglass.fiberglassPrice*count).toFixed(2);
+
+                /*************** Калькуляция грунтовочной смеси ***************/
+                $scope.Bau.primerWeight = (primer.primerWeight*count).toFixed(2);
+                $scope.Bau.primerPrice = (primer.primerPrice*primer.primerWeight*count).toFixed(2);
+
+                /*************** Калькуляция финишного декоративного слоя ***************/
+                $scope.Bau.countFinishLayer = ($scope.Bau.typeFinishLayer[2].count*count).toFixed(2);
+                $scope.Bau.selectedFinishLayer = $scope.Bau.typeFinishLayer[2];
+                $scope.Bau.priceFinishLayer = ($scope.Bau.typeFinishLayer[2].count*$scope.Bau.typeFinishLayer[2].price*count).toFixed(2);
+
+                /*************** Калькуляция стоимости за м2***************/
+                $scope.Bau.meterCost = ( (glueMix.glueWeight * glueMix.glueSumm) + ($scope.Bau.typeHeater[3].count*$scope.Bau.typeHeater[3].price) + ($scope.Bau.typeHeater[3].dowelPrice*$scope.Bau.typeHeater[3].dowelCount) + (fiberglass.fiberglassPrice) + (glueMix2.glueWeight2 * glueMix2.glueSumm2) + (primer.primerPrice*primer.primerWeight) + ($scope.Bau.typeFinishLayer[2].count*$scope.Bau.typeFinishLayer[2].price) ).toFixed(2);
+                //console.log((glueMix.glueWeight * glueMix.glueSumm));
+                //console.log($scope.Bau.glueSumm);
+
+                /*************** Калькуляция итоговой стоимости ***************/
+                $scope.Bau.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + (glueMix2.glueWeight2 * glueMix2.glueSumm2*count) + parseFloat($scope.Bau.priceHeater) + parseFloat($scope.Bau.priceDowel) + parseFloat($scope.Bau.fiberglassPrice) + parseFloat($scope.Bau.primerPrice) + parseFloat($scope.Bau.priceFinishLayer)).toFixed(2);
+            }
+
+            $scope.Bau.editGlue = function(weight) {
+                if(!weight) {
+                    $scope.Bau.glueSumm = '';
+                }
+                else {
+                    $scope.Bau.glueSumm = (glueSumm1Bau*weight).toFixed(2);
+                    var id1 = $scope.Bau.selectedHeater.id;
+                    var id2 = $scope.Bau.selectedFinishLayer.id;
+
+                    /*************** Калькуляция стоимости за м2 при изменении***************/
+                    $scope.Bau.meterCost = ( ((glueSumm1Bau*weight) + ($scope.Bau.typeHeater[id1].count*$scope.Bau.typeHeater[id1].price*$scope.Bau.radiusCount) + ($scope.Bau.typeHeater[id1].dowelPrice*$scope.Bau.typeHeater[id1].dowelCount*$scope.Bau.radiusCount) + parseFloat($scope.Bau.fiberglassPrice) + parseFloat($scope.Bau.glueSumm2) + parseFloat($scope.Bau.primerPrice) + ($scope.Bau.typeFinishLayer[id2].count*$scope.Bau.typeFinishLayer[id2].price*$scope.Bau.radiusCount) )/$scope.Bau.radiusCount).toFixed(2);
+                    
+                    /*************** Калькуляция итоговой стоимости при изменении***************/
+                    $scope.Bau.totalCost =  ( (glueSumm1Bau*weight) + ($scope.Bau.typeHeater[id1].count*$scope.Bau.typeHeater[id1].price*$scope.Bau.radiusCount) + ($scope.Bau.typeHeater[id1].dowelPrice*$scope.Bau.typeHeater[id1].dowelCount*$scope.Bau.radiusCount) + parseFloat($scope.Bau.fiberglassPrice) + parseFloat($scope.Bau.glueSumm2) + parseFloat($scope.Bau.primerPrice) + ($scope.Bau.typeFinishLayer[id2].count*$scope.Bau.typeFinishLayer[id2].price*$scope.Bau.radiusCount) ).toFixed(2);
+
+                } 
+            }
+
+            $scope.Bau.editDowel = function(count) {
+                if(!count) {
+                    $scope.Bau.dowelCount = '';
+                    $scope.Bau.sizeDowel = '';
+                    $scope.Bau.priceDowel = '';
+                }
+                else {
+                    $scope.Bau.dowelCount = $scope.Bau.typeHeater[$scope.Bau.selectedHeater.id].dowelCount*count;
+                    $scope.Bau.sizeDowel = $scope.Bau.typeHeater[$scope.Bau.selectedHeater.id].dowelSize;
+                    $scope.Bau.priceDowel = ($scope.Bau.typeHeater[$scope.Bau.selectedHeater.id].dowelPrice*count).toFixed(2);
+                }
+            }
+
+            $scope.Bau.editFinishLayer = function(meters) {
+                if(!meters || meters == 0) {
+                    $scope.Bau.countFinishLayer = '';
+                }
+                else {
+                    $scope.Bau.priceFinishLayer = ($scope.Bau.typeFinishLayer[$scope.Bau.selectedFinishLayer.id].price*meters).toFixed(2);
+                }
+            }            
+
+        }, 
+        function (error) {
+            console.log(error);
+        }
+    );
 
     /*$http({
         method: 'GET',
@@ -60,166 +229,7 @@ app.controller('bauCtrl', function($scope, $http, $q) {
     var workbook = XLSX.read(bstr, {type:"binary"});
     var my_sheet = workbook.SheetNames[0];
     console.log(my_sheet);*/
-
-/******************************************************* BAU System *********************************************************/
-    var glueWeight1Bau = 4,
-        glueSumm1Bau = 9.15,
-        fiberglassCountBau = 1.1,
-        fiberglassPriceBau = 22.07*fiberglassCountBau,
-        glueWeight2Bau = 4,
-        glueSumm2Bau = 6.28,
-        primerWeightBau = 0.3,
-        primerPriceBau = 32.66;
-
-    $scope.Bau = {
-    	typeHeater : [
-        	{ id: 0, name: 'Оберіть утеплювач', count: '', price: 0.00, dowelSize: 0, dowelCount: 0, dowelPrice: 0.00, selectable: false },
-    		{ id: 1, name: 'Плита ПСБС-25 50 мм', count: 2, price: 50,  dowelSize: 120, dowelCount: 6, dowelPrice: 2.82, selectable: true },
-    		{ id: 2, name: 'Плита ПСБС-25 80 мм', count: 2, price: 80, dowelSize: 140, dowelCount: 6, dowelPrice: 3.27, selectable: true },
-    		{ id: 3, name: 'Плита ПСБС-25 100 мм', count: 2, price: 100, dowelSize: 160, dowelCount: 6, dowelPrice: 3.75, selectable: true },
-    		{ id: 4, name: 'Плита ПСБС-25 120 мм', count: 2, price: 120, dowelSize: 200, dowelCount: 6, dowelPrice: 4.56, selectable: true }
-        ],
-    	selectedHeater : { name: 'Оберіть утеплювач', count: 0, price: 0, dowelSize: 0, dowelCount: 0, dowelPrice: 0.00, selectable: false },
-
-        typeFinishLayer: [
-            { id: 0, name: 'Оберіть штукатурку', count: '', price: 0.00, selectable: false },
-            { id: 1, name: 'Без оздоблення', count: '', price: 0.00, selectable: true },
-            { id: 2, name: 'SilikatTop 2 мм «баранець»', count: 3.2, price: 49.25, selectable: true },
-            { id: 3, name: 'SilikatTop 2 мм «короїд»', count: 2.8, price: 49.25, selectable: true },
-            { id: 4, name: 'GranoporTop 2 мм «баранець»', count: 3.2, price: 33.68, selectable: true },
-            { id: 5, name: 'GranoporTop 2 мм «короїд»', count: 2.8, price: 33.68, selectable: true },
-            { id: 6, name: 'Edelputz Spezial White 2 мм «баранець»', count: 3, price: 12.56, selectable: true },
-            { id: 7, name: 'Edelputz Spezial White 2 мм «короїд»', count: 2.9, price: 11.94, selectable: true },
-
-        ],
-        selectedFinishLayer : { id: 0, name: 'Оберіть штукатурку', count: '', price: 0.00, selectable: false }
-    };
-
-    $scope.Bau.update = function() {
-    	var id = $scope.Bau.selectedHeater.id;
-   		$scope.Bau.countHeater = $scope.Bau.typeHeater[$scope.Bau.selectedHeater.id].count*$scope.Bau.radiusCount;
-   		$scope.Bau.priceHeater = ($scope.Bau.typeHeater[id].count*$scope.Bau.typeHeater[id].price*$scope.Bau.radiusCount).toFixed(2);
-	}
-
-     $scope.Bau.updateLayer = function() {
-        var id = $scope.Bau.selectedFinishLayer.id;
-        $scope.Bau.countFinishLayer = $scope.Bau.typeFinishLayer[$scope.Bau.selectedFinishLayer.id].count*$scope.Bau.radiusCount;
-        $scope.Bau.priceFinishLayer = ($scope.Bau.typeFinishLayer[id].count*$scope.Bau.typeFinishLayer[id].price*$scope.Bau.radiusCount).toFixed(2);
-    }
-
-    $scope.Bau.calculate = function(count) {
-
-        var glueMix =	{	
-			glueWeight: glueWeight1Bau,
-			glueSumm: glueSumm1Bau
-        };
-
-        var fiberglass = {
-            fiberglassCount: fiberglassCountBau,
-            fiberglassPrice: fiberglassPriceBau
-        };
-
-        var glueMix2 = {
-            glueWeight2: glueWeight2Bau,
-            glueSumm2: glueSumm2Bau
-        };
-
-        var primer = {
-            primerWeight: primerWeightBau,
-            primerPrice: primerPriceBau
-        };
-
-        $scope.Bau.radiusCount = count;
-
-        /*************** Калькуляция клеевой смеси ***************/
-        if (!glueMix.glueWeight) {
-    		$scope.Bau.glueSumm = 0;
-    	}
-    	else {
-    		$scope.Bau.glueWeight = glueMix.glueWeight*count;
-        	$scope.Bau.glueSumm = (glueMix.glueSumm*count).toFixed(2);
-    	}
-
-        /*************** Калькуляция клеевой смеси #2***************/
-        if (!glueMix2.glueWeight2) {
-            $scope.Bau.glueSumm2 = 0;
-        }
-        else {
-            $scope.Bau.glueWeight2 = glueMix2.glueWeight2*count;
-            $scope.Bau.glueSumm2 = (glueMix2.glueWeight2*glueMix2.glueSumm2*count).toFixed(2);
-        }
-
-        /*************** Калькуляция утеплителя ***************/
-    	$scope.Bau.countHeater = $scope.Bau.typeHeater[3].count*count;
-    	$scope.Bau.selectedHeater = $scope.Bau.typeHeater[3];
-    	$scope.Bau.priceHeater = ($scope.Bau.typeHeater[3].count*$scope.Bau.typeHeater[3].price*count).toFixed(2);
-
-        /*************** Калькуляция дюбелей ***************/
-        $scope.Bau.countDowel = $scope.Bau.typeHeater[3].dowelCount*count;
-        $scope.Bau.sizeDowel = $scope.Bau.typeHeater[3].dowelSize;
-        $scope.Bau.priceDowel = ($scope.Bau.typeHeater[3].dowelPrice*$scope.Bau.typeHeater[3].dowelCount*count).toFixed(2);
-
-        /*************** Калькуляция стеклосетки ***************/
-        $scope.Bau.fiberglassCount = (fiberglass.fiberglassCount*count).toFixed(2);
-        $scope.Bau.fiberglassPrice = (fiberglass.fiberglassPrice*count).toFixed(2);
-
-        /*************** Калькуляция грунтовочной смеси ***************/
-        $scope.Bau.primerWeight = (primer.primerWeight*count).toFixed(2);
-        $scope.Bau.primerPrice = (primer.primerPrice*primer.primerWeight*count).toFixed(2);
-
-        /*************** Калькуляция финишного декоративного слоя ***************/
-        $scope.Bau.countFinishLayer = ($scope.Bau.typeFinishLayer[2].count*count).toFixed(2);
-        $scope.Bau.selectedFinishLayer = $scope.Bau.typeFinishLayer[2];
-        $scope.Bau.priceFinishLayer = ($scope.Bau.typeFinishLayer[2].count*$scope.Bau.typeFinishLayer[2].price*count).toFixed(2);
-
-        /*************** Калькуляция стоимости за м2***************/
-        $scope.Bau.meterCost = ( (glueMix.glueWeight * glueMix.glueSumm) + ($scope.Bau.typeHeater[3].count*$scope.Bau.typeHeater[3].price) + ($scope.Bau.typeHeater[3].dowelPrice*$scope.Bau.typeHeater[3].dowelCount) + (fiberglass.fiberglassPrice) + (glueMix2.glueWeight2 * glueMix2.glueSumm2) + (primer.primerPrice*primer.primerWeight) + ($scope.Bau.typeFinishLayer[2].count*$scope.Bau.typeFinishLayer[2].price) ).toFixed(2);
-        //console.log((glueMix.glueWeight * glueMix.glueSumm));
-        //console.log($scope.Bau.glueSumm);
-
-        /*************** Калькуляция итоговой стоимости ***************/
-        $scope.Bau.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + (glueMix2.glueWeight2 * glueMix2.glueSumm2*count) + parseFloat($scope.Bau.priceHeater) + parseFloat($scope.Bau.priceDowel) + parseFloat($scope.Bau.fiberglassPrice) + parseFloat($scope.Bau.primerPrice) + parseFloat($scope.Bau.priceFinishLayer)).toFixed(2);
-    }
-
-    $scope.Bau.editGlue = function(weight) {
-        if(!weight) {
-            $scope.Bau.glueSumm = '';
-        }
-        else {
-            $scope.Bau.glueSumm = (glueSumm1Bau*weight).toFixed(2);
-            var id1 = $scope.Bau.selectedHeater.id;
-            var id2 = $scope.Bau.selectedFinishLayer.id;
-
-            /*************** Калькуляция стоимости за м2 при изменении***************/
-            $scope.Bau.meterCost = ( ((glueSumm1Bau*weight) + ($scope.Bau.typeHeater[id1].count*$scope.Bau.typeHeater[id1].price*$scope.Bau.radiusCount) + ($scope.Bau.typeHeater[id1].dowelPrice*$scope.Bau.typeHeater[id1].dowelCount*$scope.Bau.radiusCount) + parseFloat($scope.Bau.fiberglassPrice) + parseFloat($scope.Bau.glueSumm2) + parseFloat($scope.Bau.primerPrice) + ($scope.Bau.typeFinishLayer[id2].count*$scope.Bau.typeFinishLayer[id2].price*$scope.Bau.radiusCount) )/$scope.Bau.radiusCount).toFixed(2);
-            
-            /*************** Калькуляция итоговой стоимости при изменении***************/
-            $scope.Bau.totalCost =  ( (glueSumm1Bau*weight) + ($scope.Bau.typeHeater[id1].count*$scope.Bau.typeHeater[id1].price*$scope.Bau.radiusCount) + ($scope.Bau.typeHeater[id1].dowelPrice*$scope.Bau.typeHeater[id1].dowelCount*$scope.Bau.radiusCount) + parseFloat($scope.Bau.fiberglassPrice) + parseFloat($scope.Bau.glueSumm2) + parseFloat($scope.Bau.primerPrice) + ($scope.Bau.typeFinishLayer[id2].count*$scope.Bau.typeFinishLayer[id2].price*$scope.Bau.radiusCount) ).toFixed(2);
-
-        } 
-    }
-
-    $scope.Bau.editDowel = function(count) {
-        if(!count) {
-            $scope.Bau.dowelCount = '';
-            $scope.Bau.sizeDowel = '';
-            $scope.Bau.priceDowel = '';
-        }
-        else {
-            $scope.Bau.dowelCount = $scope.Bau.typeHeater[$scope.Bau.selectedHeater.id].dowelCount*count;
-            $scope.Bau.sizeDowel = $scope.Bau.typeHeater[$scope.Bau.selectedHeater.id].dowelSize;
-            $scope.Bau.priceDowel = ($scope.Bau.typeHeater[$scope.Bau.selectedHeater.id].dowelPrice*count).toFixed(2);
-        }
-    }
-
-    $scope.Bau.editFinishLayer = function(meters) {
-        if(!meters || meters == 0) {
-            $scope.Bau.countFinishLayer = '';
-        }
-        else {
-            $scope.Bau.priceFinishLayer = ($scope.Bau.typeFinishLayer[$scope.Bau.selectedFinishLayer.id].price*meters).toFixed(2);
-        }
-    }
+    
 });
 
 
