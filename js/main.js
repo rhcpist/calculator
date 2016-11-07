@@ -1,18 +1,39 @@
 var app = angular.module('App', []);
 
-app.controller('bauCtrl', function($scope, $http) {
+app.controller('bauCtrl', function($scope, $http, $q) {
     
 // Simple GET request example:
 
-    var successCallback = function (response) {
-        $scope.res = response.data;
-    };
+    var url = 'prices.xlsx';
+    
+    var getData = function(url) {
+        var data = "";
+        var deferred = $q.defer();
 
-    var errorCallback = function (response) {
-        $scope.error = response.data;
+        $http.get(url, {
+            headers: {
+               'Content-type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            },
+            responseType: 'arraybuffer'} )
+        .success( function(response, status, headers, config) {
+            var arraybuffer = response;
+            var data = new Uint8Array(arraybuffer);
+            var arr = new Array();
+            for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+            var bstr = arr.join("");
+            var workbook = XLSX.read(bstr, {type:"binary"});
+            deferred.resolve(workbook) 
+        })
+        .error(function(errResp) {
+            deferred.reject({ message: "Really bad" });
+        });
+        return deferred.promise;
     }
 
-    $http({
+    console.log(getData(url));
+    console.log('Helli');
+
+    /*$http({
         method: 'GET',
         url: 'prices.xlsx',
         headers: {
@@ -27,9 +48,9 @@ app.controller('bauCtrl', function($scope, $http) {
             console.log('hey, myVar has changed!');
             console.log($scope.res);
         }     
-    });
+    });*/
 
-     console.log($scope.res);
+     //console.log($scope.res);
     /*var arraybuffer = response.data;
     var data = new Uint8Array(arraybuffer);
     var arr = new Array();
