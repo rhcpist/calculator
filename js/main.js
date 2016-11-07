@@ -201,34 +201,6 @@ app.controller('bauCtrl', function($scope, LoadData) {
             console.log(error);
         }
     );
-
-    /*$http({
-        method: 'GET',
-        url: 'prices.xlsx',
-        headers: {
-           'Content-type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-        },
-        responseType: 'arraybuffer'
-
-    }).then(successCallback, errorCallback);
-       
-     $scope.$watch('res', function() {
-        if ($scope.res !== undefined) {
-            console.log('hey, myVar has changed!');
-            console.log($scope.res);
-        }     
-    });*/
-
-     //console.log($scope.res);
-    /*var arraybuffer = response.data;
-    var data = new Uint8Array(arraybuffer);
-    var arr = new Array();
-    for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-    var bstr = arr.join("");
-    //console.log(arr);
-    var workbook = XLSX.read(bstr, {type:"binary"});
-    var my_sheet = workbook.SheetNames[0];
-    console.log(my_sheet);*/
     
 });
 
