@@ -535,173 +535,188 @@ app.controller('starCtrl', function($scope, LoadData) {
         },
         function (error) {
             console.log(error);
-        });
+        }
+    );
 
 });
 
 
 
-app.controller('powerCtrl', function($scope) {
+app.controller('powerCtrl', function($scope, LoadData) {
+
     /******************************************************* POWER System *********************************************************/
-    var glueWeight1Power = 4,
-        glueSumm1Power = 9.15,
-        fiberglassCountPower = 1.1,
-        fiberglassPricePower = 26.96*fiberglassCountPower,
-        primerWeightPower = 4.5,
-        primerPricePower = 63.14;
+    
+    LoadData.getData(url).then( 
+        function (result) {
+            var workNames = result.SheetNames[0],
+                workSheet = result.Sheets[workNames];
 
-    $scope.Power = {
-        typeHeater : [
-            { id: 0, name: 'Оберіть утеплювач', count: '', price: 0.00, dowelSize: 0, dowelCount: 0, dowelPrice: 0.00, selectable: false },
-            { id: 1, name: 'Мінераловатна плита 50 мм', count: 1.39, price: 69.15,  dowelSize: 120, dowelCount: 6, dowelPrice: 2.82, selectable: true },
-            { id: 2, name: 'Мінераловатна плита 80 мм', count: 1.39, price: 110.66,  dowelSize: 140, dowelCount: 6, dowelPrice: 3.27, selectable: true },
-            { id: 3, name: 'Мінераловатна плита 100 мм', count: 1.39, price: 138.3,  dowelSize: 160, dowelCount: 6, dowelPrice: 3.75, selectable: true },
-            { id: 4, name: 'Мінераловатна плита 120 мм', count: 1.39, price: 165.96,  dowelSize: 200, dowelCount: 6, dowelPrice: 4.56, selectable: true },
-            { id: 5, name: 'Плита ПСБС-25 50 мм', count: 2, price: 50,  dowelSize: 120, dowelCount: 6, dowelPrice: 2.82, selectable: true },
-            { id: 6, name: 'Плита ПСБС-25 80 мм', count: 2, price: 80, dowelSize: 140, dowelCount: 6, dowelPrice: 3.27, selectable: true },
-            { id: 7, name: 'Плита ПСБС-25 100 мм', count: 2, price: 100, dowelSize: 160, dowelCount: 6, dowelPrice: 3.75, selectable: true },
-            { id: 8, name: 'Плита ПСБС-25 120 мм', count: 2, price: 120, dowelSize: 200, dowelCount: 6, dowelPrice: 4.56, selectable: true }
-        ],
-        selectedHeater : { name: 'Оберіть утеплювач', count: 0, price: 0, dowelSize: 0, dowelCount: 0, dowelPrice: 0.00, selectable: false },
+            var glueWeight1Power = workSheet['D4'].v,
+                glueSumm1Power = (workSheet['F4'].v).toFixed(2),
+                fiberglassCountPower = workSheet['D11'].v,
+                fiberglassPricePower = workSheet['F11'].v*fiberglassCountPower,
+                primerWeightPower = workSheet['D9'].v,
+                primerPricePower = (workSheet['F9'].v).toFixed(2);
 
-        typeFinishLayer: [
-            { id: 0, name: 'Оберіть штукатурку', count: '', price: 0.00, selectable: false },
-            { id: 1, name: 'Без оздоблення', count: '', price: 0.00, selectable: true },
-            { id: 2, name: 'NanoporTop 2 мм «баранець»', count: 3.2, price: 109.73, selectable: true},
-            { id: 3, name: 'SilikonTop 2 мм «баранець»', count: 3.2, price: 63.81, selectable: true },
-            { id: 4, name: 'SilikonTop 2 мм «короїд»', count: 2.8, price: 63.81, selectable: true },
-            { id: 5, name: 'StellaporTop 2 мм «баранець»', count: 3.2, price: 42.78, selectable: true },
-            { id: 6, name: 'StellaporTop 2 мм «короїд»', count: 2.8, price: 42.78, selectable: true },
-            { id: 7, name: 'SilikatTop 2 мм «баранець»', count: 3.2, price: 49.25, selectable: true },
-            { id: 8, name: 'SilikatTop 2 мм «короїд»', count: 2.8, price: 49.25, selectable: true },
-            { id: 9, name: 'CreativTop «Max» 4 мм', count: 5.6, price: 57.31, selectable: true },
-            { id: 10, name: 'CreativTop «Trend» 3 мм', count: 5.2, price: 57.31, selectable: true },
-            { id: 11, name: 'CreativTop «Vario» 1,5 мм', count: 3.7, price: 57.31, selectable: true },
-            { id: 12, name: 'CreativTop «Fine» 1 мм', count: 3.5, price: 57.31, selectable: true },
-            { id: 13, name: 'CreativTop «Perl» 0,5 мм', count: 2.5, price: 57.31, selectable: true },
-            { id: 14, name: 'GranoporTop 2 мм «баранець»', count: 3.2, price: 33.68, selectable: true },
-            { id: 15, name: 'GranoporTop 2 мм «короїд»', count: 2.8, price: 33.68, selectable: true }
+            $scope.Power = {
+                typeHeater : [
+                    { id: 0, name: 'Оберіть утеплювач', count: '', price: 0.00, dowelSize: 0, dowelCount: 0, dowelPrice: 0.00, selectable: false },
+                    { id: 1, name: 'Мінераловатна плита 50 мм', count: workSheet['D36'].v, price: workSheet['F36'].v,  dowelSize: 120, dowelCount: workSheet['D49'].v, dowelPrice: workSheet['F49'].v, selectable: true },
+                    { id: 2, name: 'Мінераловатна плита 80 мм', count: workSheet['D37'].v, price: workSheet['F37'].v,  dowelSize: 140, dowelCount: workSheet['D50'].v, dowelPrice: workSheet['F50'].v, selectable: true },
+                    { id: 3, name: 'Мінераловатна плита 100 мм', count: workSheet['D38'].v, price: workSheet['F38'].v,  dowelSize: 160, dowelCount: workSheet['D51'].v, dowelPrice: workSheet['F51'].v, selectable: true },
+                    { id: 4, name: 'Мінераловатна плита 120 мм', count: workSheet['D39'].v, price: workSheet['F39'].v,  dowelSize: 200, dowelCount: workSheet['D53'].v, dowelPrice: workSheet['F53'].v, selectable: true },
+                    { id: 5, name: 'Плита ПСБС-25 50 мм', count: workSheet['D40'].v, price: workSheet['F40'].v,  dowelSize: 120, dowelCount: workSheet['D49'].v, dowelPrice: workSheet['F49'].v, selectable: true },
+                    { id: 6, name: 'Плита ПСБС-25 80 мм', count: workSheet['D41'].v, price: workSheet['F41'].v, dowelSize: 140, dowelCount: workSheet['D50'].v, dowelPrice: workSheet['F50'].v, selectable: true },
+                    { id: 7, name: 'Плита ПСБС-25 100 мм', count: workSheet['D42'].v, price: workSheet['F42'].v, dowelSize: 160, dowelCount: workSheet['D51'].v, dowelPrice: workSheet['F51'].v, selectable: true },
+                    { id: 8, name: 'Плита ПСБС-25 120 мм', count: workSheet['D43'].v, price: workSheet['F43'].v, dowelSize: 200, dowelCount: workSheet['D53'].v, dowelPrice: workSheet['F53'].v, selectable: true }
+                ],
+                selectedHeater : { name: 'Оберіть утеплювач', count: 0, price: 0, dowelSize: 0, dowelCount: 0, dowelPrice: 0.00, selectable: false },
 
-        ],
-        selectedFinishLayer : { id: 0, name: 'Оберіть штукатурку', count: '', price: 0.00, selectable: false }
-    };
+                typeFinishLayer: [
+                    { id: 0, name: 'Оберіть штукатурку', count: '', price: 0.00, selectable: false },
+                    { id: 1, name: 'Без оздоблення', count: '', price: 0.00, selectable: true },
+                    { id: 2, name: 'NanoporTop 2 мм «баранець»', count: 3.2, price: 109.73, selectable: true},
+                    { id: 3, name: 'SilikonTop 2 мм «баранець»', count: 3.2, price: 63.81, selectable: true },
+                    { id: 4, name: 'SilikonTop 2 мм «короїд»', count: 2.8, price: 63.81, selectable: true },
+                    { id: 5, name: 'StellaporTop 2 мм «баранець»', count: 3.2, price: 42.78, selectable: true },
+                    { id: 6, name: 'StellaporTop 2 мм «короїд»', count: 2.8, price: 42.78, selectable: true },
+                    { id: 7, name: 'SilikatTop 2 мм «баранець»', count: 3.2, price: 49.25, selectable: true },
+                    { id: 8, name: 'SilikatTop 2 мм «короїд»', count: 2.8, price: 49.25, selectable: true },
+                    { id: 9, name: 'CreativTop «Max» 4 мм', count: 5.6, price: 57.31, selectable: true },
+                    { id: 10, name: 'CreativTop «Trend» 3 мм', count: 5.2, price: 57.31, selectable: true },
+                    { id: 11, name: 'CreativTop «Vario» 1,5 мм', count: 3.7, price: 57.31, selectable: true },
+                    { id: 12, name: 'CreativTop «Fine» 1 мм', count: 3.5, price: 57.31, selectable: true },
+                    { id: 13, name: 'CreativTop «Perl» 0,5 мм', count: 2.5, price: 57.31, selectable: true },
+                    { id: 14, name: 'GranoporTop 2 мм «баранець»', count: 3.2, price: 33.68, selectable: true },
+                    { id: 15, name: 'GranoporTop 2 мм «короїд»', count: 2.8, price: 33.68, selectable: true }
 
-    $scope.Power.update = function() {
-        var id = $scope.Power.selectedHeater.id;
-        $scope.Power.countHeater = $scope.Power.typeHeater[$scope.Power.selectedHeater.id].count*$scope.Power.radiusCount;
-        $scope.Power.priceHeater = ($scope.Power.typeHeater[id].count*$scope.Power.typeHeater[id].price*$scope.Power.radiusCount).toFixed(2);
-    }
+                ],
+                selectedFinishLayer : { id: 0, name: 'Оберіть штукатурку', count: '', price: 0.00, selectable: false }
+            };
 
-     $scope.Power.updateLayer = function() {
-        var id = $scope.Power.selectedFinishLayer.id;
-        $scope.Power.countFinishLayer = $scope.Power.typeFinishLayer[$scope.Power.selectedFinishLayer.id].count*$scope.Power.radiusCount;
-        $scope.Power.priceFinishLayer = ($scope.Power.typeFinishLayer[id].count*$scope.Power.typeFinishLayer[id].price*$scope.Power.radiusCount).toFixed(2);
-    }
+            $scope.Power.update = function() {
+                var id = $scope.Power.selectedHeater.id;
+                $scope.Power.countHeater = $scope.Power.typeHeater[$scope.Power.selectedHeater.id].count*$scope.Power.radiusCount;
+                $scope.Power.priceHeater = ($scope.Power.typeHeater[id].count*$scope.Power.typeHeater[id].price*$scope.Power.radiusCount).toFixed(2);
+            }
 
-    $scope.Power.calculate = function(count) {
+             $scope.Power.updateLayer = function() {
+                var id = $scope.Power.selectedFinishLayer.id;
+                $scope.Power.countFinishLayer = $scope.Power.typeFinishLayer[$scope.Power.selectedFinishLayer.id].count*$scope.Power.radiusCount;
+                $scope.Power.priceFinishLayer = ($scope.Power.typeFinishLayer[id].count*$scope.Power.typeFinishLayer[id].price*$scope.Power.radiusCount).toFixed(2);
+            }
 
-        var glueMix =   {   
-            glueWeight: glueWeight1Power,
-            glueSumm: glueSumm1Power
-        };
+            $scope.Power.calculate = function(count) {
 
-        var fiberglass = {
-            fiberglassCount: fiberglassCountPower,
-            fiberglassPrice: fiberglassPricePower
-        };
+                var glueMix =   {   
+                    glueWeight: glueWeight1Power,
+                    glueSumm: glueSumm1Power
+                };
 
-        var primer = {
-            primerWeight: primerWeightPower,
-            primerPrice: primerPricePower
-        };
+                var fiberglass = {
+                    fiberglassCount: fiberglassCountPower,
+                    fiberglassPrice: fiberglassPricePower
+                };
 
-        $scope.Power.radiusCount = count;
+                var primer = {
+                    primerWeight: primerWeightPower,
+                    primerPrice: primerPricePower
+                };
 
-        /*************** Калькуляция клеевой смеси ***************/
-        if (!glueMix.glueWeight) {
-            $scope.Power.glueSumm = 0;
+                $scope.Power.radiusCount = count;
+
+                /*************** Калькуляция клеевой смеси ***************/
+                if (!glueMix.glueWeight) {
+                    $scope.Power.glueSumm = 0;
+                }
+                else {
+                    $scope.Power.glueWeight = glueMix.glueWeight*count;
+                    $scope.Power.glueSumm = (glueMix.glueSumm*count).toFixed(2);
+                }
+
+                /*************** Калькуляция утеплителя ***************/
+                $scope.Power.countHeater = $scope.Power.typeHeater[7].count*count;
+                $scope.Power.selectedHeater = $scope.Power.typeHeater[7];
+                $scope.Power.priceHeater = ($scope.Power.typeHeater[7].count*$scope.Power.typeHeater[7].price*count).toFixed(2);
+
+                /*************** Калькуляция дюбелей ***************/
+                $scope.Power.countDowel = $scope.Power.typeHeater[7].dowelCount*count;
+                $scope.Power.sizeDowel = $scope.Power.typeHeater[7].dowelSize;
+                $scope.Power.priceDowel = ($scope.Power.typeHeater[7].dowelPrice*$scope.Power.typeHeater[7].dowelCount*count).toFixed(2);
+
+                /*************** Калькуляция стеклосетки ***************/
+                $scope.Power.fiberglassCount = (fiberglass.fiberglassCount*count).toFixed(2);
+                $scope.Power.fiberglassPrice = (fiberglass.fiberglassPrice*count).toFixed(2);
+
+                /*************** Калькуляция грунтовочной смеси ***************/
+                $scope.Power.primerWeight = (primer.primerWeight*count).toFixed(2);
+                $scope.Power.primerPrice = (primer.primerPrice*primer.primerWeight*count).toFixed(2);
+
+                /*************** Калькуляция финишного декоративного слоя ***************/
+                $scope.Power.countFinishLayer = ($scope.Power.typeFinishLayer[3].count*count).toFixed(2);
+                $scope.Power.selectedFinishLayer = $scope.Power.typeFinishLayer[3];
+                $scope.Power.priceFinishLayer = ($scope.Power.typeFinishLayer[3].count*$scope.Power.typeFinishLayer[3].price*count).toFixed(2);
+
+                /*************** Калькуляция стоимости за м2***************/
+                $scope.Power.meterCost = ( (glueMix.glueWeight * glueMix.glueSumm) + ($scope.Power.typeHeater[7].count*$scope.Power.typeHeater[7].price) + ($scope.Power.typeHeater[7].dowelPrice*$scope.Power.typeHeater[7].dowelCount) + (fiberglass.fiberglassPrice) + (primer.primerPrice*primer.primerWeight) + ($scope.Power.typeFinishLayer[3].count*$scope.Power.typeFinishLayer[3].price) ).toFixed(2);
+
+                /*************** Калькуляция итоговой стоимости ***************/
+                $scope.Power.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + parseFloat($scope.Power.priceHeater) + parseFloat($scope.Power.priceDowel) + parseFloat($scope.Power.fiberglassPrice) + parseFloat($scope.Power.primerPrice) + parseFloat($scope.Power.priceFinishLayer)).toFixed(2);
+            }
+
+            $scope.Power.editGlue = function(weight) {
+                if(!weight) {
+                    $scope.Power.glueSumm = '';
+                }
+                else {
+                    $scope.Power.glueSumm = (glueSumm1Power*weight).toFixed(2);
+                    var id1 = $scope.Power.selectedHeater.id;
+                    var id2 = $scope.Power.selectedFinishLayer.id;
+
+                    /**************************Проверка на выбор Минерально Плиты*************************/
+                    if($scope.Power.typeHeater[id1].id >= 1 && $scope.Power.typeHeater[id1].id <= 4)
+                    {
+                        $scope.Power.typeFinishLayer[14].selectable = false;
+                        $scope.Power.typeFinishLayer[15].selectable = false;
+                    }
+
+                    /*************** Калькуляция стоимости за м2 при изменении***************/
+                    $scope.Power.meterCost = ( ((glueSumm1Power*weight) + ($scope.Power.typeHeater[id1].count*$scope.Power.typeHeater[id1].price*$scope.Power.radiusCount) + ($scope.Power.typeHeater[id1].dowelPrice*$scope.Power.typeHeater[id1].dowelCount*$scope.Power.radiusCount) + parseFloat($scope.Power.fiberglassPrice) + parseFloat($scope.Power.primerPrice) + ($scope.Power.typeFinishLayer[id2].count*$scope.Power.typeFinishLayer[id2].price*$scope.Power.radiusCount) )/$scope.Power.radiusCount).toFixed(2);
+                    
+                    /*************** Калькуляция итоговой стоимости при изменении***************/
+                    $scope.Power.totalCost = ( (glueSumm1Power*weight) + ($scope.Power.typeHeater[id1].count*$scope.Power.typeHeater[id1].price*$scope.Power.radiusCount) + ($scope.Power.typeHeater[id1].dowelPrice*$scope.Power.typeHeater[id1].dowelCount*$scope.Power.radiusCount) + parseFloat($scope.Power.fiberglassPrice) + parseFloat($scope.Power.primerPrice) + ($scope.Power.typeFinishLayer[id2].count*$scope.Power.typeFinishLayer[id2].price*$scope.Power.radiusCount) ).toFixed(2);
+
+                } 
+            }
+
+            $scope.Power.editDowel = function(count) {
+                if(!count) {
+                    $scope.Power.dowelCount = '';
+                    $scope.Power.sizeDowel = '';
+                    $scope.Power.priceDowel = '';
+                }
+                else {
+                    $scope.Power.dowelCount = $scope.Power.typeHeater[$scope.Power.selectedHeater.id].dowelCount*count;
+                    $scope.Power.sizeDowel = $scope.Power.typeHeater[$scope.Power.selectedHeater.id].dowelSize;
+                    $scope.Power.priceDowel = ($scope.Power.typeHeater[$scope.Power.selectedHeater.id].dowelPrice*count).toFixed(2);
+                }
+            }
+
+            $scope.Power.editFinishLayer = function(meters) {
+                if(!meters || meters == 0) {
+                    $scope.Power.countFinishLayer = '';
+                }
+                else {
+                    $scope.Power.priceFinishLayer = ($scope.Power.typeFinishLayer[$scope.Power.selectedFinishLayer.id].price*meters).toFixed(2);
+                }
+            }
+    
+        }, 
+        function (error) {
+            console.log(error);
         }
-        else {
-            $scope.Power.glueWeight = glueMix.glueWeight*count;
-            $scope.Power.glueSumm = (glueMix.glueSumm*count).toFixed(2);
-        }
-
-        /*************** Калькуляция утеплителя ***************/
-        $scope.Power.countHeater = $scope.Power.typeHeater[7].count*count;
-        $scope.Power.selectedHeater = $scope.Power.typeHeater[7];
-        $scope.Power.priceHeater = ($scope.Power.typeHeater[7].count*$scope.Power.typeHeater[7].price*count).toFixed(2);
-
-        /*************** Калькуляция дюбелей ***************/
-        $scope.Power.countDowel = $scope.Power.typeHeater[7].dowelCount*count;
-        $scope.Power.sizeDowel = $scope.Power.typeHeater[7].dowelSize;
-        $scope.Power.priceDowel = ($scope.Power.typeHeater[7].dowelPrice*$scope.Power.typeHeater[7].dowelCount*count).toFixed(2);
-
-        /*************** Калькуляция стеклосетки ***************/
-        $scope.Power.fiberglassCount = (fiberglass.fiberglassCount*count).toFixed(2);
-        $scope.Power.fiberglassPrice = (fiberglass.fiberglassPrice*count).toFixed(2);
-
-        /*************** Калькуляция грунтовочной смеси ***************/
-        $scope.Power.primerWeight = (primer.primerWeight*count).toFixed(2);
-        $scope.Power.primerPrice = (primer.primerPrice*primer.primerWeight*count).toFixed(2);
-
-        /*************** Калькуляция финишного декоративного слоя ***************/
-        $scope.Power.countFinishLayer = ($scope.Power.typeFinishLayer[3].count*count).toFixed(2);
-        $scope.Power.selectedFinishLayer = $scope.Power.typeFinishLayer[3];
-        $scope.Power.priceFinishLayer = ($scope.Power.typeFinishLayer[3].count*$scope.Power.typeFinishLayer[3].price*count).toFixed(2);
-
-        /*************** Калькуляция стоимости за м2***************/
-        $scope.Power.meterCost = ( (glueMix.glueWeight * glueMix.glueSumm) + ($scope.Power.typeHeater[7].count*$scope.Power.typeHeater[7].price) + ($scope.Power.typeHeater[7].dowelPrice*$scope.Power.typeHeater[7].dowelCount) + (fiberglass.fiberglassPrice) + (primer.primerPrice*primer.primerWeight) + ($scope.Power.typeFinishLayer[3].count*$scope.Power.typeFinishLayer[3].price) ).toFixed(2);
-
-        /*************** Калькуляция итоговой стоимости ***************/
-        $scope.Power.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + parseFloat($scope.Power.priceHeater) + parseFloat($scope.Power.priceDowel) + parseFloat($scope.Power.fiberglassPrice) + parseFloat($scope.Power.primerPrice) + parseFloat($scope.Power.priceFinishLayer)).toFixed(2);
-    }
-
-    $scope.Power.editGlue = function(weight) {
-        if(!weight) {
-            $scope.Power.glueSumm = '';
-        }
-        else {
-            $scope.Power.glueSumm = (glueSumm1Power*weight).toFixed(2);
-            var id1 = $scope.Power.selectedHeater.id;
-            var id2 = $scope.Power.selectedFinishLayer.id;
-
-            /**************************Проверка на выбор Минерально Плиты*************************/
-            if($scope.Power.typeHeater[id1].id >= 1 && $scope.Power.typeHeater[id1].id <= 4)
-        	{
-        		$scope.Power.typeFinishLayer[14].selectable = false;
-        		$scope.Power.typeFinishLayer[15].selectable = false;
-        	}
-
-            /*************** Калькуляция стоимости за м2 при изменении***************/
-            $scope.Power.meterCost = ( ((glueSumm1Power*weight) + ($scope.Power.typeHeater[id1].count*$scope.Power.typeHeater[id1].price*$scope.Power.radiusCount) + ($scope.Power.typeHeater[id1].dowelPrice*$scope.Power.typeHeater[id1].dowelCount*$scope.Power.radiusCount) + parseFloat($scope.Power.fiberglassPrice) + parseFloat($scope.Power.primerPrice) + ($scope.Power.typeFinishLayer[id2].count*$scope.Power.typeFinishLayer[id2].price*$scope.Power.radiusCount) )/$scope.Power.radiusCount).toFixed(2);
-            
-            /*************** Калькуляция итоговой стоимости при изменении***************/
-            $scope.Power.totalCost = ( (glueSumm1Power*weight) + ($scope.Power.typeHeater[id1].count*$scope.Power.typeHeater[id1].price*$scope.Power.radiusCount) + ($scope.Power.typeHeater[id1].dowelPrice*$scope.Power.typeHeater[id1].dowelCount*$scope.Power.radiusCount) + parseFloat($scope.Power.fiberglassPrice) + parseFloat($scope.Power.primerPrice) + ($scope.Power.typeFinishLayer[id2].count*$scope.Power.typeFinishLayer[id2].price*$scope.Power.radiusCount) ).toFixed(2);
-
-        } 
-    }
-
-    $scope.Power.editDowel = function(count) {
-        if(!count) {
-            $scope.Power.dowelCount = '';
-            $scope.Power.sizeDowel = '';
-            $scope.Power.priceDowel = '';
-        }
-        else {
-            $scope.Power.dowelCount = $scope.Power.typeHeater[$scope.Power.selectedHeater.id].dowelCount*count;
-            $scope.Power.sizeDowel = $scope.Power.typeHeater[$scope.Power.selectedHeater.id].dowelSize;
-            $scope.Power.priceDowel = ($scope.Power.typeHeater[$scope.Power.selectedHeater.id].dowelPrice*count).toFixed(2);
-        }
-    }
-
-    $scope.Power.editFinishLayer = function(meters) {
-        if(!meters || meters == 0) {
-            $scope.Power.countFinishLayer = '';
-        }
-        else {
-            $scope.Power.priceFinishLayer = ($scope.Power.typeFinishLayer[$scope.Power.selectedFinishLayer.id].price*meters).toFixed(2);
-        }
-    }
+    );
+    
 });
 
 
