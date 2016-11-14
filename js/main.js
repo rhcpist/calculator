@@ -37,8 +37,8 @@ app.controller('bauCtrl', function($scope, LoadData) {
             var workNames = result.SheetNames[0],
                 workSheet = result.Sheets[workNames];
 
-            var glueWeight1Bau = workSheet['D4'].v,
-                glueSumm1Bau = (workSheet['F4'].v).toFixed(2),
+            var glueWeight1Bau = workSheet['D8'].v,
+                glueSumm1Bau = (workSheet['F8'].v).toFixed(2),
                 fiberglassCountBau = workSheet['D12'].v,
                 fiberglassPriceBau = workSheet['F12'].v*fiberglassCountBau,
                 glueWeight2Bau = workSheet['D7'].v,
@@ -262,6 +262,10 @@ app.controller('proCtrl', function($scope, LoadData) {
 
             $scope.Pro.update = function() {
                 var id = $scope.Pro.selectedHeater.id;
+                if (!(id >= 1 && id <= 4)) {
+                	$scope.Pro.typeFinishLayer[14].selectable = true;
+                    $scope.Pro.typeFinishLayer[15].selectable = true;
+                }
                 $scope.Pro.countHeater = $scope.Pro.typeHeater[$scope.Pro.selectedHeater.id].count*$scope.Pro.radiusCount;
                 $scope.Pro.priceHeater = ($scope.Pro.typeHeater[id].count*$scope.Pro.typeHeater[id].price*$scope.Pro.radiusCount).toFixed(2);
             }
@@ -341,6 +345,19 @@ app.controller('proCtrl', function($scope, LoadData) {
                     var id2 = $scope.Pro.selectedFinishLayer.id;
 
                     /**************************Проверка на выбор Минерально Плиты*************************/
+                    if (id2 == $scope.Pro.typeFinishLayer[14].id || id2 == $scope.Pro.typeFinishLayer[15].id) {
+                    	$scope.Pro.typeHeater[1].selectable = false;
+                    	$scope.Pro.typeHeater[2].selectable = false;
+                    	$scope.Pro.typeHeater[3].selectable = false;
+                    	$scope.Pro.typeHeater[4].selectable = false;
+                    }
+                    else {
+                    	$scope.Pro.typeHeater[1].selectable = true;
+		                $scope.Pro.typeHeater[2].selectable = true;
+		            	$scope.Pro.typeHeater[3].selectable = true;
+		            	$scope.Pro.typeHeater[4].selectable = true;
+                    }
+
                     if($scope.Pro.typeHeater[id1].id >= 1 && $scope.Pro.typeHeater[id1].id <= 4)
                     {
                         $scope.Pro.typeFinishLayer[14].selectable = false;
@@ -596,6 +613,10 @@ app.controller('powerCtrl', function($scope, LoadData) {
 
             $scope.Power.update = function() {
                 var id = $scope.Power.selectedHeater.id;
+                if (!(id >= 1 && id <= 4)) {
+                	$scope.Power.typeFinishLayer[14].selectable = true;
+                    $scope.Power.typeFinishLayer[15].selectable = true;
+                }
                 $scope.Power.countHeater = $scope.Power.typeHeater[$scope.Power.selectedHeater.id].count*$scope.Power.radiusCount;
                 $scope.Power.priceHeater = ($scope.Power.typeHeater[id].count*$scope.Power.typeHeater[id].price*$scope.Power.radiusCount).toFixed(2);
             }
@@ -674,6 +695,19 @@ app.controller('powerCtrl', function($scope, LoadData) {
                     var id2 = $scope.Power.selectedFinishLayer.id;
 
                     /**************************Проверка на выбор Минерально Плиты*************************/
+                    if (id2 == $scope.Power.typeFinishLayer[14].id || id2 == $scope.Power.typeFinishLayer[15].id) {
+                    	$scope.Power.typeHeater[1].selectable = false;
+                    	$scope.Power.typeHeater[2].selectable = false;
+                    	$scope.Power.typeHeater[3].selectable = false;
+                    	$scope.Power.typeHeater[4].selectable = false;
+                    }
+                    else {
+                    	$scope.Power.typeHeater[1].selectable = true;
+		                $scope.Power.typeHeater[2].selectable = true;
+		            	$scope.Power.typeHeater[3].selectable = true;
+		            	$scope.Power.typeHeater[4].selectable = true;
+                    }
+
                     if($scope.Power.typeHeater[id1].id >= 1 && $scope.Power.typeHeater[id1].id <= 4)
                     {
                         $scope.Power.typeFinishLayer[14].selectable = false;

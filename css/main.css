@@ -121,7 +121,8 @@ span {
     height: 30px;
     margin: 10px auto 5px auto;
     font-size: 12px;
-    font-style: italic;
+    padding-left: 0px;
+    font-size: 11px;
 }
 
 .buttom-line {
@@ -476,7 +477,7 @@ span {
      .digit-input1 { width: 50px!important; }
      .digit-input3 { margin: 3px 1px 3px 65px; }
      .buttom-line { height: 240px; }
-     .myselect { width: 145px!important; display: block!important;}
+     .myselect { width: 145px!important; display: block!important; padding-left: 0px; font-size: 11px; }
      .calc{ margin-left: 0px; }
    }
 
@@ -492,7 +493,7 @@ span {
      .digit-input1 { width: 65px!important; margin-left: 50px;}
      .digit-input3 { margin-left: 130px; }
      .buttom-line { height: 280px; width: 200px; }
-     .myselect { width: 212px!important; display: block!important; }
+     .myselect { width: 212px!important; display: block!important; padding-left: 0px; font-size: 11px; }
      .calc { margin-left: 50px; }
      .form-group { margin-bottom: 0px!important;}
    }
