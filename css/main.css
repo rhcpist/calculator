@@ -113,6 +113,7 @@ span {
     font-size: 11px;
     border-radius: 8px;
     margin-left: 15px;
+    text-shadow: none;
 }
 
 .myselect {
@@ -198,8 +199,14 @@ option[label='Оберіть штукатурку']:disabled {
 	background: #735641;
 }
 
-#soc-btn:hover {
+#soc-btn:hover, #soc-btn:active {
 	background: #eee;
+	color: #333;
+}
+
+#soc-btn:focus {
+	background: #735641;
+	color: #ffffff;
 }
 
 #soc-line {
@@ -264,8 +271,14 @@ option[label='Оберіть штукатурку']:disabled {
 	background: #83374a;
 }
 
-#pow-btn:hover {
+#pow-btn:hover, #pow-btn:active {
 	background: #eee;
+	color: #333;
+}
+
+#pow-btn:focus {
+	background: #83374a;
+	color: #ffffff;
 }
 
 #pow-line {
@@ -331,8 +344,14 @@ option[label='Оберіть штукатурку']:disabled {
 	background: #5a3372;
 }
 
-#star-btn:hover {
+#star-btn:hover, #star-btn:active {
 	background: #eee;
+	color: #333;
+}
+
+#star-btn:focus {
+	background: #5a3372;
+	color: #ffffff;
 }
 
 #star-line {
@@ -398,9 +417,16 @@ option[label='Оберіть штукатурку']:disabled {
 	background: #00669d;
 }
 
-#pro-btn:hover {
+#pro-btn:hover, #pro-btn:active {
 	background: #eee;
+	color: #333;
 }
+
+#pro-btn:focus {
+	background: #00669d;
+	color: #ffffff;
+}
+
 
 #pro-line {
 	border-left: 1px solid #2491cc;
@@ -465,8 +491,14 @@ option[label='Оберіть штукатурку']:disabled {
 	background: #0e6f36;
 }
 
-#bau-btn:hover {
+#bau-btn:hover, #bau-btn:active {
 	background: #eee;
+	color: #333;
+}
+
+#bau-btn:focus {
+	background: #0e6f36;
+	color: #ffffff;
 }
 
 #bau-line {
