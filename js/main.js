@@ -194,7 +194,7 @@ app.controller('bauCtrl', function($scope, LoadData) {
                 else {
                     $scope.Bau.priceFinishLayer = ($scope.Bau.typeFinishLayer[$scope.Bau.selectedFinishLayer.id].price*meters).toFixed(2);
                 }
-            }            
+            }         
 
         }, 
         function (error) {
@@ -930,4 +930,3 @@ var genPDF = function () {
         }
     });
 }
-

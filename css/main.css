@@ -134,6 +134,14 @@ span {
     position: absolute;
 }
 
+option[label='Оберіть утеплювач']:disabled {
+	display: none;
+}
+
+option[label='Оберіть штукатурку']:disabled {
+	display: none;
+}
+
 
 /*********************Socle System********************/
 
@@ -497,7 +505,6 @@ span {
      .calc { margin-left: 50px; }
      .form-group { margin-bottom: 0px!important;}
    }
-
 
 
 
