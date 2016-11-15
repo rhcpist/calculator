@@ -509,9 +509,18 @@ option[label='Оберіть штукатурку']:disabled {
 
 /*********************Bau System End****************/
 
+
+div.col-md-7.five-three {
+	width: 60%;
+}
+
+div.col-md-5.five-two {
+	width: 40%;
+}
+
 /*****************************All media Querys***************************/
 
- @media screen and (max-width: 1200px) {
+ @media (min-width: 992px) and (max-width: 1200px) {
      .digit-input { width: 40px!important; }
 	 .digit-input2 { width: 40px!important; margin: 8px 0px 8px 2px; } 
      .digit-input1 { width: 50px!important; }
@@ -519,10 +528,16 @@ option[label='Оберіть штукатурку']:disabled {
      .buttom-line { height: 240px; }
      .myselect { width: 145px!important; display: block!important; padding-left: 0px; font-size: 11px; }
      .calc{ margin-left: 0px; }
+     .col-md-4 { padding-right: 5px; padding-left: 5px; }
+     .col-md-6 { padding-right: 5px; padding-left: 5px; }
    }
 
- @media screen and (max-width: 992px) {
- 	 .bau-sys { width: 230px; }
+ /*@media screen and (max-width: 992px) {
+ 	 
+   }*/
+
+@media (min-width: 768px) and (max-width: 991px) {
+	 .bau-sys { width: 230px; }
  	 .pro-sys { width: 230px; }
  	 .star-sys { width: 230px; }
      .socle-sys { width: 230px; }
@@ -536,7 +551,23 @@ option[label='Оберіть штукатурку']:disabled {
      .myselect { width: 212px!important; display: block!important; padding-left: 0px; font-size: 11px; }
      .calc { margin-left: 50px; }
      .form-group { margin-bottom: 0px!important;}
-   }
 
+    div.col-md-7.five-three {
+		width: 100%;
+	}
 
+	div.col-md-5.five-two {
+		width: 100%;
+	}
+}
 
+@media (min-width: 300px) and (max-width: 768px) {
+
+    div.col-md-7.five-three {
+		width: 100%;
+	}
+
+	div.col-md-5.five-two {
+		width: 100%;
+	}
+}

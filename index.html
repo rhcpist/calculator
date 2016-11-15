@@ -22,656 +22,661 @@
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-	<div class="navbar-header">
-    	<div class="head-img">
-    		<img class="img-responsive"  src="img/top.png" alt="header">
-    	</div>
-  	</div>
 
     <div class="container">
+    	
+		<img class="img-responsive"  src="img/top.png" alt="header">
+	
+
 	    <div class="row" style="padding-bottom: 20px;">
 		    <div class="icons">
 		    	<a href="" onclick="printDoc();" ><img class="head-icon img-responsive" src="img/print.png" alt="Print"></a>
 	    		<a href="" onclick="genPDF();" ><img class="head-icon img-responsive" src="img/save.png" alt="Save"></a>
 		    </div>
 	    </div>
-	    <div class="row">
+	    <div class="col-md-12">
+		    <div class="row">
+				<div class="col-md-7 five-three">
+					<div class="row">
+						<div class="col-md-4 col-sm-6 col-xs-12">
+							<div class="row-centered">
+								<img class="img-responsive center-block" src="img/BauSystem/building.png" alt="BauSystem">
+								<div class="bau-sys center-block">
+									<span class="name-block">BauSystem</span>
+									<div class="descr">
+										<img class="img-responsive col-centered" src="img/BauSystem/bau-text.png" alt="Добре">
+									</div>
+									<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#bauDetail" aria-expanded="false" aria-controls="bauDetail">Детальніше</button>
+								</div>
 
-			<div class="col-md-1"></div>
-	    	<div class="col-md-2" style="margin: 0 5px;">
-	    		<div class="row row-centered">
-					<img class="img-responsive center-block" src="img/BauSystem/building.png" alt="BauSystem">
-					<div class="bau-sys center-block">
-						<span class="name-block">BauSystem</span>
-						<div class="descr">
-							<img class="img-responsive col-centered" src="img/BauSystem/bau-text.png" alt="Добре">
-						</div>
-						<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#bauDetail" aria-expanded="false" aria-controls="bauDetail">Детальніше</button>
-					</div>
+								<div class="collapse" id="bauDetail" ng-controller="bauCtrl">
+								  <div class="bau-sys center-block">
+								    <div class="bau-col1">
+								    	<span class="mylabel">Площа утеплення:</span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" name="radiusCount" value="{{ Bau.radiusCount }}" ng-model="Bau.radiusCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
+											<button type="submit" class="btn btn-default calc" id="bau-btn" ng-click="Bau.calculate(Bau.radiusCount)">Розрахувати</button>
+										  </div>
+										</form>
+								    </div>
+								    <div class="bau-col2">
+								    	<span class="mylabel">Клейова шпаклювальна суміш <strong>Baumit NivoFix</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" name="weight" ng-readonly="true" ng-model="Bau.glueWeight" value="{{ Bau.editGlue(Bau.glueWeight) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    <input type="text" name="summ" ng-readonly="true" ng-model="Bau.glueSumm" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="bau-col3">
+								    	<span class="mylabel">Вид утеплювача:</span>
+								    	<form class="form-inline">
+									    	<select class="form-control myselect" name="heaterSelect" ng-model="Bau.selectedHeater" ng-options="option.name disable when option.selectable == false for option in Bau.typeHeater track by option.price" ng-change="Bau.update()">
+											  <!--<option>Плита ПСБС-25 50 мм</option>
+											  <option>Плита ПСБС-25 80 мм</option>
+											  <option>Плита ПСБС-25 100 мм</option>
+											  <option>Плита ПСБС-25 120 мм</option>-->
+											</select>
+											<div class="form-group">
+										    	<input type="text" name="countHeater" ng-readonly="true" ng-model="Bau.countHeater" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+										    	<input type="text" name="priceHeater" ng-readonly="true" ng-model="Bau.priceHeater" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="bau-col4">
+								    	<form class="form-inline">
+								    		<div class="form-group">
+								    			<span class="mylabel" style="display: inline;">Дюбелі фасадні:</span>
+								    			<input type="text" ng-readonly="true" ng-model="Bau.countDowel" ng-change="{{ Bau.editDowel(Bau.countDowel) }}" class="form-control digit-input2"><span style="padding-left: 0px!important;">шт.</span>
+								    			<input type="text" ng-readonly="true" ng-model="Bau.sizeDowel" class="form-control digit-input"><span style="padding-left: 0px!important;">мм&nbsp;&nbsp;</span>
+										    	<input type="text" ng-readonly="true" ng-model="Bau.priceDowel" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    	</form>
+								    </div>
+								    <div class="bau-col5">
+								    	<span class="mylabel">Лугостійка склосітка <strong>Baumit DuoTex</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" ng-readonly="true" ng-model="Bau.fiberglassCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+										    <input type="text" ng-readonly="true" ng-model="Bau.fiberglassPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="bau-col6">
+								    	<span class="mylabel">Шпаклювальна суміш <strong>Baumit BauContact</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" ng-readonly="true" ng-model="Bau.glueWeight2" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    <input type="text" ng-readonly="true" ng-model="Bau.glueSumm2" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="bau-col7">
+								    	<span class="mylabel">Грунтувальна суміш <strong>Baumit UniPrimer</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" ng-readonly="true" ng-model="Bau.primerWeight" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    <input type="text" ng-readonly="true" ng-model="Bau.primerPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="bau-col8">
+								    	<span class="mylabel">Фінішний декоративний шар:</span>
+								    	<form class="form-inline">
+									    	<select class="form-control myselect" ng-model="Bau.selectedFinishLayer" ng-options="option.name disable when option.selectable == false for option in Bau.typeFinishLayer track by option.id" ng-change="Bau.updateLayer()">
+											  <!--<option>Оберіть штукатурку</option>
+											  <option>Без оздоблення</option>
+											  <option>SilikatTop 2 мм «баранець»</option>
+											  <option>SilikatTop 2 мм «короїд»</option>
+											  <option>GranoporTop 2 мм «баранець»</option>
+											  <option>GranoporTop 2 мм «короїд»</option>
+											  <option>Edelputz Spezial White 2 мм «баранець»</option>
+											  <option>Edelputz Spezial White 2 мм «короїд»</option>-->
+											</select>
+											<div class="form-group">
+										    	<input type="text" ng-readonly="true" ng-model="Bau.countFinishLayer" ng-change="{{ Bau.editFinishLayer(Bau.countFinishLayer) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    	<input type="text" ng-readonly="true" ng-model="Bau.priceFinishLayer" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="bau-col9" style="padding-bottom: 5px;">
+								    	<form class="form-inline">
+								    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
+								    		<div class="form-group">
+								    			<input type="text" ng-readonly="true" ng-model="Bau.meterCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    		<span class="mylabel-last">Загальна вартісь:</span>
+								    		<div class="form-group">
+								    			<input type="text" ng-readonly="true" ng-model="Bau.totalCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    	</form>
+								    </div>
+								    <div class="bau-collapse-block">
+								    	<a data-toggle="collapse" href="#bauDetail" aria-expanded="false" aria-controls="bauDetail">
+								    		<img src="img/collapse.png" alt="Свернуть">
+								    	</a>
+								    </div>
+								  </div>
+								</div>
+								<div class="center-block" style="height: 300px;">
+								  	<div class="buttom-line" id="bau-line"></div>
+								  	<img class="img-responsive col-centered" src="img/BauSystem/bau-prod.png" style="position: relative;top:100px;">
+								</div>
+							</div>	
+					    </div>
+					    <div class="col-md-4 col-sm-6 col-xs-12">
+							<div class="row-centered">
+								<img class="img-responsive center-block" src="img/ProSystem/building.png" alt="ProSystem">
+								<div class="pro-sys center-block">
+									<span class="name-block">ProSystem</span>
+									<div class="descr">
+										<img class="img-responsive col-centered" src="img/ProSystem/pro-text.png" alt="Краще">
+									</div>
+									<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#proDetail" aria-expanded="false" aria-controls="proDetail">Детальніше</button>
+								</div>
 
-					<div class="collapse" id="bauDetail" ng-controller="bauCtrl">
-					  <div class="bau-sys center-block">
-					    <div class="bau-col1">
-					    	<span class="mylabel">Площа утеплення:</span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" name="radiusCount" value="{{ Bau.radiusCount }}" ng-model="Bau.radiusCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
-								<button type="submit" class="btn btn-default calc" id="bau-btn" ng-click="Bau.calculate(Bau.radiusCount)">Розрахувати</button>
-							  </div>
-							</form>
+								<div class="collapse" id="proDetail" ng-controller="proCtrl">
+								  <div class="pro-sys center-block">
+								    <div class="pro-col1">
+								    	<span class="mylabel">Площа утеплення:</span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" value="{{ Pro.radiusCount }}" ng-model="Pro.radiusCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
+											<button type="submit" ng-click="Pro.calculate(Pro.radiusCount)" class="btn btn-default calc" id="pro-btn">Розрахувати</button>
+										  </div>
+										</form>
+								    </div>
+								    <div class="pro-col2">
+								    	<span class="mylabel">Клейова шпаклювальна суміш <strong>Baumit ProContact</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" ng-readonly="true" ng-model="Pro.glueWeight" value="{{ Pro.editGlue(Pro.glueWeight) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    <input type="text" ng-readonly="true" ng-model="Pro.glueSumm" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="pro-col3">
+								    	<span class="mylabel">Вид утеплювача:</span>
+								    	<form class="form-inline">
+									    	<select name="heaterSelect2" ng-model="Pro.selectedHeater" ng-options="option.name disable when option.selectable == false for option in Pro.typeHeater track by option.price" ng-change="Pro.update()" class="form-control myselect">
+											  <!--<option>Оберіть утеплювач</option>
+											  <option>Мінераловатна плита 50 мм</option>
+											  <option>Мінераловатна плита 80 мм</option>
+											  <option>Мінераловатна плита 100 мм</option>
+											  <option>Мінераловатна плита 120 мм</option>
+											  <option>Плита ПСБС-25 50 мм</option>
+											  <option>Плита ПСБС-25 80 мм</option>
+											  <option>Плита ПСБС-25 100 мм</option>
+											  <option>Плита ПСБС-25 120 мм</option>-->
+											</select>
+											<div class="form-group">
+										    	<input type="text" ng-readonly="true" ng-model="Pro.countHeater" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+										    	<input type="text" ng-readonly="true" ng-model="Pro.priceHeater" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="pro-col4">
+								    	<form class="form-inline">
+								    		<div class="form-group">
+								    			<span class="mylabel" style="display: inline;">Дюбелі фасадні:</span>
+								    			<input type="text" ng-readonly="true" ng-model="Pro.countDowel" ng-change="{{ Pro.editDowel(Pro.countDowel) }}" class="form-control digit-input2"><span style="padding-left: 0px!important;">шт.</span>
+								    			<input type="text" ng-readonly="true" ng-model="Pro.sizeDowel" class="form-control digit-input"><span style="padding-left: 0px!important;">мм&nbsp;&nbsp;</span>
+										    	<input type="text" ng-readonly="true" ng-model="Pro.priceDowel" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    	</form>
+								    </div>
+								    <div class="pro-col5">
+								    	<span class="mylabel">Лугостійка склосітка <strong>Baumit StarTex</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" ng-readonly="true" ng-model="Pro.fiberglassCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+										    <input type="text" ng-readonly="true" ng-model="Pro.fiberglassPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="pro-col6">
+								    	<span class="mylabel">Грунтувальна суміш <strong>Baumit UniPrimer</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" ng-readonly="true" ng-model="Pro.primerWeight" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    <input type="text" ng-readonly="true" ng-model="Pro.primerPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="pro-col7">
+								    	<span class="mylabel">Фінішний декоративний шар:</span>
+								    	<form class="form-inline">
+									    	<select ng-model="Pro.selectedFinishLayer" ng-options="option.name disable when option.selectable == false for option in Pro.typeFinishLayer track by option.id" ng-change="Pro.updateLayer()" class="form-control myselect">
+											  <!--<option>Оберіть штукатурку</option>
+											  <option>Без оздоблення</option>
+											  <option>NanoporTop 2 мм «баранець»</option>
+											  <option>SilikonTop 2 мм «баранець»</option>
+											  <option>SilikonTop 2 мм «короїд»</option>
+											  <option>StellaporTop 2 мм «баранець»</option>
+											  <option>StellaporTop 2 мм «короїд»</option>
+											  <option>SilikatTop 2 мм «баранець»</option>
+											  <option>SilikatTop 2 мм «короїд»</option>
+											  <option>CreativTop «Max» 4 мм</option>
+											  <option>CreativTop «Trend» 3 мм</option>
+											  <option>CreativTop «Vario» 1,5 мм</option>
+											  <option>CreativTop «Fine» 1 мм</option>
+											  <option>CreativTop «Perl» 0,5 мм</option>
+											  <option>GranoporTop 2 мм «баранець»</option>
+											  <option>GranoporTop 2 мм «короїд»</option>
+											  <option>Edelputz Spezial White 2 мм «баранець»</option>
+											  <option>Edelputz Spezial White 2 мм «короїд»</option>-->
+											</select>
+											<div class="form-group">
+										    	<input type="text" ng-readonly="true" ng-model="Pro.countFinishLayer" ng-change="{{ Pro.editFinishLayer(Pro.countFinishLayer) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    	<input type="text" ng-readonly="true" ng-model="Pro.priceFinishLayer" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="pro-col8" style="padding-bottom: 5px;">
+								    	<form class="form-inline">
+								    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
+								    		<div class="form-group">
+								    			<input type="text" ng-readonly="true" ng-model="Pro.meterCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    		<span class="mylabel-last">Загальна вартісь:</span>
+								    		<div class="form-group">
+								    			<input type="text" ng-readonly="true" ng-model="Pro.totalCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    	</form>
+								    </div>
+								    <div class="pro-collapse-block">
+								    	<a data-toggle="collapse" href="#proDetail" aria-expanded="false" aria-controls="proDetail">
+								    		<img src="img/collapse.png" alt="Свернуть">
+								    	</a>
+								    </div>
+								  </div>
+								</div>
+								<div class="center-block" style="height: 300px;">
+								  	<div class="buttom-line" id="pro-line"></div>
+								  	<img class="img-responsive col-centered" src="img/ProSystem/pro-prod.png" style="position: relative;top:100px;">
+								</div>
+							</div>	
 					    </div>
-					    <div class="bau-col2">
-					    	<span class="mylabel">Клейова шпаклювальна суміш <strong>Baumit StarContact White</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" name="weight" ng-readonly="true" ng-model="Bau.glueWeight" value="{{ Bau.editGlue(Bau.glueWeight) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    <input type="text" name="summ" ng-readonly="true" ng-model="Bau.glueSumm" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="bau-col3">
-					    	<span class="mylabel">Вид утеплювача:</span>
-					    	<form class="form-inline">
-						    	<select class="form-control myselect" name="heaterSelect" ng-model="Bau.selectedHeater" ng-options="option.name disable when option.selectable == false for option in Bau.typeHeater track by option.price" ng-change="Bau.update()">
-								  <!--<option>Плита ПСБС-25 50 мм</option>
-								  <option>Плита ПСБС-25 80 мм</option>
-								  <option>Плита ПСБС-25 100 мм</option>
-								  <option>Плита ПСБС-25 120 мм</option>-->
-								</select>
-								<div class="form-group">
-							    	<input type="text" name="countHeater" ng-readonly="true" ng-model="Bau.countHeater" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
-							    	<input type="text" name="priceHeater" ng-readonly="true" ng-model="Bau.priceHeater" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="bau-col4">
-					    	<form class="form-inline">
-					    		<div class="form-group">
-					    			<span class="mylabel" style="display: inline;">Дюбелі фасадні:</span>
-					    			<input type="text" ng-readonly="true" ng-model="Bau.countDowel" ng-change="{{ Bau.editDowel(Bau.countDowel) }}" class="form-control digit-input2"><span style="padding-left: 0px!important;">шт.</span>
-					    			<input type="text" ng-readonly="true" ng-model="Bau.sizeDowel" class="form-control digit-input"><span style="padding-left: 0px!important;">мм&nbsp;&nbsp;</span>
-							    	<input type="text" ng-readonly="true" ng-model="Bau.priceDowel" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    	</form>
-					    </div>
-					    <div class="bau-col5">
-					    	<span class="mylabel">Лугостійка склосітка <strong>Baumit DuoTex</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" ng-readonly="true" ng-model="Bau.fiberglassCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
-							    <input type="text" ng-readonly="true" ng-model="Bau.fiberglassPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="bau-col6">
-					    	<span class="mylabel">Шпаклювальна суміш <strong>Baumit BauContact</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" ng-readonly="true" ng-model="Bau.glueWeight2" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    <input type="text" ng-readonly="true" ng-model="Bau.glueSumm2" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="bau-col7">
-					    	<span class="mylabel">Грунтувальна суміш <strong>Baumit UniPrimer</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" ng-readonly="true" ng-model="Bau.primerWeight" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    <input type="text" ng-readonly="true" ng-model="Bau.primerPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="bau-col8">
-					    	<span class="mylabel">Фінішний декоративний шар:</span>
-					    	<form class="form-inline">
-						    	<select class="form-control myselect" ng-model="Bau.selectedFinishLayer" ng-options="option.name disable when option.selectable == false for option in Bau.typeFinishLayer track by option.id" ng-change="Bau.updateLayer()">
-								  <!--<option>Оберіть штукатурку</option>
-								  <option>Без оздоблення</option>
-								  <option>SilikatTop 2 мм «баранець»</option>
-								  <option>SilikatTop 2 мм «короїд»</option>
-								  <option>GranoporTop 2 мм «баранець»</option>
-								  <option>GranoporTop 2 мм «короїд»</option>
-								  <option>Edelputz Spezial White 2 мм «баранець»</option>
-								  <option>Edelputz Spezial White 2 мм «короїд»</option>-->
-								</select>
-								<div class="form-group">
-							    	<input type="text" ng-readonly="true" ng-model="Bau.countFinishLayer" ng-change="{{ Bau.editFinishLayer(Bau.countFinishLayer) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    	<input type="text" ng-readonly="true" ng-model="Bau.priceFinishLayer" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="bau-col9" style="padding-bottom: 5px;">
-					    	<form class="form-inline">
-					    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
-					    		<div class="form-group">
-					    			<input type="text" ng-readonly="true" ng-model="Bau.meterCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    		<span class="mylabel-last">Загальна вартісь:</span>
-					    		<div class="form-group">
-					    			<input type="text" ng-readonly="true" ng-model="Bau.totalCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    	</form>
-					    </div>
-					    <div class="bau-collapse-block">
-					    	<a data-toggle="collapse" href="#bauDetail" aria-expanded="false" aria-controls="bauDetail">
-					    		<img src="img/collapse.png" alt="Свернуть">
-					    	</a>
-					    </div>
-					  </div>
-					</div>
-					<div class="center-block" style="height: 300px;">
-					  	<div class="buttom-line" id="bau-line"></div>
-					  	<img class="img-responsive col-centered" src="img/BauSystem/bau-prod.png" style="position: relative;top:100px;">
-					</div>
-				</div>	
-	    	</div>
-	    	<div class="col-md-2" style="margin: 0 5px;">
-	    		<div class="row row-centered">
-					<img class="img-responsive center-block" src="img/ProSystem/building.png" alt="ProSystem">
-					<div class="pro-sys center-block">
-						<span class="name-block">ProSystem</span>
-						<div class="descr">
-							<img class="img-responsive col-centered" src="img/ProSystem/pro-text.png" alt="Краще">
-						</div>
-						<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#proDetail" aria-expanded="false" aria-controls="proDetail">Детальніше</button>
-					</div>
+					    <div class="col-md-4 col-sm-6 col-xs-12">
+							<div class="row-centered">
+								<img class="img-responsive center-block" src="img/StarSystem/building.png" alt="StarSystem">
+								<div class="star-sys center-block">
+									<span class="name-block">StarSystem</span>
+									<div class="descr">
+										<img class="img-responsive col-centered" src="img/StarSystem/star-text.png" alt="Найкраще">
+									</div>
+									<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#starDetail" aria-expanded="false" aria-controls="starDetail">Детальніше</button>
+								</div>
 
-					<div class="collapse" id="proDetail" ng-controller="proCtrl">
-					  <div class="pro-sys center-block">
-					    <div class="pro-col1">
-					    	<span class="mylabel">Площа утеплення:</span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" value="{{ Pro.radiusCount }}" ng-model="Pro.radiusCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
-								<button type="submit" ng-click="Pro.calculate(Pro.radiusCount)" class="btn btn-default calc" id="pro-btn">Розрахувати</button>
-							  </div>
-							</form>
+								<div class="collapse" id="starDetail" ng-controller="starCtrl">
+								  <div class="star-sys center-block">
+								    <div class="star-col1">
+								    	<span class="mylabel">Площа утеплення:</span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" value="{{ Star.radiusCount }}" ng-model="Star.radiusCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
+											<button type="submit" ng-click="Star.calculate(Star.radiusCount)" class="btn btn-default calc" id="star-btn">Розрахувати</button>
+										  </div>
+										</form>
+								    </div>
+								    <div class="star-col2">
+								    	<span class="mylabel">Клейова шпаклювальна суміш <strong>Baumit StarContact White</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" ng-readonly="true" ng-model="Star.glueWeight" value="{{ Star.editGlue(Star.glueWeight) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    <input type="text" ng-readonly="true" ng-model="Star.glueSumm" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="star-col3">
+								    	<span class="mylabel">Вид утеплювача:</span>
+								    	<form class="form-inline">
+									    	<select ng-model="Star.selectedHeater" ng-options="option.name disable when option.selectable == false for option in Star.typeHeater track by option.price" ng-change="Star.update()" class="form-control myselect">
+											  <!--<option>Оберіть утеплювач</option>
+											  <option>Мінераловатна плита 50 мм</option>
+											  <option>Мінераловатна плита 80 мм</option>
+											  <option>Мінераловатна плита 100 мм</option>
+											  <option>Мінераловатна плита 120 мм</option>
+											  <option>Плита ПСБС-25 50 мм</option>
+											  <option>Плита ПСБС-25 80 мм</option>
+											  <option>Плита ПСБС-25 100 мм</option>
+											  <option>Плита ПСБС-25 120 мм</option>-->
+											</select>
+											<div class="form-group">
+										    	<input type="text" ng-readonly="true" ng-model="Star.countHeater" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+										    	<input type="text" ng-readonly="true" ng-model="Star.priceHeater" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="star-col4">
+								    	<form class="form-inline">
+								    		<div class="form-group">
+								    			<span class="mylabel" style="display: inline;">Дюбелі фасадні:</span>
+								    			<input type="text" ng-readonly="true" ng-model="Star.countDowel" ng-change="{{ Star.editDowel(Star.countDowel) }}" class="form-control digit-input2"><span style="padding-left: 0px!important;">шт.</span>
+								    			<input type="text" ng-readonly="true" ng-model="Star.sizeDowel" class="form-control digit-input"><span style="padding-left: 0px!important;">мм&nbsp;&nbsp;</span>
+										    	<input type="text" ng-readonly="true" ng-model="Star.priceDowel" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    	</form>
+								    </div>
+								    <div class="star-col5">
+								    	<span class="mylabel">Лугостійка склосітка <strong>Baumit StarTex</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" ng-readonly="true" ng-model="Star.fiberglassCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+										    <input type="text" ng-readonly="true" ng-model="Star.fiberglassPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <!--<div class="star-col6">
+								    	<span class="mylabel">Грунтувальна суміш <strong>Baumit PowerFlex</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    <input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>-->
+								    <div class="star-col7">
+								    	<span class="mylabel">Фінішний декоративний шар:</span>
+								    	<form class="form-inline">
+									    	<select ng-model="Star.selectedFinishLayer" ng-options="option.name disable when option.selectable == false for option in Star.typeFinishLayer track by option.id" ng-change="Star.updateLayer()" class="form-control myselect">
+											  <!--<option>Оберіть штукатурку</option>
+											  <option>Без оздоблення</option>
+											  <option>NanoporTop 2 мм «баранець»</option>
+											  <option>SilikonTop 2 мм «баранець»</option>
+											  <option>SilikonTop 2 мм «короїд»</option>
+											  <option>CreativTop «Max» 4 мм</option>
+											  <option>CreativTop «Trend» 3 мм</option>
+											  <option>CreativTop «Vario» 1,5 мм</option>
+											  <option>CreativTop «Fine» 1 мм</option>
+											  <option>CreativTop «Perl» 0,5 мм</option>
+											  <option>CreativTop «Silk» 0,2 мм</option>-->
+											</select>
+											<div class="form-group">
+										    	<input type="text" ng-readonly="true" ng-model="Star.countFinishLayer" ng-change="{{ Star.editFinishLayer(Star.countFinishLayer) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    	<input type="text" ng-readonly="true" ng-model="Star.priceFinishLayer" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="star-col8" style="padding-bottom: 5px;">
+								    	<form class="form-inline">
+								    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
+								    		<div class="form-group">
+								    			<input type="text" ng-readonly="true" ng-model="Star.meterCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    		<span class="mylabel-last">Загальна вартісь:</span>
+								    		<div class="form-group">
+								    			<input type="text" ng-readonly="true" ng-model="Star.totalCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    	</form>
+								    </div>
+								    <div class="star-collapse-block">
+								    	<a data-toggle="collapse" href="#starDetail" aria-expanded="false" aria-controls="starDetail">
+								    		<img src="img/collapse.png" alt="Свернуть">
+								    	</a>
+								    </div>
+								  </div>
+								</div>
+								<div class="center-block" style="height: 300px;">
+								  	<div class="buttom-line" id="star-line"></div>
+								  	<img class="img-responsive col-centered" src="img/StarSystem/star-prod.png" style="position: relative;top:100px;">
+								</div>
+							</div>	
 					    </div>
-					    <div class="pro-col2">
-					    	<span class="mylabel">Клейова шпаклювальна суміш <strong>Baumit ProContact</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" ng-readonly="true" ng-model="Pro.glueWeight" value="{{ Pro.editGlue(Pro.glueWeight) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    <input type="text" ng-readonly="true" ng-model="Pro.glueSumm" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="pro-col3">
-					    	<span class="mylabel">Вид утеплювача:</span>
-					    	<form class="form-inline">
-						    	<select name="heaterSelect2" ng-model="Pro.selectedHeater" ng-options="option.name disable when option.selectable == false for option in Pro.typeHeater track by option.price" ng-change="Pro.update()" class="form-control myselect">
-								  <!--<option>Оберіть утеплювач</option>
-								  <option>Мінераловатна плита 50 мм</option>
-								  <option>Мінераловатна плита 80 мм</option>
-								  <option>Мінераловатна плита 100 мм</option>
-								  <option>Мінераловатна плита 120 мм</option>
-								  <option>Плита ПСБС-25 50 мм</option>
-								  <option>Плита ПСБС-25 80 мм</option>
-								  <option>Плита ПСБС-25 100 мм</option>
-								  <option>Плита ПСБС-25 120 мм</option>-->
-								</select>
-								<div class="form-group">
-							    	<input type="text" ng-readonly="true" ng-model="Pro.countHeater" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
-							    	<input type="text" ng-readonly="true" ng-model="Pro.priceHeater" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="pro-col4">
-					    	<form class="form-inline">
-					    		<div class="form-group">
-					    			<span class="mylabel" style="display: inline;">Дюбелі фасадні:</span>
-					    			<input type="text" ng-readonly="true" ng-model="Pro.countDowel" ng-change="{{ Pro.editDowel(Pro.countDowel) }}" class="form-control digit-input2"><span style="padding-left: 0px!important;">шт.</span>
-					    			<input type="text" ng-readonly="true" ng-model="Pro.sizeDowel" class="form-control digit-input"><span style="padding-left: 0px!important;">мм&nbsp;&nbsp;</span>
-							    	<input type="text" ng-readonly="true" ng-model="Pro.priceDowel" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    	</form>
-					    </div>
-					    <div class="pro-col5">
-					    	<span class="mylabel">Лугостійка склосітка <strong>Baumit StarTex</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" ng-readonly="true" ng-model="Pro.fiberglassCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
-							    <input type="text" ng-readonly="true" ng-model="Pro.fiberglassPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="pro-col6">
-					    	<span class="mylabel">Грунтувальна суміш <strong>Baumit UniPrimer</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" ng-readonly="true" ng-model="Pro.primerWeight" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    <input type="text" ng-readonly="true" ng-model="Pro.primerPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="pro-col7">
-					    	<span class="mylabel">Фінішний декоративний шар:</span>
-					    	<form class="form-inline">
-						    	<select ng-model="Pro.selectedFinishLayer" ng-options="option.name disable when option.selectable == false for option in Pro.typeFinishLayer track by option.id" ng-change="Pro.updateLayer()" class="form-control myselect">
-								  <!--<option>Оберіть штукатурку</option>
-								  <option>Без оздоблення</option>
-								  <option>NanoporTop 2 мм «баранець»</option>
-								  <option>SilikonTop 2 мм «баранець»</option>
-								  <option>SilikonTop 2 мм «короїд»</option>
-								  <option>StellaporTop 2 мм «баранець»</option>
-								  <option>StellaporTop 2 мм «короїд»</option>
-								  <option>SilikatTop 2 мм «баранець»</option>
-								  <option>SilikatTop 2 мм «короїд»</option>
-								  <option>CreativTop «Max» 4 мм</option>
-								  <option>CreativTop «Trend» 3 мм</option>
-								  <option>CreativTop «Vario» 1,5 мм</option>
-								  <option>CreativTop «Fine» 1 мм</option>
-								  <option>CreativTop «Perl» 0,5 мм</option>
-								  <option>GranoporTop 2 мм «баранець»</option>
-								  <option>GranoporTop 2 мм «короїд»</option>
-								  <option>Edelputz Spezial White 2 мм «баранець»</option>
-								  <option>Edelputz Spezial White 2 мм «короїд»</option>-->
-								</select>
-								<div class="form-group">
-							    	<input type="text" ng-readonly="true" ng-model="Pro.countFinishLayer" ng-change="{{ Pro.editFinishLayer(Pro.countFinishLayer) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    	<input type="text" ng-readonly="true" ng-model="Pro.priceFinishLayer" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="pro-col8" style="padding-bottom: 5px;">
-					    	<form class="form-inline">
-					    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
-					    		<div class="form-group">
-					    			<input type="text" ng-readonly="true" ng-model="Pro.meterCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    		<span class="mylabel-last">Загальна вартісь:</span>
-					    		<div class="form-group">
-					    			<input type="text" ng-readonly="true" ng-model="Pro.totalCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    	</form>
-					    </div>
-					    <div class="pro-collapse-block">
-					    	<a data-toggle="collapse" href="#proDetail" aria-expanded="false" aria-controls="proDetail">
-					    		<img src="img/collapse.png" alt="Свернуть">
-					    	</a>
-					    </div>
-					  </div>
 					</div>
-					<div class="center-block" style="height: 300px;">
-					  	<div class="buttom-line" id="pro-line"></div>
-					  	<img class="img-responsive col-centered" src="img/ProSystem/pro-prod.png" style="position: relative;top:100px;">
-					</div>
-				</div>	
-	    	</div>
-	    	<div class="col-md-2" style="margin: 0 5px;">
-	    		<div class="row row-centered">
-					<img class="img-responsive center-block" src="img/StarSystem/building.png" alt="StarSystem">
-					<div class="star-sys center-block">
-						<span class="name-block">StarSystem</span>
-						<div class="descr">
-							<img class="img-responsive col-centered" src="img/StarSystem/star-text.png" alt="Найкраще">
-						</div>
-						<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#starDetail" aria-expanded="false" aria-controls="starDetail">Детальніше</button>
-					</div>
+				</div>
+				<div class="col-md-5 five-two">
+					<div class="row">
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="row-centered">
+				    			<img class="img-responsive center-block" src="img/PowerSystem/building.png" alt="PowerSystem">
+				    			<div class="pow-sys center-block">
+				    				<span class="name-block">PowerSystem</span>
+				    				<div class="descr">
+				    					<img class="img-responsive col-centered" src="img/PowerSystem/pow-text.png" alt="Надміцна">
+				    				</div>
+			    					<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#powerDetail" aria-expanded="false" aria-controls="powerDetail">Детальніше</button>
+				    			</div>
 
-					<div class="collapse" id="starDetail" ng-controller="starCtrl">
-					  <div class="star-sys center-block">
-					    <div class="star-col1">
-					    	<span class="mylabel">Площа утеплення:</span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" value="{{ Star.radiusCount }}" ng-model="Star.radiusCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
-								<button type="submit" ng-click="Star.calculate(Star.radiusCount)" class="btn btn-default calc" id="star-btn">Розрахувати</button>
-							  </div>
-							</form>
-					    </div>
-					    <div class="star-col2">
-					    	<span class="mylabel">Клейова шпаклювальна суміш <strong>Baumit StarContact White</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" ng-readonly="true" ng-model="Star.glueWeight" value="{{ Star.editGlue(Star.glueWeight) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    <input type="text" ng-readonly="true" ng-model="Star.glueSumm" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="star-col3">
-					    	<span class="mylabel">Вид утеплювача:</span>
-					    	<form class="form-inline">
-						    	<select ng-model="Star.selectedHeater" ng-options="option.name disable when option.selectable == false for option in Star.typeHeater track by option.price" ng-change="Star.update()" class="form-control myselect">
-								  <!--<option>Оберіть утеплювач</option>
-								  <option>Мінераловатна плита 50 мм</option>
-								  <option>Мінераловатна плита 80 мм</option>
-								  <option>Мінераловатна плита 100 мм</option>
-								  <option>Мінераловатна плита 120 мм</option>
-								  <option>Плита ПСБС-25 50 мм</option>
-								  <option>Плита ПСБС-25 80 мм</option>
-								  <option>Плита ПСБС-25 100 мм</option>
-								  <option>Плита ПСБС-25 120 мм</option>-->
-								</select>
-								<div class="form-group">
-							    	<input type="text" ng-readonly="true" ng-model="Star.countHeater" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
-							    	<input type="text" ng-readonly="true" ng-model="Star.priceHeater" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="star-col4">
-					    	<form class="form-inline">
-					    		<div class="form-group">
-					    			<span class="mylabel" style="display: inline;">Дюбелі фасадні:</span>
-					    			<input type="text" ng-readonly="true" ng-model="Star.countDowel" ng-change="{{ Star.editDowel(Star.countDowel) }}" class="form-control digit-input2"><span style="padding-left: 0px!important;">шт.</span>
-					    			<input type="text" ng-readonly="true" ng-model="Star.sizeDowel" class="form-control digit-input"><span style="padding-left: 0px!important;">мм&nbsp;&nbsp;</span>
-							    	<input type="text" ng-readonly="true" ng-model="Star.priceDowel" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    	</form>
-					    </div>
-					    <div class="star-col5">
-					    	<span class="mylabel">Лугостійка склосітка <strong>Baumit StarTex</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" ng-readonly="true" ng-model="Star.fiberglassCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
-							    <input type="text" ng-readonly="true" ng-model="Star.fiberglassPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <!--<div class="star-col6">
-					    	<span class="mylabel">Грунтувальна суміш <strong>Baumit PowerFlex</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="number" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    <input type="text" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>-->
-					    <div class="star-col7">
-					    	<span class="mylabel">Фінішний декоративний шар:</span>
-					    	<form class="form-inline">
-						    	<select ng-model="Star.selectedFinishLayer" ng-options="option.name disable when option.selectable == false for option in Star.typeFinishLayer track by option.id" ng-change="Star.updateLayer()" class="form-control myselect">
-								  <!--<option>Оберіть штукатурку</option>
-								  <option>Без оздоблення</option>
-								  <option>NanoporTop 2 мм «баранець»</option>
-								  <option>SilikonTop 2 мм «баранець»</option>
-								  <option>SilikonTop 2 мм «короїд»</option>
-								  <option>CreativTop «Max» 4 мм</option>
-								  <option>CreativTop «Trend» 3 мм</option>
-								  <option>CreativTop «Vario» 1,5 мм</option>
-								  <option>CreativTop «Fine» 1 мм</option>
-								  <option>CreativTop «Perl» 0,5 мм</option>
-								  <option>CreativTop «Silk» 0,2 мм</option>-->
-								</select>
-								<div class="form-group">
-							    	<input type="text" ng-readonly="true" ng-model="Star.countFinishLayer" ng-change="{{ Star.editFinishLayer(Star.countFinishLayer) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    	<input type="text" ng-readonly="true" ng-model="Star.priceFinishLayer" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="star-col8" style="padding-bottom: 5px;">
-					    	<form class="form-inline">
-					    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
-					    		<div class="form-group">
-					    			<input type="text" ng-readonly="true" ng-model="Star.meterCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    		<span class="mylabel-last">Загальна вартісь:</span>
-					    		<div class="form-group">
-					    			<input type="text" ng-readonly="true" ng-model="Star.totalCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    	</form>
-					    </div>
-					    <div class="star-collapse-block">
-					    	<a data-toggle="collapse" href="#starDetail" aria-expanded="false" aria-controls="starDetail">
-					    		<img src="img/collapse.png" alt="Свернуть">
-					    	</a>
-					    </div>
-					  </div>
+								<div class="collapse" id="powerDetail" ng-controller="powerCtrl">
+								  <div class="pow-sys center-block">
+								    <div class="pow-col1">
+								    	<span class="mylabel">Площа утеплення:</span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" value="{{ Power.radiusCount }}" ng-model="Power.radiusCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
+											<button type="submit" ng-click="Power.calculate(Power.radiusCount)" class="btn btn-default calc" id="pow-btn">Розрахувати</button>
+										  </div>
+										</form>
+								    </div>
+								    <div class="pow-col2">
+								    	<span class="mylabel">Клейова шпаклювальна суміш <strong>Baumit StarContact White</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" ng-readonly="true" ng-model="Power.glueWeight" value="{{ Power.editGlue(Power.glueWeight) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    <input type="text" ng-readonly="true" ng-model="Power.glueSumm" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="pow-col3">
+								    	<span class="mylabel">Вид утеплювача:</span>
+								    	<form class="form-inline">
+									    	<select ng-model="Power.selectedHeater" ng-options="option.name disable when option.selectable == false for option in Power.typeHeater track by option.price" ng-change="Power.update()" class="form-control myselect">
+											  <!--<option>Оберіть утеплювач</option>
+											  <option>Мінераловатна плита 50 мм</option>
+											  <option>Мінераловатна плита 80 мм</option>
+											  <option>Мінераловатна плита 100 мм</option>
+											  <option>Мінераловатна плита 120 мм</option>
+											  <option>Плита ПСБС-25 50 мм</option>
+											  <option>Плита ПСБС-25 80 мм</option>
+											  <option>Плита ПСБС-25 100 мм</option>
+											  <option>Плита ПСБС-25 120 мм</option>-->
+											</select>
+											<div class="form-group">
+										    	<input type="text" ng-readonly="true" ng-model="Power.countHeater" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+										    	<input type="text" ng-readonly="true" ng-model="Power.priceHeater" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="pow-col4">
+								    	<form class="form-inline">
+								    		<div class="form-group">
+								    			<span class="mylabel" style="display: inline;">Дюбелі фасадні:</span>
+								    			<input type="text" ng-readonly="true" ng-model="Power.countDowel" ng-change="{{ Power.editDowel(Power.countDowel) }}" class="form-control digit-input2"><span style="padding-left: 0px!important;">шт.</span>
+								    			<input type="text" ng-readonly="true" ng-model="Power.sizeDowel" class="form-control digit-input"><span style="padding-left: 0px!important;">мм&nbsp;&nbsp;</span>
+										    	<input type="text" ng-readonly="true" ng-model="Power.priceDowel" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    	</form>
+								    </div>
+								    <div class="pow-col5">
+								    	<span class="mylabel">Лугостійка склосітка <strong>Baumit StarTex</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" ng-readonly="true" ng-model="Power.fiberglassCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+										    <input type="text" ng-readonly="true" ng-model="Power.fiberglassPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="pow-col6">
+								    	<span class="mylabel">Грунтувальна суміш <strong>Baumit PowerFlex</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" ng-readonly="true" ng-model="Power.primerWeight" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    <input type="text" ng-readonly="true" ng-model="Power.primerPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="pow-col7">
+								    	<span class="mylabel">Фінішний декоративний шар:</span>
+								    	<form class="form-inline">
+									    	<select ng-model="Power.selectedFinishLayer" ng-options="option.name disable when option.selectable == false for option in Power.typeFinishLayer track by option.id" ng-change="Power.updateLayer()" class="form-control myselect">
+											  <!--<option>Оберіть штукатурку</option>
+											  <option>Без оздоблення</option>
+											  <option>NanoporTop 2 мм «баранець»</option>
+											  <option>SilikonTop 2 мм «баранець»</option>
+											  <option>SilikonTop 2 мм «короїд»</option>
+											  <option>StellaporTop 2 мм «баранець»</option>
+											  <option>StellaporTop 2 мм «короїд»</option>
+											  <option>SilikatTop 2 мм «баранець»</option>
+											  <option>SilikatTop 2 мм «короїд»</option>
+											  <option>CreativTop «Max» 4 мм</option>
+											  <option>CreativTop «Trend» 3 мм</option>
+											  <option>CreativTop «Vario» 1,5 мм</option>
+											  <option>CreativTop «Fine» 1 мм</option>
+											  <option>CreativTop «Perl» 0,5 мм</option>
+											  <option>GranoporTop 2 мм «баранець»</option>
+											  <option>GranoporTop 2 мм «короїд»</option>-->
+											</select>
+											<div class="form-group">
+										    	<input type="text" ng-readonly="true" ng-model="Power.countFinishLayer" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    	<input type="text" ng-readonly="true" ng-model="Power.priceFinishLayer" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="pow-col8" style="padding-bottom: 5px;">
+								    	<form class="form-inline">
+								    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
+								    		<div class="form-group">
+								    			<input type="text" ng-readonly="true" ng-model="Power.meterCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    		<span class="mylabel-last">Загальна вартісь:</span>
+								    		<div class="form-group">
+								    			<input type="text" ng-readonly="true" ng-model="Power.totalCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    	</form>
+								    </div>
+								    <div class="pow-collapse-block">
+								    	<a data-toggle="collapse" href="#powerDetail" aria-expanded="false" aria-controls="powerDetail">
+								    		<img src="img/collapse.png" alt="Свернуть">
+								    	</a>
+								    </div>
+								  </div>
+								</div>
+								<div class="center-block" style="height: 300px;">
+								  	<div class="buttom-line" id="pow-line"></div>
+								  	<img class="img-responsive col-centered" src="img/PowerSystem/pow-prod.png" style="position: relative;top:100px;">
+								</div>
+				    		</div>	
+				    	</div>
+				    	<div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="row-centered">
+				    			<img class="img-responsive center-block" src="img/SocleSystem/building.png" alt="SocleSystem">
+				    			<div class="socle-sys center-block">
+				    				<span class="name-block">SocleSystem</span>
+				    				<div class="descr">
+				    					<img class="img-responsive col-centered" src="img/SocleSystem/soc-text.png" alt="Надміцна">
+				    				</div>
+			    					<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#socleDetail" aria-expanded="false" aria-controls="socleDetail">Детальніше</button>
+				    			</div>
+				    			<div class="collapse" id="socleDetail" ng-controller="socleCtrl">
+								  <div class="socle-sys center-block">
+								    <div class="soc-col1">
+								    	<span class="mylabel">Площа утеплення:</span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" value="{{ Socle.radiusCount }}" ng-model="Socle.radiusCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
+											<button type="submit" ng-click="Socle.calculate(Socle.radiusCount)" class="btn btn-default calc" id="soc-btn">Розрахувати</button>
+										  </div>
+										</form>
+								    </div>
+								    <div class="soc-col2">
+								    	<span class="mylabel">Клейова шпаклювальна суміш <strong>Baumit StarContact</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" ng-readonly="true" ng-model="Socle.glueWeight" value="{{ Socle.editGlue(Socle.glueWeight) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    <input type="text" ng-readonly="true" ng-model="Socle.glueSumm" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="soc-col3">
+								    	<span class="mylabel">Вид утеплювача:</span>
+								    	<form class="form-inline">
+									    	<select ng-model="Socle.selectedHeater" ng-options="option.name disable when option.selectable == false for option in Socle.typeHeater track by option.price" ng-change="Socle.update()" class="form-control myselect">
+											  <!--<option>Оберіть утеплювач</option>
+											  <option>Экструдований пінополістирол 20 мм</option>
+											  <option>Экструдований пінополістирол 30 мм</option>
+											  <option>Экструдований пінополістирол 50 мм</option>
+											  <option>Экструдований пінополістирол 80 мм</option>-->
+											</select>
+											<div class="form-group">
+										    	<input type="text" ng-readonly="true" ng-model="Socle.countHeater" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+										    	<input type="text" ng-readonly="true" ng-model="Socle.priceHeater" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="soc-col4">
+								    	<form class="form-inline">
+								    		<div class="form-group">
+								    			<span class="mylabel" style="display: inline;">Дюбелі фасадні:</span>
+								    			<input type="text" ng-readonly="true" ng-model="Socle.countDowel" ng-change="{{ Socle.editDowel(Socle.countDowel) }}" class="form-control digit-input2"><span style="padding-left: 0px!important;">шт.</span>
+								    			<input type="text" ng-readonly="true" ng-model="Socle.sizeDowel" class="form-control digit-input"><span style="padding-left: 0px!important;">мм&nbsp;&nbsp;</span>
+										    	<input type="text" ng-readonly="true" ng-model="Socle.priceDowel" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    	</form>
+								    </div>
+								    <div class="soc-col5">
+								    	<span class="mylabel">Лугостійка склосітка <strong>Baumit StarTex</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" ng-readonly="true" ng-model="Socle.fiberglassCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
+										    <input type="text" ng-readonly="true" ng-model="Socle.fiberglassPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="soc-col6">
+								    	<span class="mylabel">Грунтувальна суміш <strong>Baumit UniPrimer</strong></span>
+								    	<form class="form-inline">
+										  <div class="form-group">
+										    <input type="text" ng-readonly="true" ng-model="Socle.primerWeight" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    <input type="text" ng-readonly="true" ng-model="Socle.primerPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="soc-col7">
+								    	<span class="mylabel">Фінішний декоративний шар:</span>
+								    	<form class="form-inline">
+									    	<select ng-model="Socle.selectedFinishLayer" ng-options="option.name disable when option.selectable == false for option in Socle.typeFinishLayer track by option.id" ng-change="Socle.updateLayer()" class="form-control myselect">
+											  <!--<option>Оберіть штукатурку</option>
+											  <option>Без оздоблення</option>
+											  <option>Мозаїчна штукатурка Baumit MosaikTop (зерно 2 мм) /36 кольорів</option>-->
+											</select>
+											<div class="form-group">
+										    	<input type="text" ng-readonly="true" ng-model="Socle.countFinishLayer" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
+										    	<input type="text" ng-readonly="true" ng-model="Socle.priceFinishLayer" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
+										  </div>
+										</form>
+								    </div>
+								    <div class="soc-col8" style="padding-bottom: 5px;">
+								    	<form class="form-inline">
+								    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
+								    		<div class="form-group">
+								    			<input type="text" ng-readonly="true" ng-model="Socle.meterCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    		<span class="mylabel-last">Загальна вартісь:</span>
+								    		<div class="form-group">
+								    			<input type="text" ng-readonly="true" ng-model="Socle.totalCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
+								    		</div>
+								    	</form>
+								    </div>
+								    <div class="soc-collapse-block">
+								    	<a data-toggle="collapse" href="#socleDetail" aria-expanded="false" aria-controls="socleDetail">
+								    		<img src="img/collapse.png" alt="Свернуть">
+								    	</a>
+								    </div>
+								  </div>
+								</div>
+								<div class="center-block" style="height: 300px;">
+								  	<div class="buttom-line" id="soc-line"></div>
+								  	<img class="img-responsive col-centered" src="img/SocleSystem/soc-prod.png" style="position: relative;top:100px;">
+								</div>
+				    		</div>
+				    	</div>
 					</div>
-					<div class="center-block" style="height: 300px;">
-					  	<div class="buttom-line" id="star-line"></div>
-					  	<img class="img-responsive col-centered" src="img/StarSystem/star-prod.png" style="position: relative;top:100px;">
-					</div>
-				</div>	
-	    	</div>
-	    	<div class="col-md-2" style="margin: 0 5px;">
-	    		<div class="row row-centered">
-	    			<img class="img-responsive center-block" src="img/PowerSystem/building.png" alt="PowerSystem">
-	    			<div class="pow-sys center-block">
-	    				<span class="name-block">PowerSystem</span>
-	    				<div class="descr">
-	    					<img class="img-responsive col-centered" src="img/PowerSystem/pow-text.png" alt="Надміцна">
-	    				</div>
-    					<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#powerDetail" aria-expanded="false" aria-controls="powerDetail">Детальніше</button>
-	    			</div>
-
-					<div class="collapse" id="powerDetail" ng-controller="powerCtrl">
-					  <div class="pow-sys center-block">
-					    <div class="pow-col1">
-					    	<span class="mylabel">Площа утеплення:</span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" value="{{ Power.radiusCount }}" ng-model="Power.radiusCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
-								<button type="submit" ng-click="Power.calculate(Power.radiusCount)" class="btn btn-default calc" id="pow-btn">Розрахувати</button>
-							  </div>
-							</form>
-					    </div>
-					    <div class="pow-col2">
-					    	<span class="mylabel">Клейова шпаклювальна суміш <strong>Baumit StarContact White</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" ng-readonly="true" ng-model="Power.glueWeight" value="{{ Power.editGlue(Power.glueWeight) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    <input type="text" ng-readonly="true" ng-model="Power.glueSumm" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="pow-col3">
-					    	<span class="mylabel">Вид утеплювача:</span>
-					    	<form class="form-inline">
-						    	<select ng-model="Power.selectedHeater" ng-options="option.name disable when option.selectable == false for option in Power.typeHeater track by option.price" ng-change="Power.update()" class="form-control myselect">
-								  <!--<option>Оберіть утеплювач</option>
-								  <option>Мінераловатна плита 50 мм</option>
-								  <option>Мінераловатна плита 80 мм</option>
-								  <option>Мінераловатна плита 100 мм</option>
-								  <option>Мінераловатна плита 120 мм</option>
-								  <option>Плита ПСБС-25 50 мм</option>
-								  <option>Плита ПСБС-25 80 мм</option>
-								  <option>Плита ПСБС-25 100 мм</option>
-								  <option>Плита ПСБС-25 120 мм</option>-->
-								</select>
-								<div class="form-group">
-							    	<input type="text" ng-readonly="true" ng-model="Power.countHeater" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
-							    	<input type="text" ng-readonly="true" ng-model="Power.priceHeater" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="pow-col4">
-					    	<form class="form-inline">
-					    		<div class="form-group">
-					    			<span class="mylabel" style="display: inline;">Дюбелі фасадні:</span>
-					    			<input type="text" ng-readonly="true" ng-model="Power.countDowel" ng-change="{{ Power.editDowel(Power.countDowel) }}" class="form-control digit-input2"><span style="padding-left: 0px!important;">шт.</span>
-					    			<input type="text" ng-readonly="true" ng-model="Power.sizeDowel" class="form-control digit-input"><span style="padding-left: 0px!important;">мм&nbsp;&nbsp;</span>
-							    	<input type="text" ng-readonly="true" ng-model="Power.priceDowel" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    	</form>
-					    </div>
-					    <div class="pow-col5">
-					    	<span class="mylabel">Лугостійка склосітка <strong>Baumit StarTex</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" ng-readonly="true" ng-model="Power.fiberglassCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
-							    <input type="text" ng-readonly="true" ng-model="Power.fiberglassPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="pow-col6">
-					    	<span class="mylabel">Грунтувальна суміш <strong>Baumit PowerFlex</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" ng-readonly="true" ng-model="Power.primerWeight" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    <input type="text" ng-readonly="true" ng-model="Power.primerPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="pow-col7">
-					    	<span class="mylabel">Фінішний декоративний шар:</span>
-					    	<form class="form-inline">
-						    	<select ng-model="Power.selectedFinishLayer" ng-options="option.name disable when option.selectable == false for option in Power.typeFinishLayer track by option.id" ng-change="Power.updateLayer()" class="form-control myselect">
-								  <!--<option>Оберіть штукатурку</option>
-								  <option>Без оздоблення</option>
-								  <option>NanoporTop 2 мм «баранець»</option>
-								  <option>SilikonTop 2 мм «баранець»</option>
-								  <option>SilikonTop 2 мм «короїд»</option>
-								  <option>StellaporTop 2 мм «баранець»</option>
-								  <option>StellaporTop 2 мм «короїд»</option>
-								  <option>SilikatTop 2 мм «баранець»</option>
-								  <option>SilikatTop 2 мм «короїд»</option>
-								  <option>CreativTop «Max» 4 мм</option>
-								  <option>CreativTop «Trend» 3 мм</option>
-								  <option>CreativTop «Vario» 1,5 мм</option>
-								  <option>CreativTop «Fine» 1 мм</option>
-								  <option>CreativTop «Perl» 0,5 мм</option>
-								  <option>GranoporTop 2 мм «баранець»</option>
-								  <option>GranoporTop 2 мм «короїд»</option>-->
-								</select>
-								<div class="form-group">
-							    	<input type="text" ng-readonly="true" ng-model="Power.countFinishLayer" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    	<input type="text" ng-readonly="true" ng-model="Power.priceFinishLayer" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="pow-col8" style="padding-bottom: 5px;">
-					    	<form class="form-inline">
-					    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
-					    		<div class="form-group">
-					    			<input type="text" ng-readonly="true" ng-model="Power.meterCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    		<span class="mylabel-last">Загальна вартісь:</span>
-					    		<div class="form-group">
-					    			<input type="text" ng-readonly="true" ng-model="Power.totalCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    	</form>
-					    </div>
-					    <div class="pow-collapse-block">
-					    	<a data-toggle="collapse" href="#powerDetail" aria-expanded="false" aria-controls="powerDetail">
-					    		<img src="img/collapse.png" alt="Свернуть">
-					    	</a>
-					    </div>
-					  </div>
-					</div>
-					<div class="center-block" style="height: 300px;">
-					  	<div class="buttom-line" id="pow-line"></div>
-					  	<img class="img-responsive col-centered" src="img/PowerSystem/pow-prod.png" style="position: relative;top:100px;">
-					</div>
-	    		</div>	
-	    	</div>
-	    	<div class="col-md-2" style="margin: 0 5px;">
-	    		<div class="row row-centered">
-	    			<img class="img-responsive center-block" src="img/SocleSystem/building.png" alt="SocleSystem">
-	    			<div class="socle-sys center-block">
-	    				<span class="name-block">SocleSystem</span>
-	    				<div class="descr">
-	    					<img class="img-responsive col-centered" src="img/SocleSystem/soc-text.png" alt="Надміцна">
-	    				</div>
-    					<button type="button" class="btn btn-default detail" data-toggle="collapse" data-target="#socleDetail" aria-expanded="false" aria-controls="socleDetail">Детальніше</button>
-	    			</div>
-	    			<div class="collapse" id="socleDetail" ng-controller="socleCtrl">
-					  <div class="socle-sys center-block">
-					    <div class="soc-col1">
-					    	<span class="mylabel">Площа утеплення:</span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" value="{{ Socle.radiusCount }}" ng-model="Socle.radiusCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup></span>
-								<button type="submit" ng-click="Socle.calculate(Socle.radiusCount)" class="btn btn-default calc" id="soc-btn">Розрахувати</button>
-							  </div>
-							</form>
-					    </div>
-					    <div class="soc-col2">
-					    	<span class="mylabel">Клейова шпаклювальна суміш <strong>Baumit StarContact</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" ng-readonly="true" ng-model="Socle.glueWeight" value="{{ Socle.editGlue(Socle.glueWeight) }}" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    <input type="text" ng-readonly="true" ng-model="Socle.glueSumm" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="soc-col3">
-					    	<span class="mylabel">Вид утеплювача:</span>
-					    	<form class="form-inline">
-						    	<select ng-model="Socle.selectedHeater" ng-options="option.name disable when option.selectable == false for option in Socle.typeHeater track by option.price" ng-change="Socle.update()" class="form-control myselect">
-								  <!--<option>Оберіть утеплювач</option>
-								  <option>Экструдований пінополістирол 20 мм</option>
-								  <option>Экструдований пінополістирол 30 мм</option>
-								  <option>Экструдований пінополістирол 50 мм</option>
-								  <option>Экструдований пінополістирол 80 мм</option>-->
-								</select>
-								<div class="form-group">
-							    	<input type="text" ng-readonly="true" ng-model="Socle.countHeater" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
-							    	<input type="text" ng-readonly="true" ng-model="Socle.priceHeater" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="soc-col4">
-					    	<form class="form-inline">
-					    		<div class="form-group">
-					    			<span class="mylabel" style="display: inline;">Дюбелі фасадні:</span>
-					    			<input type="text" ng-readonly="true" ng-model="Socle.countDowel" ng-change="{{ Socle.editDowel(Socle.countDowel) }}" class="form-control digit-input2"><span style="padding-left: 0px!important;">шт.</span>
-					    			<input type="text" ng-readonly="true" ng-model="Socle.sizeDowel" class="form-control digit-input"><span style="padding-left: 0px!important;">мм&nbsp;&nbsp;</span>
-							    	<input type="text" ng-readonly="true" ng-model="Socle.priceDowel" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    	</form>
-					    </div>
-					    <div class="soc-col5">
-					    	<span class="mylabel">Лугостійка склосітка <strong>Baumit StarTex</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" ng-readonly="true" ng-model="Socle.fiberglassCount" class="form-control digit-input"><span style="padding-left: 0px!important;">м<sup>2</sup> =</span>
-							    <input type="text" ng-readonly="true" ng-model="Socle.fiberglassPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="soc-col6">
-					    	<span class="mylabel">Грунтувальна суміш <strong>Baumit UniPrimer</strong></span>
-					    	<form class="form-inline">
-							  <div class="form-group">
-							    <input type="text" ng-readonly="true" ng-model="Socle.primerWeight" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    <input type="text" ng-readonly="true" ng-model="Socle.primerPrice" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="soc-col7">
-					    	<span class="mylabel">Фінішний декоративний шар:</span>
-					    	<form class="form-inline">
-						    	<select ng-model="Socle.selectedFinishLayer" ng-options="option.name disable when option.selectable == false for option in Socle.typeFinishLayer track by option.id" ng-change="Socle.updateLayer()" class="form-control myselect">
-								  <!--<option>Оберіть штукатурку</option>
-								  <option>Без оздоблення</option>
-								  <option>Мозаїчна штукатурка Baumit MosaikTop (зерно 2 мм) /36 кольорів</option>-->
-								</select>
-								<div class="form-group">
-							    	<input type="text" ng-readonly="true" ng-model="Socle.countFinishLayer" class="form-control digit-input"><span style="padding-left: 0px!important;">кг	=</span>
-							    	<input type="text" ng-readonly="true" ng-model="Socle.priceFinishLayer" class="form-control digit-input1"><span style="padding-left: 0px!important;">грн	</span>
-							  </div>
-							</form>
-					    </div>
-					    <div class="soc-col8" style="padding-bottom: 5px;">
-					    	<form class="form-inline">
-					    		<span class="mylabel-last">Вартісь за 1 м<sup>2</sup>:</span>
-					    		<div class="form-group">
-					    			<input type="text" ng-readonly="true" ng-model="Socle.meterCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    		<span class="mylabel-last">Загальна вартісь:</span>
-					    		<div class="form-group">
-					    			<input type="text" ng-readonly="true" ng-model="Socle.totalCost" class="form-control digit-input3"><span style="padding-left: 0px!important;">грн	</span>
-					    		</div>
-					    	</form>
-					    </div>
-					    <div class="soc-collapse-block">
-					    	<a data-toggle="collapse" href="#socleDetail" aria-expanded="false" aria-controls="socleDetail">
-					    		<img src="img/collapse.png" alt="Свернуть">
-					    	</a>
-					    </div>
-					  </div>
-					</div>
-					<div class="center-block" style="height: 300px;">
-					  	<div class="buttom-line" id="soc-line"></div>
-					  	<img class="img-responsive col-centered" src="img/SocleSystem/soc-prod.png" style="position: relative;top:100px;">
-					</div>
-
-	    		</div>
-	    	</div>
-	    	<div class="col-md-1"></div>
-
+				</div>
+		    </div>
 	    </div>
+
 		<hr>
       <footer>
         <p>&copy; Company 2015</p>

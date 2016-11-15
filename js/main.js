@@ -920,7 +920,7 @@ var printDoc = function() {
     });
 }
 
-var genPDF = function () {
+var genPDF = function() {
     html2canvas(document.body, {
         onrendered: function (canvas) {
             var img = canvas.toDataURL("image/png", 1.0);
