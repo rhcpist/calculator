@@ -520,6 +520,24 @@ option[label='Оберіть штукатурку']:disabled {
 	border-color: #777!important;
 }
 
+.navbar-nav {
+	text-align: center;
+	float: none;
+	margin: 0!important;
+}
+  
+.navbar-nav > li {
+	float: none;
+}
+
+.navbar-nav > li > h2 {
+	font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    color: #333333;
+    font-size: 26px;
+    margin: 30px 0 30px 0;
+}
+
 /*****************************Custom responsive 5th block***************************/
 
 div.col-md-7.five-three {
@@ -542,6 +560,7 @@ div.col-md-5.five-two {
      .calc{ margin-left: 0px; }
      .col-md-4 { padding-right: 5px; padding-left: 5px; }
      .col-md-6 { padding-right: 5px; padding-left: 5px; }
+     .navbar-nav > li > h2 { font-size: 20px; }
    }
 
  /*@media screen and (max-width: 992px) {
@@ -571,6 +590,8 @@ div.col-md-5.five-two {
 	div.col-md-5.five-two {
 		width: 100%;
 	}
+
+	.navbar-nav > li > h2 { font-size: 14px; margin: 37px 0 37px 0;} 
 }
 
 @media only screen and (max-width : 768px) {
@@ -582,4 +603,6 @@ div.col-md-5.five-two {
 	div.col-md-5.five-two {
 		width: 100%;
 	}
+
+	.navbar-nav > li > h2 { display: none; }
 }
