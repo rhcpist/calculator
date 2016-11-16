@@ -520,7 +520,7 @@ div.col-md-5.five-two {
 
 /*****************************All media Querys***************************/
 
- @media (min-width: 992px) and (max-width: 1200px) {
+ @media only screen and (max-width : 1200px) {
      .digit-input { width: 40px!important; }
 	 .digit-input2 { width: 40px!important; margin: 8px 0px 8px 2px; } 
      .digit-input1 { width: 50px!important; }
@@ -536,7 +536,7 @@ div.col-md-5.five-two {
  	 
    }*/
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media only screen and (max-width : 992px) {
 	 .bau-sys { width: 230px; }
  	 .pro-sys { width: 230px; }
  	 .star-sys { width: 230px; }
@@ -561,7 +561,7 @@ div.col-md-5.five-two {
 	}
 }
 
-@media (min-width: 300px) and (max-width: 768px) {
+@media only screen and (max-width : 768px) {
 
     div.col-md-7.five-three {
 		width: 100%;
