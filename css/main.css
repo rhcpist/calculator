@@ -23,9 +23,7 @@ span {
 }
 
 .head-icon {
-	float:right; 
-	width:5%; 
-	margin: 4px;
+	
 }
 
 .row-centered {
@@ -507,8 +505,22 @@ option[label='Оберіть штукатурку']:disabled {
 }
 
 
-/*********************Bau System End****************/
+/*********************Bau System End and Start Navbar style****************/
 
+.navbar {
+	min-height: 89px;
+}
+
+.navbar-brand {
+	padding: 0px 15px 0px 15px;
+}
+
+.navbar-inverse {
+	background: #a5a5a5!important;
+	border-color: #777!important;
+}
+
+/*****************************Custom responsive 5th block***************************/
 
 div.col-md-7.five-three {
 	width: 60%;
