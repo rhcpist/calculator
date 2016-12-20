@@ -155,6 +155,7 @@ option[label='Оберіть штукатурку']:disabled {
 
 .footer-block p {
 	text-align: justify;
+	font-family: 'Roboto', sans-serif;
 }
 
 /*********************Socle System********************/
