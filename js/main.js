@@ -1,4 +1,4 @@
-var url = 'Price_new.xlsx';
+var url = 'Price_20172010.xlsx';
 
 var app = angular.module('App', []);
 
@@ -146,11 +146,17 @@ app.controller('bauCtrl', function($scope, LoadData) {
 
                 /*************** Калькуляция стоимости за м2***************/
                 $scope.Bau.meterCost = ( (glueMix.glueWeight * glueMix.glueSumm) + ($scope.Bau.typeHeater[3].price) + ($scope.Bau.typeHeater[3].dowelPrice*$scope.Bau.typeHeater[3].dowelCount) + (fiberglass.fiberglassPrice) + (glueMix2.glueWeight2 * glueMix2.glueSumm2) + (primer.primerPrice*primer.primerWeight) + ($scope.Bau.typeFinishLayer[2].count*$scope.Bau.typeFinishLayer[2].price) ).toFixed(2);
-                //console.log((glueMix.glueWeight * glueMix.glueSumm));
-                //console.log($scope.Bau.glueSumm);
 
                 /*************** Калькуляция итоговой стоимости ***************/
-                $scope.Bau.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + (glueMix2.glueWeight2 * glueMix2.glueSumm2*count) + parseFloat($scope.Bau.priceHeater) + parseFloat($scope.Bau.priceDowel) + parseFloat($scope.Bau.fiberglassPrice) + parseFloat($scope.Bau.primerPrice) + parseFloat($scope.Bau.priceFinishLayer)).toFixed(2);
+                if (!$scope.Bau.discount) {
+                    $scope.Bau.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + (glueMix2.glueWeight2 * glueMix2.glueSumm2*count) + parseFloat($scope.Bau.priceHeater) + parseFloat($scope.Bau.priceDowel) + parseFloat($scope.Bau.fiberglassPrice) + parseFloat($scope.Bau.primerPrice) + parseFloat($scope.Bau.priceFinishLayer)).toFixed(2);
+                }
+                else {
+                    $scope.Bau.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + (glueMix2.glueWeight2 * glueMix2.glueSumm2*count) + parseFloat($scope.Bau.priceHeater) + parseFloat($scope.Bau.priceDowel) + parseFloat($scope.Bau.fiberglassPrice) + parseFloat($scope.Bau.primerPrice) + parseFloat($scope.Bau.priceFinishLayer)).toFixed(2);
+                    var discountTotal = ( (Number($scope.Bau.totalCost)*parseInt($scope.Bau.discount) )/100);
+                    $scope.Bau.totalCost = (Number($scope.Bau.totalCost) - discountTotal).toFixed(2);
+                }
+                
             }
 
             $scope.Bau.editGlue = function(weight) {
@@ -166,7 +172,15 @@ app.controller('bauCtrl', function($scope, LoadData) {
                     $scope.Bau.meterCost = ( ((glueSumm1Bau*weight) + ($scope.Bau.typeHeater[id1].price*$scope.Bau.radiusCount) + ($scope.Bau.typeHeater[id1].dowelPrice*$scope.Bau.typeHeater[id1].dowelCount*$scope.Bau.radiusCount) + parseFloat($scope.Bau.fiberglassPrice) + parseFloat($scope.Bau.glueSumm2) + parseFloat($scope.Bau.primerPrice) + ($scope.Bau.typeFinishLayer[id2].count*$scope.Bau.typeFinishLayer[id2].price*$scope.Bau.radiusCount) )/$scope.Bau.radiusCount).toFixed(2);
                     
                     /*************** Калькуляция итоговой стоимости при изменении***************/
-                    $scope.Bau.totalCost =  ( (glueSumm1Bau*weight) + ($scope.Bau.typeHeater[id1].price*$scope.Bau.radiusCount) + ($scope.Bau.typeHeater[id1].dowelPrice*$scope.Bau.typeHeater[id1].dowelCount*$scope.Bau.radiusCount) + parseFloat($scope.Bau.fiberglassPrice) + parseFloat($scope.Bau.glueSumm2) + parseFloat($scope.Bau.primerPrice) + ($scope.Bau.typeFinishLayer[id2].count*$scope.Bau.typeFinishLayer[id2].price*$scope.Bau.radiusCount) ).toFixed(2);
+                    if (!$scope.Bau.discount) {
+                        $scope.Bau.totalCost =  ( (glueSumm1Bau*weight) + ($scope.Bau.typeHeater[id1].price*$scope.Bau.radiusCount) + ($scope.Bau.typeHeater[id1].dowelPrice*$scope.Bau.typeHeater[id1].dowelCount*$scope.Bau.radiusCount) + parseFloat($scope.Bau.fiberglassPrice) + parseFloat($scope.Bau.glueSumm2) + parseFloat($scope.Bau.primerPrice) + ($scope.Bau.typeFinishLayer[id2].count*$scope.Bau.typeFinishLayer[id2].price*$scope.Bau.radiusCount) ).toFixed(2);
+                    }
+                    else {
+                        $scope.Bau.totalCost =  ( (glueSumm1Bau*weight) + ($scope.Bau.typeHeater[id1].price*$scope.Bau.radiusCount) + ($scope.Bau.typeHeater[id1].dowelPrice*$scope.Bau.typeHeater[id1].dowelCount*$scope.Bau.radiusCount) + parseFloat($scope.Bau.fiberglassPrice) + parseFloat($scope.Bau.glueSumm2) + parseFloat($scope.Bau.primerPrice) + ($scope.Bau.typeFinishLayer[id2].count*$scope.Bau.typeFinishLayer[id2].price*$scope.Bau.radiusCount) ).toFixed(2);
+                        var discountTotal = ( (Number($scope.Bau.totalCost)*parseInt($scope.Bau.discount) )/100);
+                        $scope.Bau.totalCost = (Number($scope.Bau.totalCost) - discountTotal).toFixed(2);
+                    }
+                    
 
                 } 
             }
@@ -330,7 +344,15 @@ app.controller('proCtrl', function($scope, LoadData) {
                 $scope.Pro.meterCost = ( (glueMix.glueWeight * glueMix.glueSumm) + ($scope.Pro.typeHeater[3].price) + ($scope.Pro.typeHeater[3].dowelPrice*$scope.Pro.typeHeater[3].dowelCount) + (fiberglass.fiberglassPrice) + (primer.primerPrice*primer.primerWeight) + ($scope.Pro.typeFinishLayer[7].count*$scope.Pro.typeFinishLayer[7].price) ).toFixed(2);
 
                 /*************** Калькуляция итоговой стоимости ***************/
-                $scope.Pro.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + parseFloat($scope.Pro.priceHeater) + parseFloat($scope.Pro.priceDowel) + parseFloat($scope.Pro.fiberglassPrice) + parseFloat($scope.Pro.primerPrice) + parseFloat($scope.Pro.priceFinishLayer)).toFixed(2);
+                if (!$scope.Pro.discount) {
+                    $scope.Pro.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + parseFloat($scope.Pro.priceHeater) + parseFloat($scope.Pro.priceDowel) + parseFloat($scope.Pro.fiberglassPrice) + parseFloat($scope.Pro.primerPrice) + parseFloat($scope.Pro.priceFinishLayer)).toFixed(2);
+                }
+                else {
+                    $scope.Pro.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + parseFloat($scope.Pro.priceHeater) + parseFloat($scope.Pro.priceDowel) + parseFloat($scope.Pro.fiberglassPrice) + parseFloat($scope.Pro.primerPrice) + parseFloat($scope.Pro.priceFinishLayer)).toFixed(2);
+                    var discountTotal = ( (Number($scope.Pro.totalCost)*parseInt($scope.Pro.discount) )/100);
+                    $scope.Pro.totalCost = (Number($scope.Pro.totalCost) - discountTotal).toFixed(2);
+                }
+                
             }
 
             $scope.Pro.editGlue = function(weight) {
@@ -367,7 +389,14 @@ app.controller('proCtrl', function($scope, LoadData) {
                     $scope.Pro.meterCost = ( ((glueSumm1Pro*weight) + ($scope.Pro.typeHeater[id1].price*$scope.Pro.radiusCount) + ($scope.Pro.typeHeater[id1].dowelPrice*$scope.Pro.typeHeater[id1].dowelCount*$scope.Pro.radiusCount) + parseFloat($scope.Pro.fiberglassPrice) + parseFloat($scope.Pro.primerPrice) + ($scope.Pro.typeFinishLayer[id2].count*$scope.Pro.typeFinishLayer[id2].price*$scope.Pro.radiusCount) )/$scope.Pro.radiusCount).toFixed(2);
                     
                     /*************** Калькуляция итоговой стоимости при изменении***************/
-                    $scope.Pro.totalCost = ( (glueSumm1Pro*weight) + ($scope.Pro.typeHeater[id1].price*$scope.Pro.radiusCount) + ($scope.Pro.typeHeater[id1].dowelPrice*$scope.Pro.typeHeater[id1].dowelCount*$scope.Pro.radiusCount) + parseFloat($scope.Pro.fiberglassPrice) + parseFloat($scope.Pro.primerPrice) + ($scope.Pro.typeFinishLayer[id2].count*$scope.Pro.typeFinishLayer[id2].price*$scope.Pro.radiusCount) ).toFixed(2);
+                    if (!$scope.Pro.discount) {
+                        $scope.Pro.totalCost = ( (glueSumm1Pro*weight) + ($scope.Pro.typeHeater[id1].price*$scope.Pro.radiusCount) + ($scope.Pro.typeHeater[id1].dowelPrice*$scope.Pro.typeHeater[id1].dowelCount*$scope.Pro.radiusCount) + parseFloat($scope.Pro.fiberglassPrice) + parseFloat($scope.Pro.primerPrice) + ($scope.Pro.typeFinishLayer[id2].count*$scope.Pro.typeFinishLayer[id2].price*$scope.Pro.radiusCount) ).toFixed(2);
+                    }
+                    else {
+                        $scope.Pro.totalCost = ( (glueSumm1Pro*weight) + ($scope.Pro.typeHeater[id1].price*$scope.Pro.radiusCount) + ($scope.Pro.typeHeater[id1].dowelPrice*$scope.Pro.typeHeater[id1].dowelCount*$scope.Pro.radiusCount) + parseFloat($scope.Pro.fiberglassPrice) + parseFloat($scope.Pro.primerPrice) + ($scope.Pro.typeFinishLayer[id2].count*$scope.Pro.typeFinishLayer[id2].price*$scope.Pro.radiusCount) ).toFixed(2);
+                        var discountTotal = ( (Number($scope.Pro.totalCost)*parseInt($scope.Pro.discount) )/100);
+                        $scope.Pro.totalCost = (Number($scope.Pro.totalCost) - discountTotal).toFixed(2);
+                    }
 
                 } 
             }
@@ -479,6 +508,7 @@ app.controller('starCtrl', function($scope, LoadData) {
 
                 $scope.Star.radiusCount = count;
 
+
                 /*************** Калькуляция клеевой смеси ***************/
                 if (!glueMix.glueWeight) {
                     $scope.Star.glueSumm = 0;
@@ -509,9 +539,17 @@ app.controller('starCtrl', function($scope, LoadData) {
 
                 /*************** Калькуляция стоимости за м2***************/
                 $scope.Star.meterCost = ( (glueMix.glueWeight * glueMix.glueSumm) + ($scope.Star.typeHeater[3].price) + ($scope.Star.typeHeater[3].dowelPrice*$scope.Star.typeHeater[3].dowelCount) + (fiberglass.fiberglassPrice) + ($scope.Star.typeFinishLayer[12].count*$scope.Star.typeFinishLayer[12].price) ).toFixed(2);
-                
+
                 /*************** Калькуляция итоговой стоимости ***************/
-                $scope.Star.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + parseFloat($scope.Star.priceHeater) + parseFloat($scope.Star.priceDowel) + parseFloat($scope.Star.fiberglassPrice) + parseFloat($scope.Star.priceFinishLayer)).toFixed(2);
+                if (!$scope.Star.discount) {
+                    $scope.Star.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + parseFloat($scope.Star.priceHeater) + parseFloat($scope.Star.priceDowel) + parseFloat($scope.Star.fiberglassPrice) + parseFloat($scope.Star.priceFinishLayer)).toFixed(2);
+                }
+                else {
+                    $scope.Star.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + parseFloat($scope.Star.priceHeater) + parseFloat($scope.Star.priceDowel) + parseFloat($scope.Star.fiberglassPrice) + parseFloat($scope.Star.priceFinishLayer)).toFixed(2);
+                    var discountTotal = (Number($scope.Star.totalCost)*parseInt($scope.Star.discount)/100);
+                    $scope.Star.totalCost = (Number($scope.Star.totalCost) - discountTotal).toFixed(2);
+                }
+                
             }
 
             $scope.Star.editGlue = function(weight) {
@@ -527,7 +565,15 @@ app.controller('starCtrl', function($scope, LoadData) {
                     $scope.Star.meterCost = ( ((glueSumm1Star*weight) + ($scope.Star.typeHeater[id1].price*$scope.Star.radiusCount) + ($scope.Star.typeHeater[id1].dowelPrice*$scope.Star.typeHeater[id1].dowelCount*$scope.Star.radiusCount) + parseFloat($scope.Star.fiberglassPrice) + ($scope.Star.typeFinishLayer[id2].count*$scope.Star.typeFinishLayer[id2].price*$scope.Star.radiusCount) )/$scope.Star.radiusCount).toFixed(2);
                     
                     /*************** Калькуляция итоговой стоимости при изменении***************/
-                    $scope.Star.totalCost = ( (glueSumm1Star*weight) + ($scope.Star.typeHeater[id1].price*$scope.Star.radiusCount) + ($scope.Star.typeHeater[id1].dowelPrice*$scope.Star.typeHeater[id1].dowelCount*$scope.Star.radiusCount) + parseFloat($scope.Star.fiberglassPrice) + ($scope.Star.typeFinishLayer[id2].count*$scope.Star.typeFinishLayer[id2].price*$scope.Star.radiusCount) ).toFixed(2);
+                    if (!$scope.Star.discount) {
+                        $scope.Star.totalCost = ( (glueSumm1Star*weight) + ($scope.Star.typeHeater[id1].price*$scope.Star.radiusCount) + ($scope.Star.typeHeater[id1].dowelPrice*$scope.Star.typeHeater[id1].dowelCount*$scope.Star.radiusCount) + parseFloat($scope.Star.fiberglassPrice) + ($scope.Star.typeFinishLayer[id2].count*$scope.Star.typeFinishLayer[id2].price*$scope.Star.radiusCount) ).toFixed(2);
+                    }
+                    else {
+                        $scope.Star.totalCost = ( (glueSumm1Star*weight) + ($scope.Star.typeHeater[id1].price*$scope.Star.radiusCount) + ($scope.Star.typeHeater[id1].dowelPrice*$scope.Star.typeHeater[id1].dowelCount*$scope.Star.radiusCount) + parseFloat($scope.Star.fiberglassPrice) + ($scope.Star.typeFinishLayer[id2].count*$scope.Star.typeFinishLayer[id2].price*$scope.Star.radiusCount) ).toFixed(2);
+                        var discountTotal = ( (Number($scope.Star.totalCost)*parseInt($scope.Star.discount) )/100);
+                        $scope.Star.totalCost = (Number($scope.Star.totalCost) - discountTotal).toFixed(2);
+                    }
+                    
                 } 
             }
 
@@ -858,7 +904,15 @@ app.controller('socleCtrl', function($scope, LoadData) {
 		        $scope.Socle.meterCost = ( (glueMix.glueWeight * glueMix.glueSumm) + ($scope.Socle.typeHeater[3].price) + ($scope.Socle.typeHeater[3].dowelPrice*$scope.Socle.typeHeater[3].dowelCount) + (fiberglass.fiberglassPrice) + (primer.primerPrice*primer.primerWeight) + ($scope.Socle.typeFinishLayer[2].count*$scope.Socle.typeFinishLayer[2].price) ).toFixed(2);
 
 		        /*************** Калькуляция итоговой стоимости ***************/
-		        $scope.Socle.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + parseFloat($scope.Socle.priceHeater) + parseFloat($scope.Socle.priceDowel) + parseFloat($scope.Socle.fiberglassPrice) + parseFloat($scope.Socle.primerPrice) + parseFloat($scope.Socle.priceFinishLayer)).toFixed(2);
+                if (!$scope.Socle.discount) {
+                    $scope.Socle.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + parseFloat($scope.Socle.priceHeater) + parseFloat($scope.Socle.priceDowel) + parseFloat($scope.Socle.fiberglassPrice) + parseFloat($scope.Socle.primerPrice) + parseFloat($scope.Socle.priceFinishLayer)).toFixed(2);
+                }
+                else {
+                    $scope.Socle.totalCost = ((glueMix.glueWeight * glueMix.glueSumm*count) + parseFloat($scope.Socle.priceHeater) + parseFloat($scope.Socle.priceDowel) + parseFloat($scope.Socle.fiberglassPrice) + parseFloat($scope.Socle.primerPrice) + parseFloat($scope.Socle.priceFinishLayer)).toFixed(2);
+                    var discountTotal = ( (Number($scope.Socle.totalCost)*parseInt($scope.Socle.discount) )/100);
+                    $scope.Socle.totalCost = (Number($scope.Socle.totalCost) - discountTotal).toFixed(2);
+                }
+		        
 		    }
 
 		    $scope.Socle.editGlue = function(weight) {
@@ -874,7 +928,14 @@ app.controller('socleCtrl', function($scope, LoadData) {
 		            $scope.Socle.meterCost = ( ((glueSumm1Socle*weight) + ($scope.Socle.typeHeater[id1].price*$scope.Socle.radiusCount) + ($scope.Socle.typeHeater[id1].dowelPrice*$scope.Socle.typeHeater[id1].dowelCount*$scope.Socle.radiusCount) + parseFloat($scope.Socle.fiberglassPrice) + parseFloat($scope.Socle.primerPrice) + ($scope.Socle.typeFinishLayer[id2].count*$scope.Socle.typeFinishLayer[id2].price*$scope.Socle.radiusCount) )/$scope.Socle.radiusCount).toFixed(2);
 		            
 		            /*************** Калькуляция итоговой стоимости при изменении***************/
-		            $scope.Socle.totalCost = ( (glueSumm1Socle*weight) + ($scope.Socle.typeHeater[id1].price*$scope.Socle.radiusCount) + ($scope.Socle.typeHeater[id1].dowelPrice*$scope.Socle.typeHeater[id1].dowelCount*$scope.Socle.radiusCount) + parseFloat($scope.Socle.fiberglassPrice) + parseFloat($scope.Socle.primerPrice) + ($scope.Socle.typeFinishLayer[id2].count*$scope.Socle.typeFinishLayer[id2].price*$scope.Socle.radiusCount) ).toFixed(2);
+                    if (!$scope.Socle.discount) {
+                        $scope.Socle.totalCost = ( (glueSumm1Socle*weight) + ($scope.Socle.typeHeater[id1].price*$scope.Socle.radiusCount) + ($scope.Socle.typeHeater[id1].dowelPrice*$scope.Socle.typeHeater[id1].dowelCount*$scope.Socle.radiusCount) + parseFloat($scope.Socle.fiberglassPrice) + parseFloat($scope.Socle.primerPrice) + ($scope.Socle.typeFinishLayer[id2].count*$scope.Socle.typeFinishLayer[id2].price*$scope.Socle.radiusCount) ).toFixed(2);
+                    }
+                    else {
+                        $scope.Socle.totalCost = ( (glueSumm1Socle*weight) + ($scope.Socle.typeHeater[id1].price*$scope.Socle.radiusCount) + ($scope.Socle.typeHeater[id1].dowelPrice*$scope.Socle.typeHeater[id1].dowelCount*$scope.Socle.radiusCount) + parseFloat($scope.Socle.fiberglassPrice) + parseFloat($scope.Socle.primerPrice) + ($scope.Socle.typeFinishLayer[id2].count*$scope.Socle.typeFinishLayer[id2].price*$scope.Socle.radiusCount) ).toFixed(2);
+                        var discountTotal = ( (Number($scope.Socle.totalCost)*parseInt($scope.Socle.discount) )/100);
+                        $scope.Socle.totalCost = (Number($scope.Socle.totalCost) - discountTotal).toFixed(2);
+                    }
 
 		        } 
 		    }
@@ -922,11 +983,13 @@ var printDoc = function() {
 }
 
 var genPDF = function() {
-    html2canvas(document.body, {
+    html2canvas(document.querySelector(".row"), {
         onrendered: function (canvas) {
+            console.log(canvas.width);
+            console.log(canvas.height);
             var img = canvas.toDataURL("image/png", 1.0);
-            var doc = new jsPDF("l", "mm", "a4");
-            doc.addImage(img, 'JPEG', 2, 2, 270, 225);
+            var doc = new jsPDF('', 'mm', [canvas.width, canvas.height]);
+            doc.addImage(img, 'JPEG', 0, 0, canvas.width, canvas.height);
             doc.save('test.pdf');
         }
     });

@@ -11,6 +11,12 @@ span {
 	font-size: 11px;
 }
 
+a, a:hover, a:visited, a:active, a:link {
+	text-decoration: none;
+	position: relative;
+	z-index: 10;
+}
+
    /********************Header box********************/
 
 
@@ -83,7 +89,7 @@ span {
 	padding: 6px 1px!important;
 	width: 65px!important;
     height: 25px;
-    margin: 8px 1px 8px 15px;
+    margin: 8px 1px 8px 50px;
     display: inline-block!important;
 }
 
@@ -91,7 +97,7 @@ span {
 	padding: 6px 1px!important;
 	width: 65px!important;
     height: 25px;
-    margin: 8px 0px 8px 6px;
+    margin: 8px 0px 8px 40px;
     display: inline-block!important;
 }
 
@@ -103,6 +109,16 @@ span {
     margin: 3px 1px 3px 97px;
     border-radius: 0px;
 }
+
+.digit-input4 {
+	padding: 6px 1px!important;
+	width: 75px!important;
+    display: inline-block!important;
+    height: 30px;
+    margin: 3px 1px 3px 12px;
+    border-radius: 0px;
+}
+
 
 .calc {
 	font-family: 'Roboto', sans-serif;
@@ -169,6 +185,7 @@ option[label='Оберіть штукатурку']:disabled {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c1ae59', endColorstr='#b29545',GradientType=0 ); /* IE6-9 */
 	border-radius: 10px;
 	margin-top: 10px;
+	width: 230px;
 }
 
 .soc-col1 {
@@ -324,6 +341,7 @@ option[label='Оберіть штукатурку']:disabled {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b798c7', endColorstr='#8d68ad',GradientType=0 ); /* IE6-9 */
 	border-radius: 10px;
 	margin-top: 10px;
+	width: 230px;
 }
 
 .star-col1 {
@@ -402,6 +420,7 @@ option[label='Оберіть штукатурку']:disabled {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#64addf', endColorstr='#008fd0',GradientType=0 ); /* IE6-9 */
 	border-radius: 10px;
 	margin-top: 10px;
+	width: 230px;
 }
 
 .pro-col1 {
@@ -481,6 +500,7 @@ option[label='Оберіть штукатурку']:disabled {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7cbf50', endColorstr='#37a948',GradientType=0 ); /* IE6-9 */
 	border-radius: 10px;
 	margin-top: 10px;
+	width: 230px;
 }
 
 .bau-col1 {
@@ -521,7 +541,7 @@ option[label='Оберіть штукатурку']:disabled {
 	border-radius: 0 0 10px 10px;
 }
 
-.bau-col1, .bau-col2, .bau-col3, .bau-col4, .bau-col5, .bau-col6, .bau-col7, .bau-col8 {
+.bau-col1, .bau-col2, .bau-col3, .bau-col4, .bau-col5, .bau-col6, .bau-col7, .bau-col8, .bau-col9 {
 	text-align: left;
 	padding-top: 5px;
 }
@@ -581,27 +601,32 @@ option[label='Оберіть штукатурку']:disabled {
 
 /*****************************Custom responsive 5th block***************************/
 
-div.col-md-7.five-three {
+/*div.col-md-7.five-three {
 	width: 60%;
 }
 
 div.col-md-5.five-two {
 	width: 40%;
-}
+}*/
 
 /*****************************All media Querys***************************/
 
  @media only screen and (max-width : 1200px) {
      .digit-input { width: 40px!important; }
-	 .digit-input2 { width: 40px!important; margin: 8px 0px 8px 2px; } 
+	 .digit-input2 { width: 40px!important; margin: 8px 0px 8px 35px; } 
      .digit-input1 { width: 50px!important; }
-     .digit-input3 { margin: 3px 1px 3px 65px; }
+     .digit-input3 { margin: 3px 1px 3px 96px; }
      .buttom-line { height: 240px; }
      .myselect { width: 145px!important; display: block!important; padding-left: 0px; font-size: 11px; }
      .calc{ margin-left: 0px; }
      .col-md-4 { padding-right: 5px; padding-left: 5px; }
      .col-md-6 { padding-right: 5px; padding-left: 5px; }
      .navbar-nav > li > h2 { font-size: 20px; }
+     .bau-sys { width: 207px; }
+ 	 .pro-sys { width: 207px; }
+ 	 .star-sys { width: 207px; }
+     .socle-sys { width: 207px; }
+     .col-centered { width: 90%; }
    }
 
  /*@media screen and (max-width: 992px) {
@@ -619,6 +644,7 @@ div.col-md-5.five-two {
      .digit-input2 { width: 55px!important; margin-left: 50px; }
      .digit-input1 { width: 65px!important; margin-left: 50px;}
      .digit-input3 { margin-left: 130px; }
+     .digit-input4 { margin: 3px 1px 3px 45px; }
      .buttom-line { height: 280px; width: 200px; }
      .myselect { width: 212px!important; display: block!important; padding-left: 0px; font-size: 11px; }
      .calc { margin-left: 50px; }
