@@ -57,11 +57,31 @@ app.controller('bauCtrl', function($scope, LoadData) {
                 selectedHeater : { name: 'Оберіть утеплювач', count: 0, price: 0, dowelSize: 0, dowelCount: 0, dowelPrice: 0.00, selectable: false },
 
                 typeFinishLayer: [
-                    { id: 0, name: 'Оберіть штукатурку', count: '', price: 0.00, selectable: false },
+                    /*{ id: 0, name: 'Оберіть штукатурку', count: '', price: 0.00, selectable: false },
                     { id: 1, name: 'Без оздоблення', count: '', price: 0.00, selectable: true },
                     { id: 2, name: 'EdelPutz Spezial 1,5 мм «баранець»', count: workSheet['D16'].v, price: (workSheet['F16'].v).toFixed(2), selectable: true },
                     { id: 3, name: 'Edelputz Spezial 2 мм «баранець»', count: workSheet['D17'].v, price: (workSheet['F17'].v).toFixed(2), selectable: true },
-                    { id: 4, name: 'Edelputz Spezial 2 мм «короїд»', count: workSheet['D18'].v, price: (workSheet['F18'].v).toFixed(2), selectable: true },
+                    { id: 4, name: 'Edelputz Spezial 2 мм «короїд»', count: workSheet['D18'].v, price: (workSheet['F18'].v).toFixed(2), selectable: true },*/
+                    { id: 0, name: 'Оберіть штукатурку', count: '', price: 0.00, selectable: false },
+                    { id: 1, name: 'Без оздоблення', count: '', price: 0.00, selectable: true },
+                    { id: 2, name: 'SilikonTop 1.5 мм «баранець»', count: workSheet['D32'].v, price: (workSheet['F32'].v).toFixed(2), selectable: true},
+                    { id: 3, name: 'SilikonTop 2 мм «баранець»', count: workSheet['D30'].v, price: (workSheet['F30'].v).toFixed(2), selectable: true },
+                    { id: 4, name: 'SilikonTop 2 мм «короїд»', count: workSheet['D31'].v, price: (workSheet['F31'].v).toFixed(2), selectable: true },
+                    { id: 5, name: 'SilikonTop 3 мм «баранець»', count: workSheet['D28'].v, price: (workSheet['F28'].v).toFixed(2), selectable: true },
+                    { id: 6, name: 'SilikonTop 3 мм «короїд»', count: workSheet['D29'].v, price: (workSheet['F29'].v).toFixed(2), selectable: true },
+                    { id: 7, name: 'StellaporTop 1.5 мм «баранець»', count: workSheet['D37'].v, price: (workSheet['F37'].v).toFixed(2), selectable: true },
+                    { id: 8, name: 'StellaporTop 2 мм «баранець»', count: workSheet['D35'].v, price: (workSheet['F35'].v).toFixed(2), selectable: true },
+                    { id: 9, name: 'StellaporTop 2 мм «короїд»', count: workSheet['D36'].v, price: (workSheet['F36'].v).toFixed(2), selectable: true },
+                    { id: 10, name: 'StellaporTop 3 мм «баранець»', count: workSheet['D33'].v, price: (workSheet['F33'].v).toFixed(2), selectable: true },
+                    { id: 11, name: 'StellaporTop 3 мм «короїд»', count: workSheet['D34'].v, price: (workSheet['F34'].v).toFixed(2), selectable: true },
+                    { id: 12, name: 'GranoporTop 1.5 мм «баранець»', count: workSheet['D38'].v, price: (workSheet['F38'].v).toFixed(2), selectable: true },
+                    { id: 13, name: 'GranoporTop 2 мм «баранець»', count: workSheet['D39'].v, price: (workSheet['F39'].v).toFixed(2), selectable: true },
+                    { id: 14, name: 'GranoporTop 2 мм «короїд»', count: workSheet['D40'].v, price: (workSheet['F40'].v).toFixed(2), selectable: true },
+                    { id: 15, name: 'GranoporTop 3 мм «баранець»', count: workSheet['D41'].v, price: (workSheet['F41'].v).toFixed(2), selectable: true },
+                    { id: 16, name: 'GranoporTop 3 мм «короїд»', count: workSheet['D42'].v, price: (workSheet['F42'].v).toFixed(2), selectable: true },
+                    { id: 17, name: 'Edelputz Spezial White 1.5 мм «баранець»', count: workSheet['D16'].v, price: (workSheet['F16'].v).toFixed(2), selectable: true },
+                    { id: 18, name: 'Edelputz Spezial White 2 мм «баранець»', count: workSheet['D17'].v, price: (workSheet['F17'].v).toFixed(2), selectable: true },
+                    { id: 19, name: 'Edelputz Spezial White 2 мм «короїд»', count: workSheet['D18'].v, price: (workSheet['F18'].v).toFixed(2), selectable: true }
 
                 ],
                 selectedFinishLayer : { id: 0, name: 'Оберіть штукатурку', count: '', price: 0.00, selectable: false }
@@ -453,11 +473,11 @@ app.controller('starCtrl', function($scope, LoadData) {
                     { id: 1, name: 'Мінераловатна плита 50 мм', price: workSheet['F46'].v, dowelSize: 120, dowelCount: workSheet['D64'].v, dowelPrice: workSheet['F64'].v, selectable: true },
                     { id: 2, name: 'Мінераловатна плита 80 мм', price: workSheet['F47'].v, dowelSize: 140, dowelCount: workSheet['D65'].v, dowelPrice: workSheet['F65'].v, selectable: true },
                     { id: 3, name: 'Мінераловатна плита 100 мм', price: workSheet['F48'].v, dowelSize: 160, dowelCount: workSheet['D66'].v, dowelPrice: workSheet['F66'].v, selectable: true },
-                    { id: 4, name: 'Мінераловатна плита 120 мм', price: workSheet['F49'].v, dowelSize: 200, dowelCount: workSheet['D68'].v, dowelPrice: workSheet['F68'].v, selectable: true },
-                    { id: 5, name: 'Плита ПСБС-25 50 мм', price: workSheet['F50'].v, dowelSize: 120, dowelCount: workSheet['D59'].v, dowelPrice: workSheet['F59'].v, selectable: true },
-                    { id: 6, name: 'Плита ПСБС-25 80 мм', price: workSheet['F51'].v, dowelSize: 140, dowelCount: workSheet['D60'].v, dowelPrice: workSheet['F60'].v, selectable: true },
-                    { id: 7, name: 'Плита ПСБС-25 100 мм', price: workSheet['F52'].v, dowelSize: 160, dowelCount: workSheet['D61'].v, dowelPrice: workSheet['F61'].v, selectable: true },
-                    { id: 8, name: 'Плита ПСБС-25 120 мм', price: workSheet['F53'].v, dowelSize: 200, dowelCount: workSheet['D63'].v, dowelPrice: workSheet['F63'].v, selectable: true }
+                    { id: 4, name: 'Мінераловатна плита 120 мм', price: workSheet['F49'].v, dowelSize: 200, dowelCount: workSheet['D68'].v, dowelPrice: workSheet['F68'].v, selectable: true }
+                    //{ id: 1, name: 'Плита ПСБС-25 50 мм', price: workSheet['F50'].v, dowelSize: 120, dowelCount: workSheet['D59'].v, dowelPrice: workSheet['F59'].v, selectable: true },
+                    //{ id: 2, name: 'Плита ПСБС-25 80 мм', price: workSheet['F51'].v, dowelSize: 140, dowelCount: workSheet['D60'].v, dowelPrice: workSheet['F60'].v, selectable: true },
+                    //{ id: 3, name: 'Плита ПСБС-25 100 мм', price: workSheet['F52'].v, dowelSize: 160, dowelCount: workSheet['D61'].v, dowelPrice: workSheet['F61'].v, selectable: true },
+                    //{ id: 4, name: 'Плита ПСБС-25 120 мм', price: workSheet['F53'].v, dowelSize: 200, dowelCount: workSheet['D63'].v, dowelPrice: workSheet['F63'].v, selectable: true }
                 ],
                 selectedHeater : { id: 0, name: 'Оберіть утеплювач', price: 0, dowelSize: 0, dowelCount: 0, dowelPrice: 0.00, selectable: false },
 
